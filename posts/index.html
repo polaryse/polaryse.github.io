@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" class="scroll-smooth" data-default-appearance="light"
   data-auto-appearance="true"><head>
-	<meta name="generator" content="Hugo 0.107.0">
   <meta charset="utf-8" />
   
   <meta http-equiv="content-language" content="en-us" />
@@ -11,16 +10,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Malware Analysis: Or How I Learned to Love Frustration</title>
-  <meta name="title" content="Malware Analysis: Or How I Learned to Love Frustration" />
+  <title>Posts &middot; Malware Analysis: Or How I Learned to Love Frustration</title>
+  <meta name="title" content="Posts &middot; Malware Analysis: Or How I Learned to Love Frustration" />
   
   
   
   
   
-  <link rel="canonical" href="https://polaryse.github.io/" />
+  <link rel="canonical" href="https://polaryse.github.io/posts/" />
   
-  <link rel="alternate" type="application/rss+xml" href="/index.xml" title="Malware Analysis: Or How I Learned to Love Frustration" />
+  <link rel="alternate" type="application/rss+xml" href="/posts/index.xml" title="Malware Analysis: Or How I Learned to Love Frustration" />
   
   
   
@@ -69,34 +68,18 @@
   
   
   
-  <meta property="og:title" content="Malware Analysis: Or How I Learned to Love Frustration" />
+  <meta property="og:title" content="Posts" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://polaryse.github.io/" />
+<meta property="og:url" content="https://polaryse.github.io/posts/" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Malware Analysis: Or How I Learned to Love Frustration"/>
+<meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content=""/>
 
   
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https:\/\/polaryse.github.io\/",
-    "name": "Malware Analysis: Or How I Learned to Love Frustration",
-    
-    "inLanguage": "en-us",
-    "url": "https:\/\/polaryse.github.io\/",
-    
-    "publisher" : {
-      "@type": "Person",
-      "name": ""
-    }
-  }
-  </script>
-
+  
 
   
   
@@ -280,34 +263,265 @@
   <div class="relative flex flex-col grow">
     <main id="main-content" class="grow">
       
-  
-  
-    <article
-  class="
-    h-full
-   flex flex-col items-center justify-center text-center"
->
-  <header class="flex flex-col items-center mb-3">
-    
-    <h1 class="text-4xl font-extrabold">
-      Malware Analysis: Or How I Learned to Love Frustration
-    </h1>
-    
-    <div class="mt-1 text-2xl">
-      
 
-    </div>
+
+ <header>
+  
+  <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Posts</h1>
+  <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+</div>
+
+
+  </div>
   </header>
-  <section class="prose dark:prose-invert"></section>
-</article>
-<section>
+  <section class="mt-0 prose flex max-w-full flex-col dark:prose-invert lg:flex-row">
+    
+    <div class="min-w-0 min-h-0 max-w-prose">
+      
+    </div>
+    <script>
+
+      var liked_article = false
+
+      if (typeof auth !== 'undefined') {
+        var oid = "views_"
+        var id = oid ? oid.replaceAll("/", "-") : oid
+
+        var viewed = localStorage.getItem(id);
+
+        if (!viewed) {
+          auth.signInAnonymously()
+            .then(() => {
+              var docRef = db.collection('views').doc(id)
+              localStorage.setItem(id, true);
+              docRef.get().then((doc) => {
+                if (doc.exists) {
+                  db.collection('views').doc(id).update({
+                    views: firebase.firestore.FieldValue.increment(1)
+                  });
+                } else {
+                  db.collection('views').doc(id).set({ views: 1 })
+                }
+              }).catch((error) => {
+                console.log("Error getting document:", error);
+              });
+            })
+            .catch((error) => {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.error(errorCode, errorMessage)
+            });
+        }
+
+        var oid_likes = "likes_"
+        var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
+
+        var liked = localStorage.getItem(id_likes);
+
+        if (liked) {
+          liked_article = true
+          document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
+          document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
+          document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
+        }
+
+      }
+
+      function like_article(id_likes) {
+        auth.signInAnonymously()
+          .then(() => {
+            var docRef = db.collection('likes').doc(id_likes)
+            docRef.get().then((doc) => {
+              liked_article = true
+              localStorage.setItem(id_likes, true);
+              document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
+              document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
+              document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
+              if (doc.exists) {
+                db.collection('likes').doc(id_likes).update({
+                  likes: firebase.firestore.FieldValue.increment(1)
+                });
+              } else {
+                db.collection('likes').doc(id_likes).set({ likes: 1 })
+              }
+            }).catch((error) => {
+              console.log("Error getting document:", error);
+            });
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.error(errorCode, errorMessage)
+          });
+      }
+
+      function remove_like_article(id_likes) {
+        auth.signInAnonymously()
+          .then(() => {
+            var docRef = db.collection('likes').doc(id_likes)
+            docRef.get().then((doc) => {
+              liked_article = false
+              localStorage.removeItem(id_likes);
+              document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = "none"
+              document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = ""
+              document.querySelectorAll("span[id='likes_button_text']")[0].innerText = "\xa0Like"
+              if (doc.exists) {
+                db.collection('likes').doc(id_likes).update({
+                  likes: firebase.firestore.FieldValue.increment(-1)
+                });
+              } else {
+                db.collection('likes').doc(id_likes).set({ likes: 0 })
+              }
+            }).catch((error) => {
+              console.log("Error getting document:", error);
+            });
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.error(errorCode, errorMessage)
+          });
+      }
+
+      function process_article() {
+        var oid_likes = "likes_"
+        var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
+        if (!liked_article) {
+          like_article(id_likes)
+        } else {
+          remove_like_article(id_likes)
+        }
+      }
+
+    </script>
+  </section>
   
 
+  
+          <section class="space-y-10 w-full">
+            
+            
+            <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
+              2022
+            </h2>
+            
+            
+            
 
-</section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a class="flex flex-wrap article " href="/posts/posts/">
+    <div class=" mt-3 md:mt-0">
+      <div class="items-center text-xl font-semibold">
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/posts/posts/">This is my test post</div>
+        
+        
+        
+      </div>
+      <div class="text-sm text-neutral-500 dark:text-neutral-400">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2022-11-26 12:43:07 &#43;1100 AEDT">November 26, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>13 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
   
 
+  
+  
+</div>
+
+
+
+
+
+
+
+      </div>
+      
+    </div>
+  </a>
+            
+            
+          </section>
+          
+
+          
+
+          
+
+          
       
     </main><footer class="py-10 print:hidden">
   
