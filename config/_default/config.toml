@@ -1,4 +1,0 @@
-# config/_default/config.toml
-
-baseURL = "https://polaryse.github.io"
-languageCode = "en"
