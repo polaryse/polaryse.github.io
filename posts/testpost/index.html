@@ -10,8 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>This is my test post &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
-  <meta name="title" content="This is my test post &middot; Malware Analysis: Or How I Learned To Love Frustration" />
+  <title>An Introduction &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
+  <meta name="title" content="An Introduction &middot; Malware Analysis: Or How I Learned To Love Frustration" />
   
   
   
@@ -66,9 +66,9 @@
   
   
   
-  <meta property="og:title" content="This is my test post" />
-<meta property="og:description" content="This is some content.
-This is some text that should honestly be code " />
+  <meta property="og:title" content="An Introduction" />
+<meta property="og:description" content="Purpose&gt; Purpose # I&rsquo;ve started this blog with the express purpose of documenting my progress of learning to reverse engineer malware. My primary focus will be on analysing increasingly difficult malware strands, observed in the wild from various sources with a dash of the solutions to various RE CTFs that pop up now and then.
+Perhaps most importantly, I aim to document the key lessons that I have learned throughout my journey, the hardships and failures that I encountered prior to documenting my successful analysis of each piece of malware &ndash; afterall, reverse engineering is a journey of &ldquo;how to find your zen&rdquo; when all you want to do is scream and set Windows on fire aka how to cope with constant failure." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polaryse.github.io/posts/testpost/" /><meta property="og:image" content="https://polaryse.github.io/posts/testpost/featured.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-26T12:43:07+11:00" />
@@ -77,9 +77,9 @@ This is some text that should honestly be code " />
 
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://polaryse.github.io/posts/testpost/featured.jpg"/>
-<meta name="twitter:title" content="This is my test post"/>
-<meta name="twitter:description" content="This is some content.
-This is some text that should honestly be code "/>
+<meta name="twitter:title" content="An Introduction"/>
+<meta name="twitter:description" content="Purpose&gt; Purpose # I&rsquo;ve started this blog with the express purpose of documenting my progress of learning to reverse engineer malware. My primary focus will be on analysing increasingly difficult malware strands, observed in the wild from various sources with a dash of the solutions to various RE CTFs that pop up now and then.
+Perhaps most importantly, I aim to document the key lessons that I have learned throughout my journey, the hardships and failures that I encountered prior to documenting my successful analysis of each piece of malware &ndash; afterall, reverse engineering is a journey of &ldquo;how to find your zen&rdquo; when all you want to do is scream and set Windows on fire aka how to cope with constant failure."/>
 
   
   <script type="application/ld+json">
@@ -87,10 +87,10 @@ This is some text that should honestly be code "/>
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "This is my test post",
-    "headline": "This is my test post",
+    "name": "An Introduction",
+    "headline": "An Introduction",
     
-    "abstract": "This is some content.\nThis is some text that should honestly be code ",
+    "abstract": "Purpose\u003e Purpose # I\u0026rsquo;ve started this blog with the express purpose of documenting my progress of learning to reverse engineer malware. My primary focus will be on analysing increasingly difficult malware strands, observed in the wild from various sources with a dash of the solutions to various RE CTFs that pop up now and then.\nPerhaps most importantly, I aim to document the key lessons that I have learned throughout my journey, the hardships and failures that I encountered prior to documenting my successful analysis of each piece of malware \u0026ndash; afterall, reverse engineering is a journey of \u0026ldquo;how to find your zen\u0026rdquo; when all you want to do is scream and set Windows on fire aka how to cope with constant failure.",
     "inLanguage": "en-us",
     "url" : "https:\/\/polaryse.github.io\/posts\/testpost\/",
     "author" : {
@@ -106,7 +106,7 @@ This is some text that should honestly be code "/>
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "13"
+    "wordCount": "358"
   }]
   </script>
 
@@ -425,7 +425,7 @@ This is some text that should honestly be code "/>
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
       href="/posts/testpost/"
-      >This is my test post</a
+      >An Introduction</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -434,7 +434,7 @@ This is some text that should honestly be code "/>
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      This is my test post
+      An Introduction
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -479,7 +479,7 @@ This is some text that should honestly be code "/>
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-26 12:43:07 &#43;1100 AEDT">November 26, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>13 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-26 12:43:07 &#43;1100 AEDT">November 26, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>358 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -519,12 +519,88 @@ This is some text that should honestly be code "/>
     </div>
   </header>
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
-    
+     
+    <div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky  lg:top-10 ">
+        <details open class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#purpose">Purpose</a></li>
+        <li><a href="#my-background">My Background</a></li>
+        <li><a href="#a-small-dedication">A small dedication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#purpose">Purpose</a></li>
+        <li><a href="#my-background">My Background</a></li>
+        <li><a href="#a-small-dedication">A small dedication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+      </div>
+      </div>
+      
       <div class="min-w-0 min-h-0 max-w-prose">
         
-        <p>This is some content.</p>
-<pre tabindex="0"><code>This is some text that should honestly be code
-</code></pre>
+        <div id="purpose" class="anchor">Purpose></div>
+<h3 class="relative group">Purpose 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#purpose" aria-label="Anchor">#</a></span>        
+    
+</h3><p>I&rsquo;ve started this blog with the express purpose of documenting my progress of learning to reverse engineer malware.
+My primary focus will be on analysing increasingly difficult malware strands, observed in the wild from various sources with a dash of the solutions to various RE CTFs that pop up now and then.</p>
+<p>Perhaps most importantly, I aim to document the key lessons that I have learned throughout my journey, the hardships and failures that I encountered prior to documenting my successful analysis of each piece of malware &ndash; afterall, reverse engineering is a journey of &ldquo;how to find your zen&rdquo; when all you want to do is scream and set Windows on fire aka how to cope with constant failure.</p>
+<p>I&rsquo;m also attempting to be more active on social medias, so please reach out to me on Mastodon (where I am most active) if you&rsquo;re keen on a chat or would like to give me feedback.</p>
+<div id="my-background" class="anchor">My Background></div>
+<h3 class="relative group">My Background 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#my-background" aria-label="Anchor">#</a></span>        
+    
+</h3><p>I&rsquo;ve spent the better part of the past 5 years in Cyber Security, starting out as a Penteration Tester. I spent 4 years in that sub-discipline, moving most recently into Digital Forensics and Incident Response to better understand the otherside of the coin. I am passionate about learning and veery much love unpicking puzzles.</p>
+<p>Prior to my Cyber Security career I was a non-technical High School Teacher (<em>and I mean non-technical&hellip; I didn&rsquo;t even know what a port was except for you know, the ones that allow boats to dock</em>). My technical knowledge is largely self-taught, with a little slash of formal training through the completion of certifications. I thank my closest friends for imparting their knowledge of the discipline as well as showing kindness in supporting me in my journey to securing the courage to actively pursue this career path.</p>
+<div id="a-small-dedication" class="anchor">A small dedication></div>
+<h3 class="relative group">A small dedication 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#a-small-dedication" aria-label="Anchor">#</a></span>        
+    
+</h3><p>I&rsquo;m dedicating this blog to all of my friends and colleagues who have truly inspired me to take on this journey. You all know who you are. I wouldn&rsquo;t be here, hands tippy-tapping on my keyboard without your enduring support and belief in my technical abilities.</p>
+
         </br></br>
         
       </div>
@@ -753,7 +829,7 @@ This is some text that should honestly be code "/>
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=https://polaryse.github.io/posts/testpost/&amp;subject=This%20is%20my%20test%20post"
+          href="mailto:?body=https://polaryse.github.io/posts/testpost/&amp;subject=An%20Introduction"
           title="Send via email"
           aria-label="Send via email"
           >
@@ -772,7 +848,7 @@ This is some text that should honestly be code "/>
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/testpost/&amp;quote=This%20is%20my%20test%20post"
+          href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/testpost/&amp;quote=An%20Introduction"
           title="Share on Facebook"
           aria-label="Share on Facebook"
           >
@@ -791,7 +867,7 @@ This is some text that should honestly be code "/>
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/testpost/&amp;title=This%20is%20my%20test%20post"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/testpost/&amp;title=An%20Introduction"
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           >
@@ -810,7 +886,7 @@ This is some text that should honestly be code "/>
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/testpost/&amp;description=This%20is%20my%20test%20post"
+          href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/testpost/&amp;description=An%20Introduction"
           title="Pin on Pinterest"
           aria-label="Pin on Pinterest"
           >
@@ -829,7 +905,7 @@ This is some text that should honestly be code "/>
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/testpost/&amp;resubmit=true&amp;title=This%20is%20my%20test%20post"
+          href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/testpost/&amp;resubmit=true&amp;title=An%20Introduction"
           title="Submit to Reddit"
           aria-label="Submit to Reddit"
           >
@@ -848,7 +924,7 @@ This is some text that should honestly be code "/>
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/testpost/&amp;text=This%20is%20my%20test%20post"
+          href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/testpost/&amp;text=An%20Introduction"
           title="Tweet on Twitter"
           aria-label="Tweet on Twitter"
           >
@@ -874,6 +950,14 @@ This is some text that should honestly be code "/>
   </footer>
 </article>
 
+      
+      <div class="pointer-events-none absolute top-[100vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+        <a href="#the-top"
+          class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+          aria-label="" title="">
+          &uarr;
+        </a>
+      </div>
       
     </main><footer class="py-10 print:hidden">
   

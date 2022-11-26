@@ -8,13 +8,13 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 26 Nov 2022 12:43:07 +1100</lastBuildDate><atom:link href="https://polaryse.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>This is my test post</title>
+      <title>An Introduction</title>
       <link>https://polaryse.github.io/posts/testpost/</link>
       <pubDate>Sat, 26 Nov 2022 12:43:07 +1100</pubDate>
       
       <guid>https://polaryse.github.io/posts/testpost/</guid>
-      <description>This is some content.
-This is some text that should honestly be code </description>
+      <description>Purpose&gt; Purpose # I&amp;rsquo;ve started this blog with the express purpose of documenting my progress of learning to reverse engineer malware. My primary focus will be on analysing increasingly difficult malware strands, observed in the wild from various sources with a dash of the solutions to various RE CTFs that pop up now and then.
+Perhaps most importantly, I aim to document the key lessons that I have learned throughout my journey, the hardships and failures that I encountered prior to documenting my successful analysis of each piece of malware &amp;ndash; afterall, reverse engineering is a journey of &amp;ldquo;how to find your zen&amp;rdquo; when all you want to do is scream and set Windows on fire aka how to cope with constant failure.</description>
     </item>
     
   </channel>
