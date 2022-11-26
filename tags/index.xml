@@ -5,6 +5,25 @@
     <link>https://polaryse.github.io/tags/</link>
     <description>Recent content in Tags on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>https://polaryse.github.io/tags/blog/</link>
+      <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://polaryse.github.io/tags/introduction/</link>
+      <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/introduction/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
