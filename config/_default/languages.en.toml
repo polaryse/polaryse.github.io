@@ -1,0 +1,28 @@
+languageCode = "en"
+languageName = "English"
+displayName = "EN"
+isoCode = "en"
+weight = 1
+rtl = false
+
+title = "Blowfish"
+# logo = "img/logo.png"
+description = "My awesome website"
+# copyright = "Copy, _right?_ :thinking_face:"
+
+dateFormat = "2 January 2006"
+
+[author]
+  name = "polaryse"
+  image = "img/blowfish_logo.png"
+  headline = "I'm only human"
+  bio = "Beginner Malware Analyst just having fun and trying to contribute to the broader community"
+  # links = [
+  #   { discord = "https://discord.gg/invitecode" },
+  #   { github = "https://github.com/polaryse" },
+  #   { mastodon = "https://infosec.exchange/@polaryse" },
+  #   { orcid = "https://orcid.org/userid" },
+  #   { twitch = "https://twitch.tv/username" },
+  #   { twitter = "https://twitter.com/p0laryse" },
+  #   { whatsapp = "https://wa.me/phone-number" },
+  # ]
