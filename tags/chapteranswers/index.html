@@ -10,16 +10,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Posts &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
-  <meta name="title" content="Posts &middot; Malware Analysis: Or How I Learned To Love Frustration" />
+  <title>Chapteranswers &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
+  <meta name="title" content="Chapteranswers &middot; Malware Analysis: Or How I Learned To Love Frustration" />
   
   
   
   
   
-  <link rel="canonical" href="https://polaryse.github.io/posts/" />
+  <link rel="canonical" href="https://polaryse.github.io/tags/chapteranswers/" />
   
-  <link rel="alternate" type="application/rss+xml" href="/posts/index.xml" title="Malware Analysis: Or How I Learned To Love Frustration" />
+  <link rel="alternate" type="application/rss+xml" href="/tags/chapteranswers/index.xml" title="Malware Analysis: Or How I Learned To Love Frustration" />
   
   
   
@@ -68,14 +68,14 @@
   
   
   
-  <meta property="og:title" content="Posts" />
+  <meta property="og:title" content="Chapteranswers" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://polaryse.github.io/posts/" /><meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
+<meta property="og:url" content="https://polaryse.github.io/tags/chapteranswers/" /><meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:title" content="Chapteranswers"/>
 <meta name="twitter:description" content=""/>
 
   
@@ -374,175 +374,21 @@
   <div class="relative flex flex-col grow">
     <main id="main-content" class="grow">
       
-
-
- <header>
-  
-  <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Posts</h1>
-  <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+  <header>
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="flex flex-row flex-wrap items-center">
-  
-  
-</div>
-
-
-  </div>
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Chapteranswers</h1>
   </header>
-  <section class="mt-0 prose flex max-w-full flex-col dark:prose-invert lg:flex-row">
+  
+  <section class="mt-5 space-y-10 w-full">
     
-    <div class="min-w-0 min-h-0 max-w-prose">
       
-    </div>
-    <script>
-
-      var liked_article = false
-
-      if (typeof auth !== 'undefined') {
-        var oid = "views_"
-        var id = oid ? oid.replaceAll("/", "-") : oid
-
-        var viewed = localStorage.getItem(id);
-
-        if (!viewed) {
-          auth.signInAnonymously()
-            .then(() => {
-              var docRef = db.collection('views').doc(id)
-              localStorage.setItem(id, true);
-              docRef.get().then((doc) => {
-                if (doc.exists) {
-                  db.collection('views').doc(id).update({
-                    views: firebase.firestore.FieldValue.increment(1)
-                  });
-                } else {
-                  db.collection('views').doc(id).set({ views: 1 })
-                }
-              }).catch((error) => {
-                console.log("Error getting document:", error);
-              });
-            })
-            .catch((error) => {
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              console.error(errorCode, errorMessage)
-            });
-        }
-
-        var oid_likes = "likes_"
-        var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
-
-        var liked = localStorage.getItem(id_likes);
-
-        if (liked) {
-          liked_article = true
-          document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
-          document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
-          document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
-        }
-
-      }
-
-      function like_article(id_likes) {
-        auth.signInAnonymously()
-          .then(() => {
-            var docRef = db.collection('likes').doc(id_likes)
-            docRef.get().then((doc) => {
-              liked_article = true
-              localStorage.setItem(id_likes, true);
-              document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
-              document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
-              document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
-              if (doc.exists) {
-                db.collection('likes').doc(id_likes).update({
-                  likes: firebase.firestore.FieldValue.increment(1)
-                });
-              } else {
-                db.collection('likes').doc(id_likes).set({ likes: 1 })
-              }
-            }).catch((error) => {
-              console.log("Error getting document:", error);
-            });
-          })
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error(errorCode, errorMessage)
-          });
-      }
-
-      function remove_like_article(id_likes) {
-        auth.signInAnonymously()
-          .then(() => {
-            var docRef = db.collection('likes').doc(id_likes)
-            docRef.get().then((doc) => {
-              liked_article = false
-              localStorage.removeItem(id_likes);
-              document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = "none"
-              document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = ""
-              document.querySelectorAll("span[id='likes_button_text']")[0].innerText = "\xa0Like"
-              if (doc.exists) {
-                db.collection('likes').doc(id_likes).update({
-                  likes: firebase.firestore.FieldValue.increment(-1)
-                });
-              } else {
-                db.collection('likes').doc(id_likes).set({ likes: 0 })
-              }
-            }).catch((error) => {
-              console.log("Error getting document:", error);
-            });
-          })
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error(errorCode, errorMessage)
-          });
-      }
-
-      function process_article() {
-        var oid_likes = "likes_"
-        var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
-        if (!liked_article) {
-          like_article(id_likes)
-        } else {
-          remove_like_article(id_likes)
-        }
-      }
-
-    </script>
-  </section>
-  
-
-  
-          <section class="space-y-10 w-full">
-            
-            
-            <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
-              2022
-            </h2>
-            
-            
-            
+        <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
+          2022
+        </h2>
+        <hr class="border-dotted w-36 border-neutral-400" />
+      
+      
+        
 
 
 
@@ -558,14 +404,12 @@
 
 
 
-  <a class="flex flex-wrap article " href="/posts/testpost/">
-    
-    <div class="w-full md:w-auto h-full thumbnail nozoom thumbnailshadow md:mr-7" style="background-image:url(/posts/testpost/featured_hu5438825b9b6d1014226d20d231e650c2_100768_600x0_resize_q75_box.jpg);"></div>
+  <a class="flex flex-wrap article " href="/topics/practicalmalware/">
     <div class=" mt-3 md:mt-0">
       <div class="items-center text-xl font-semibold">
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/posts/testpost/">An Introduction</div>
+          href="/topics/practicalmalware/">Practical Malware Analysis</div>
         
         
         
@@ -608,7 +452,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-26 00:00:00 &#43;0000 UTC">November 26, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>361 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
+  <time datetime="2022-11-27 00:00:00 &#43;0000 UTC">November 27, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>82 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
   
 
   
@@ -624,21 +468,16 @@
       </div>
       
       <div class="py-1 prose dark:prose-invert">
-        An introductory post outlining the purpose of this blog, my background and a small dedication to those who inspired me.
+        A collection of answers to the lab questions included in Practical Malware Analysis
       </div>
       
     </div>
   </a>
-            
-            
-          </section>
-          
+      
+    
+  </section>
+  
 
-          
-
-          
-
-          
       
     </main><footer class="py-10 print:hidden">
   

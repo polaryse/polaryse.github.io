@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Topics on Malware Analysis: Or How I Learned To Love Frustration</title>
+    <link>https://polaryse.github.io/topics/</link>
+    <description>Recent content in Topics on Malware Analysis: Or How I Learned To Love Frustration</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/topics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Practical Malware Analysis</title>
+      <link>https://polaryse.github.io/topics/practicalmalware/</link>
+      <pubDate>Sun, 27 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/topics/practicalmalware/</guid>
+      <description>A collection of answers to the lab questions included in Practical Malware Analysis</description>
+    </item>
+    
+  </channel>
+</rss>
