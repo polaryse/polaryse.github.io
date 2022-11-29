@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "2356"
+    "wordCount": "2373"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2356 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2373 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -617,7 +617,7 @@
             style="text-decoration-line: none !important;" href="#summary" aria-label="Anchor">#</a></span>        
     
 </h3><p>I want to caveat your reading of this post with this; this is all about dipping the old cyber toe into reversing. I will make mistakes, I will document said mistakes throughout and even when I have published this blog, there will undoubtedly be things that more experienced folk will pick up that I might have misinterpreted or plainly gotten wrong.</p>
-<p>Regardless, I hope this serves as a nie write up for other folks that are interested in the field as well as giving a bit back to the community. So without further ado, lettuce commence.</p>
+<p>Regardless, I hope this serves as a nice write up for other folks that are interested in the field as well as giving a bit back to the community. So without further ado, lettuce commence.</p>
 <div id="hash-values" class="anchor">Hash Values></div>
 <h3 class="relative group">Hash Values 
     <span
@@ -837,7 +837,7 @@ try {
 	}
 }
 </code></pre><p><em>Figure 7: Hard to read, arguably still &lsquo;obfuscated&rsquo; script</em></p>
-<p>To make reading this sample more confusing, global variables are defined at the beginning of this script making it harder to read. I went through the contents of the script, mapping each of the &rsquo;things&rsquo; each variable declaration does so that it made a little more sense.</p>
+<p>To make reading this sample more confusing, global variables and arrays are defined at the beginning of this script making it harder to read. The variables that follow contain valiues that are very hard to make sense of. I worked logically through each function to change these values to make them easier to read. I have included examples of this in Figure 8 below.</p>
 <pre tabindex="0"><code>try {
 	reg_key_installed = sh.RegRead(&#39;HKCU\\vjw0rm&#39;);
 } catch (err) {
