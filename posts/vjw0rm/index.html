@@ -738,7 +738,7 @@ WScript.Quit(1);
 	comObject[_2(248)] = 1, comObject[_1(162)](), comObject[_2(244)](xmlDOM[_1(180)]), comObject[_2(237)] = 0, comObject[_8(458)] = 2, comObject[_2(247)] = _1(168), eval(comObject[_2(241)]());
 }());
 </code></pre><p><em>Figure 4: Eval statement in obfuscated nonsense</em></p>
-<p>Now, the comobjects and xmlDOM should have immediately given away the fact I shouldn&rsquo;t use console.log in this instance to attempt deobfuscation of this script, however, in my gusto I did and thoroughly bamboozled myself for the next few hours, wondering why, exactly the script now hung when I ran it with nodejs. I ended up once again taking a break and pondering my existence and lifes choices a little longer before I arrived at the next attempt.</p>
+<p>Now, the comobjects and xmlDOM should have immediately given away the fact I shouldn&rsquo;t use <code>console.log</code> in this instance to attempt deobfuscation of this script, however, in my gusto I did and thoroughly bamboozled myself for the next few hours, wondering why, exactly the script now hung when I ran it with nodejs. I ended up once again taking a break and pondering my existence and lifes choices a little longer before I arrived at the next attempt.</p>
 <p>comObject, you say? Well lets give wscript a crack and replace that <code>eval</code> statement with <code>WScript.Echo</code> and see what we get.</p>
 <p>I changed the code and opened up powershell.</p>
 <pre tabindex="0"><code>	xmlDOM[_2(254)] = _2(242), xmlDOM[_2(256)] = superString[_2(240)](/&lt;_/g, &#39;A&#39;);
