@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "2400"
+    "wordCount": "2394"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2400 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2394 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -828,7 +828,7 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><em>Figure 7: Hard to read, arguably still &lsquo;obfuscated&rsquo; script</em></p>
-<p>To make reading this sample more confusing, global variables and arrays are defined at the beginning of this script making it harder to read. The variables that follow contain valiues that are very hard to make sense of. I worked logically through each function to change these values to make them easier to read. I have included examples of this in Figure 8 below.</p>
+<p>To make reading this sample more confusing, global variables and arrays are defined at the beginning of this script making it harder to read. The variables that follow contain values that are very hard to make sense of. I worked logically through each function to change these values to make them easier to read. I have included examples of this in Figure 8 below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">reg_key_installed</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegRead</span>(<span style="color:#e6db74">&#39;HKCU\\vjw0rm&#39;</span>);
 </span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
@@ -961,7 +961,9 @@ WScript.Quit(1);
             style="text-decoration-line: none !important;" href="#network-indicators" aria-label="Anchor">#</a></span>        
     
 </h3><p>As previously identified, this malware seems to call out to the domain <code>http://javaautorun.duia[.]ro:5465/</code></p>
-<p>We know that this is a malicious indicator, but worth running this through virustotal to see whether there are any other reported community connections to the URL that might give us some additional indicators. The URL is flagged by a total of 15 AVs at the time of writing this blog. Additionally, it is outwardly listed as a bot network/command and control domain served by the IP address <code>41[.]190.14.132</code>. The IP address is once again confirmed by completion of a centralops.net domain search.</p>
+<p>We know that this is a malicious indicator, but worth running this through <a href="https://www.virustotal.com/gui/url/1671f610cadbe161c725159fd5303c3ee7dc489164036205019e1f47c1c74b9c"   target="_blank">
+    VirusTotal</a> to see whether there are any other reported community connections to the URL that might give us some additional indicators. The URL is flagged by a total of 15 AVs at the time of writing this blog. Additionally, it is outwardly listed as a bot network/command and control domain served by the IP address <code>41[.]190.14.132</code>. The IP address is once again confirmed by completion of a <a href="https://centralops.net/co/"   target="_blank">
+    centralops.net</a> domain search.</p>
 <table>
 <thead>
 <tr>
@@ -976,11 +978,13 @@ WScript.Quit(1);
 </tr>
 <tr>
 <td><code>41[.]190.14.132</code></td>
-<td>IP Address of C2 (VirusTotal)</td>
+<td>IP Address of C2 <a href="https://www.virustotal.com/gui/url/1671f610cadbe161c725159fd5303c3ee7dc489164036205019e1f47c1c74b9c"   target="_blank">
+    (VirusTotal)</a></td>
 </tr>
 <tr>
 <td><code>41[.]217.29.212</code></td>
-<td>IP Address of C2 (Centralops)</td>
+<td>IP Address of C2 <a href="https://centralops.net/co/"   target="_blank">
+    (Centralops)</a></td>
 </tr>
 <tr>
 <td><em>Figure 11: C2 Domains and their respective IP Addresses</em></td>
@@ -995,7 +999,7 @@ WScript.Quit(1);
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
             style="text-decoration-line: none !important;" href="#lessons-learned-in-analysis" aria-label="Anchor">#</a></span>        
     
-</h2><p>Analysis of this sample taught me a lot about how I deal with frustration, which is not to say <em>well</em>. This was the first real world sample that I dained to analyse and it really revealed to me my lack of general knowledge about JavaScript.</p>
+</h2><p>Analysis of this sample taught me a lot about how I deal with frustration, which is not to say <em>well</em>. This was the first real world sample that have analysed and it really challenged my general knowledge about JavaScript.</p>
 <p>I beat my head against the wall more than once, and on something some would arguably call &ldquo;simple&rdquo;. I grumped and grumbled, beating myself up for not understanding immediately how to deobfuscate the second layer of this code. I sat there for hours, wasting time caught up in my frustration instead of doing something simple and logical.</p>
 <p>Walking away.</p>
 <p>The key take aways this taught me was whenever you are starting to feel your brows twist, your body hunch over the keyboard and more sighs and growls than you ever thought would come out of your mouth&hellip; start&hellip; just walk away. Set a timer for an hour, do what you can and then go for a good walk.</p>
