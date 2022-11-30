@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "2380"
+    "wordCount": "2404"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2380 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2404 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -792,7 +792,10 @@ cscript.exe ./vjw0rm_2.js
 
 <em>Figure 6: Wscript Output received through execution of file</em></p>
 <p>Well, well, well. This definitely looks a lot better than our first attempt via base64 decoding. The variables are all there and there is no funky encoding dramas this time around. I decided to run the command again, piping the output of the command into a file on disk to investigate further.</p>
-<pre tabindex="0"><code>wscript.exe .\vjworm_2.js &gt; vjworm_3.js
+<pre tabindex="0"><code># moved to cscript to execute so it boops into a file. 
+# comparing the pair, I also just like cscript output better... 
+
+&gt; cscript.exe .\vjworm_2.js &gt; vjworm_3.js
 </code></pre><p>The output looks much better now. All of the variables look readable (whilst horribly formatted at present). Now time to figure out each variable in turn.</p>
 <div id="the-analysis-deepens" class="anchor">The Analysis&hellip; deepens?></div>
 <h3 class="relative group">The Analysis&hellip; deepens? 
