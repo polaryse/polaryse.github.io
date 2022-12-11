@@ -10,14 +10,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>An Introduction &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
-  <meta name="title" content="An Introduction &middot; Malware Analysis: Or How I Learned To Love Frustration" />
+  <title> &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
+  <meta name="title" content=" &middot; Malware Analysis: Or How I Learned To Love Frustration" />
   
   
   
   
   
-  <link rel="canonical" href="https://polaryse.github.io/posts/testpost/" />
+  <link rel="canonical" href="https://polaryse.github.io/posts/signatures/vjworm-signatures/" />
   
   
   
@@ -66,18 +66,19 @@
   
   
   
-  <meta property="og:title" content="An Introduction" />
-<meta property="og:description" content="An introductory post outlining the purpose of this blog, my background and a small dedication to those who inspired me." />
+  <meta property="og:title" content="" />
+<meta property="og:description" content="YARA Signature&gt; YARA Signature # PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.
+# Drop any connection from any host to an external server via port 5465." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polaryse.github.io/posts/testpost/" /><meta property="og:image" content="https://polaryse.github.io/posts/testpost/featured.jpg"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-11-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-11-26T00:00:00+00:00" /><meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
+<meta property="og:url" content="https://polaryse.github.io/posts/signatures/vjworm-signatures/" /><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
 
 
-  <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://polaryse.github.io/posts/testpost/featured.jpg"/>
-<meta name="twitter:title" content="An Introduction"/>
-<meta name="twitter:description" content="An introductory post outlining the purpose of this blog, my background and a small dedication to those who inspired me."/>
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="YARA Signature&gt; YARA Signature # PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.
+# Drop any connection from any host to an external server via port 5465."/>
 
   
   <script type="application/ld+json">
@@ -85,26 +86,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "An Introduction",
-    "headline": "An Introduction",
+    "name": "",
+    "headline": "",
     
-    "abstract": "An introductory post outlining the purpose of this blog, my background and a small dedication to those who inspired me.",
+    "abstract": "YARA Signature\u003e YARA Signature # PASTE YARA RULE HERE Suricata Signature\u003e Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.\n# Drop any connection from any host to an external server via port 5465.",
     "inLanguage": "en-us",
-    "url" : "https:\/\/polaryse.github.io\/posts\/testpost\/",
+    "url" : "https:\/\/polaryse.github.io\/posts\/signatures\/vjworm-signatures\/",
     "author" : {
       "@type": "Person",
       "name": "polaryse"
     },
-    "copyrightYear": "2022",
-    "dateCreated": "2022-11-26T00:00:00\u002b00:00",
-    "datePublished": "2022-11-26T00:00:00\u002b00:00",
     
-    "dateModified": "2022-11-26T00:00:00\u002b00:00",
     
-    "keywords": ["Introduction","Blog"],
+    
+    
+    
+    
+    
     
     "mainEntityOfPage": "true",
-    "wordCount": "361"
+    "wordCount": "128"
   }]
   </script>
 
@@ -409,8 +410,6 @@
   
   
   
-        <div class="w-full h-36 md:h-56 lg:h-72 single_hero_basic nozoom" style="background-image:url(/posts/testpost/featured_hu5438825b9b6d1014226d20d231e650c2_100768_1200x0_resize_q75_box.jpg);"></div>
-    
   <header id="single_header" class="mt-5 max-w-prose">
     
     <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
@@ -441,8 +440,8 @@
   <li class="inline hidden">
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/posts/testpost/"
-      >An Introduction</a
+      href="/posts/signatures/vjworm-signatures/"
+      >posts</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -451,7 +450,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      An Introduction
+      
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -496,7 +495,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-26 00:00:00 &#43;0000 UTC">November 26, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>361 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 1, 1</time><span class="px-2 text-primary-500">&middot;</span><span>128 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -506,7 +505,7 @@
 
 <span class="mb-[2px]">
   <a
-    href="#/posts/testpost/index.md"
+    href="#/posts/signatures/vjworm%20signatures.md"
     class="text-lg hover:text-primary-500"
     rel="noopener noreferrer"
     target="_blank"
@@ -550,13 +549,9 @@
   >
     <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#purpose">Purpose</a></li>
-        <li><a href="#my-background">My Background</a></li>
-        <li><a href="#a-small-dedication">A small dedication</a></li>
-      </ul>
-    </li>
+    <li><a href="#yara-signature">YARA Signature</a></li>
+    <li><a href="#suricata-signature">Suricata Signature</a></li>
+    <li><a href="#snort-signature">Snort Signature</a></li>
   </ul>
 </nav>
   </div>
@@ -572,13 +567,9 @@
   >
     <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#purpose">Purpose</a></li>
-        <li><a href="#my-background">My Background</a></li>
-        <li><a href="#a-small-dedication">A small dedication</a></li>
-      </ul>
-    </li>
+    <li><a href="#yara-signature">YARA Signature</a></li>
+    <li><a href="#suricata-signature">Suricata Signature</a></li>
+    <li><a href="#snort-signature">Snort Signature</a></li>
   </ul>
 </nav>
   </div>
@@ -589,35 +580,37 @@
       
       <div class="min-w-0 min-h-0 max-w-prose">
         
-        <div id="purpose" class="anchor">Purpose></div>
-<h3 class="relative group">Purpose 
+        <div id="yara-signature" class="anchor">YARA Signature></div>
+<h2 class="relative group">YARA Signature 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#purpose" aria-label="Anchor">#</a></span>        
+            style="text-decoration-line: none !important;" href="#yara-signature" aria-label="Anchor">#</a></span>        
     
-</h3><p>I&rsquo;ve started this blog with the express purpose of documenting my progress of learning to reverse engineer malware.
-My primary focus will be on analysing increasingly difficult malware strands, observed in the wild from various sources. This will be coupled with answers to training courses I have completed as well as any CTFs I stumble upon.</p>
-<p>Perhaps most importantly, I aim to document the key lessons that I have learned throughout my journey, the hardships and failures that I encountered prior to documenting my successful analysis of each piece of malware. Afterall, reverse engineering is a journey of &ldquo;how to find your zen&rdquo; when all you want to do is scream and set Windows on fire (aka how to cope with constant failure).</p>
-<p>I&rsquo;m also attempting to be more active on social medias, so please reach out to me on Mastodon (where I am most active) if you&rsquo;re keen on a chat or would like to give me feedback.</p>
-<div id="my-background" class="anchor">My Background></div>
-<h3 class="relative group">My Background 
+</h2><pre tabindex="0"><code>PASTE YARA RULE HERE 
+</code></pre><div id="suricata-signature" class="anchor">Suricata Signature></div>
+<h2 class="relative group">Suricata Signature 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#my-background" aria-label="Anchor">#</a></span>        
+            style="text-decoration-line: none !important;" href="#suricata-signature" aria-label="Anchor">#</a></span>        
     
-</h3><p>I&rsquo;ve spent the better part of the past 5 years in Cyber Security, starting out as a Penteration Tester. I spent 4 years in that sub-discipline, moving most recently into Digital Forensics and Incident Response to better understand the otherside of the coin. I am passionate about learning and veery much love unpicking puzzles.</p>
-<p>Prior to my Cyber Security career I was a non-technical High School Teacher (<em>and I mean non-technical&hellip; I didn&rsquo;t even know what a port was except for you know, the ones that allow boats to dock</em>). My technical knowledge is largely self-taught, with a little splash of formal training through the completion of certifications. I thank my closest friends for imparting their knowledge of the discipline as well as showing kindness in supporting me in my journey to securing the courage to actively pursue this career path.</p>
-<div id="a-small-dedication" class="anchor">A small dedication></div>
-<h3 class="relative group">A small dedication 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#a-small-dedication" aria-label="Anchor">#</a></span>        
-    
-</h3><p>I&rsquo;m dedicating this blog to all of my friends and colleagues who have truly inspired me to take on this journey. You all know who you are. I wouldn&rsquo;t be here, hands tippy-tapping on my keyboard without your enduring support and belief in my technical abilities.</p>
+</h2><p>There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.</p>
+<pre tabindex="0"><code># Drop any connection from any host to an external server via port 5465. 
+# Display message as shown in segment.
+# Filter on the host parameter of the c2 domain
+# case insensitive
 
+drop http any any -&gt; any 5465 (msg:&#34;Malware detected host contacting vjworm command and control&#34;; content: &#34;javaautorun.duia.ro&#34;; http_host; nocase; sid:1;)
+</code></pre><div id="snort-signature" class="anchor">Snort Signature></div>
+<h2 class="relative group">Snort Signature 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#snort-signature" aria-label="Anchor">#</a></span>        
+    
+</h2><p>I took the same approach as above with Suricata as for snort.</p>
+<pre tabindex="0"><code></code></pre>
         </br></br>
         
       </div>
@@ -626,7 +619,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         var liked_article = false
 
         if (typeof auth !== 'undefined') {
-          var oid = "views_posts\/testpost\/index.md"
+          var oid = "views_posts\/signatures\/vjworm signatures.md"
           var id = oid ? oid.replaceAll("/", "-") : oid
 
           var viewed = localStorage.getItem(id);
@@ -655,7 +648,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
               });
           }
 
-          var oid_likes = "likes_posts\/testpost\/index.md"
+          var oid_likes = "likes_posts\/signatures\/vjworm signatures.md"
           var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
 
           var liked = localStorage.getItem(id_likes);
@@ -726,7 +719,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         }
 
         function process_article() {
-          var oid_likes = "likes_posts\/testpost\/index.md"
+          var oid_likes = "likes_posts\/signatures\/vjworm signatures.md"
           var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
           if (!liked_article) {
             like_article(id_likes)
@@ -846,7 +839,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=https://polaryse.github.io/posts/testpost/&amp;subject=An%20Introduction"
+          href="mailto:?body=https://polaryse.github.io/posts/signatures/vjworm-signatures/&amp;subject="
           title="Send via email"
           aria-label="Send via email"
           >
@@ -865,7 +858,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/testpost/&amp;quote=An%20Introduction"
+          href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/signatures/vjworm-signatures/&amp;quote="
           title="Share on Facebook"
           aria-label="Share on Facebook"
           >
@@ -884,7 +877,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/testpost/&amp;title=An%20Introduction"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/signatures/vjworm-signatures/&amp;title="
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           >
@@ -903,7 +896,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/testpost/&amp;description=An%20Introduction"
+          href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/signatures/vjworm-signatures/&amp;description="
           title="Pin on Pinterest"
           aria-label="Pin on Pinterest"
           >
@@ -922,7 +915,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/testpost/&amp;resubmit=true&amp;title=An%20Introduction"
+          href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/signatures/vjworm-signatures/&amp;resubmit=true&amp;title="
           title="Submit to Reddit"
           aria-label="Submit to Reddit"
           >
@@ -941,7 +934,7 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
         <a
           target="_blank"
           class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/testpost/&amp;text=An%20Introduction"
+          href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/signatures/vjworm-signatures/&amp;text="
           title="Tweet on Twitter"
           aria-label="Tweet on Twitter"
           >
@@ -969,40 +962,18 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group" href="/posts/signatures/vjworm-signatures/">
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  ></span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 1, 1</time>
-                  
-                </span>
-              </span>
-            </a>
-          
         </span>
         <span>
           
-            <a class="flex text-right group" href="/posts/vjw0rm/">
+            <a class="flex text-right group" href="/posts/testpost/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Starting Small: Analysis of recent vjw0rm variant</span
+                  >An Introduction</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time>
+                    <time datetime="2022-11-26 00:00:00 &#43;0000 UTC">November 26, 2022</time>
                   
                 </span>
               </span>
@@ -1026,14 +997,6 @@ My primary focus will be on analysing increasingly difficult malware strands, ob
   </footer>
 </article>
 
-      
-      <div class="pointer-events-none absolute top-[100vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
-        <a href="#the-top"
-          class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
-          aria-label="" title="">
-          &uarr;
-        </a>
-      </div>
       
     </main><footer class="py-10 print:hidden">
   

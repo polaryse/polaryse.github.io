@@ -25,5 +25,15 @@
       <description>An introductory post outlining the purpose of this blog, my background and a small dedication to those who inspired me.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://polaryse.github.io/posts/signatures/vjworm-signatures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/posts/signatures/vjworm-signatures/</guid>
+      <description>YARA Signature&gt; YARA Signature # PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.
+# Drop any connection from any host to an external server via port 5465.</description>
+    </item>
+    
   </channel>
 </rss>
