@@ -67,8 +67,8 @@
   
   
   <meta property="og:title" content="" />
-<meta property="og:description" content="YARA Signature&gt; YARA Signature # PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.
-# Drop any connection from any host to an external server via port 5465." />
+<meta property="og:description" content="YARA Signature&gt; YARA Signature # For the first stage:
+Something that is heuristic - looking for the obfuscation download the vjworm samples that are tagged in ANY.RUN and see what the initial obfuscation is for a bunch of them For the dumped stage: Use a sample set of 5-10 samples Match all of these samples reliably goodware - yara PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://polaryse.github.io/posts/signatures/vjworm-signatures/" /><meta property="article:section" content="posts" />
 
@@ -77,8 +77,8 @@
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="YARA Signature&gt; YARA Signature # PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.
-# Drop any connection from any host to an external server via port 5465."/>
+<meta name="twitter:description" content="YARA Signature&gt; YARA Signature # For the first stage:
+Something that is heuristic - looking for the obfuscation download the vjworm samples that are tagged in ANY.RUN and see what the initial obfuscation is for a bunch of them For the dumped stage: Use a sample set of 5-10 samples Match all of these samples reliably goodware - yara PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port."/>
 
   
   <script type="application/ld+json">
@@ -89,7 +89,7 @@
     "name": "",
     "headline": "",
     
-    "abstract": "YARA Signature\u003e YARA Signature # PASTE YARA RULE HERE Suricata Signature\u003e Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.\n# Drop any connection from any host to an external server via port 5465.",
+    "abstract": "YARA Signature\u003e YARA Signature # For the first stage:\nSomething that is heuristic - looking for the obfuscation download the vjworm samples that are tagged in ANY.RUN and see what the initial obfuscation is for a bunch of them For the dumped stage: Use a sample set of 5-10 samples Match all of these samples reliably goodware - yara PASTE YARA RULE HERE Suricata Signature\u003e Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port.",
     "inLanguage": "en-us",
     "url" : "https:\/\/polaryse.github.io\/posts\/signatures\/vjworm-signatures\/",
     "author" : {
@@ -105,7 +105,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "128"
+    "wordCount": "177"
   }]
   </script>
 
@@ -495,7 +495,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 1, 1</time><span class="px-2 text-primary-500">&middot;</span><span>128 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">January 1, 1</time><span class="px-2 text-primary-500">&middot;</span><span>177 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -587,7 +587,16 @@
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
             style="text-decoration-line: none !important;" href="#yara-signature" aria-label="Anchor">#</a></span>        
     
-</h2><pre tabindex="0"><code>PASTE YARA RULE HERE 
+</h2><p>For the first stage:</p>
+<ul>
+<li>Something that is heuristic - looking for the obfuscation</li>
+<li>download the vjworm samples that are tagged in ANY.RUN and see what the initial obfuscation is for a bunch of them
+For the dumped stage:</li>
+<li>Use a sample set of 5-10 samples</li>
+<li>Match all of these samples reliably</li>
+<li>goodware - yara</li>
+</ul>
+<pre tabindex="0"><code>PASTE YARA RULE HERE 
 </code></pre><div id="suricata-signature" class="anchor">Suricata Signature></div>
 <h2 class="relative group">Suricata Signature 
     <span
@@ -601,7 +610,7 @@
 # Filter on the host parameter of the c2 domain
 # case insensitive
 
-drop http any any -&gt; any 5465 (msg:&#34;Malware detected host contacting vjworm command and control&#34;; content: &#34;javaautorun.duia.ro&#34;; http_host; nocase; sid:1;)
+drop http any any -&gt; any 5465 (msg:&#34;vjworm C2 comms&#34;; content: &#34;javaautorun.duia.ro&#34;; http_host; nocase; sid:1;)
 </code></pre><div id="snort-signature" class="anchor">Snort Signature></div>
 <h2 class="relative group">Snort Signature 
     <span
@@ -1020,7 +1029,7 @@ drop http any any -&gt; any 5465 (msg:&#34;Malware detected host contacting vjwo
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2022
+      2023
       polaryse
     </p>
     

