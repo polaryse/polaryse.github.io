@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3311"
+    "wordCount": "3347"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3311 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3347 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -1084,6 +1084,7 @@ WScript.Quit(1);
             style="text-decoration-line: none !important;" href="#signatures" aria-label="Anchor">#</a></span>        
     
 </h2><p>This segment of the report aims to provide actionable signatures for the community to protect against vjw0rm. This section will be updated as I work through and test each of the signatures. I&rsquo;ll be writing a separate blog post that captures my signature creation process.</p>
+<p>To create these rules, I move out of the context of my virtual environment with a code program installed on my host machine. The reasoning behind this is, like for my notes, I don&rsquo;t want to lose the information that I capture from analysis through the reverting to a clean snapshot process.</p>
 <div id="sigma" class="anchor">SIGMA></div>
 <h3 class="relative group">SIGMA 
     <span
@@ -1091,7 +1092,7 @@ WScript.Quit(1);
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
             style="text-decoration-line: none !important;" href="#sigma" aria-label="Anchor">#</a></span>        
     
-</h3><p>SIGMA rules are another tool for sharing detections, focusing on integration into a SIEM.</p>
+</h3><p>SIGMA rules are another tool for sharing detections, focusing on integration into a SIEM. The idea is that these rules will enrich SIEM data, pulling out and alerting the SOC Analyst of malicious behaviours. The below rule targets the vjw0rm registry key that is queried by default in each interaction.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#ae81ff">vjw0rm Registry Activity</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">status</span>: <span style="color:#ae81ff">test</span>
@@ -1154,7 +1155,6 @@ WScript.Quit(1);
             style="text-decoration-line: none !important;" href="#yara-signature" aria-label="Anchor">#</a></span>        
     
 </h3><p>YARA stands for &ldquo;Another Recursive Acronym&rdquo; or &ldquo;Yet Another Ridiculous Acronym&rdquo; which honestly, has always tickled me.</p>
-<p>To create these rules, I move out of the context of my virtual environment with a code program installed on my host machine. The reasoning behind this is, like for my notes, I don&rsquo;t want to lose the information that I capture from analysis through the reverting to a clean snapshot process.</p>
 <p>I have always danced around the creation of YARA rules in my career. I&rsquo;ve read the documentation, dealt with constructed rules but never written one myself. Below is the first attempt at a YARA rule. I&rsquo;m sure that I will update this as I continue to gain familiarity with the best practice and structure of YARA. The documentation for YARA is pretty good too, and you can access it here <code>https://yara.readthedocs.io/en/stable/</code></p>
 <p>The following rule targets the deobfuscated components of the analysed vjworm sample to integrate into your YARA setup.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#ae81ff">rule vjworm_921_campaign</span>
