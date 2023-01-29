@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3131"
+    "wordCount": "3262"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3131 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3262 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -1091,7 +1091,7 @@ WScript.Quit(1);
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
             style="text-decoration-line: none !important;" href="#sigma" aria-label="Anchor">#</a></span>        
     
-</h3><p>SIGMA rules are another tool for sharing detections, focusing on integration into a SIEM. These rules were developed by Florian Roth.</p>
+</h3><p>SIGMA rules are another tool for sharing detections, focusing on integration into a SIEM.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#ae81ff">vjw0rm Registry Activity</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">status</span>: <span style="color:#ae81ff">test</span>
@@ -1119,10 +1119,27 @@ WScript.Quit(1);
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
             style="text-decoration-line: none !important;" href="#snort-and-suricata" aria-label="Anchor">#</a></span>        
     
-</h3><p>Snort signature descriptions to appear here</p>
+</h3><div id="snort" class="anchor">Snort></div>
+<h4 class="relative group">Snort 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#snort" aria-label="Anchor">#</a></span>        
+    
+</h4><p>Snort is the most commonly known Open Source tool that identifies malicious network traffic. The rules created as part of this IPS are used to find packets that match against the known Indicators of Compromise (IOCs), generating an alert where said match is found.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">TBCompleted</span>
-</span></span></code></pre></div><p>Suricata rules are another method of Threat Intelligence sharing specifically for network traffic. like Snort, these rules are exceptionally pluggable. The following rule, as above, will alert on instances where an endpoint calls out to the Command and Controll domain identified during analysis of this malware.</p>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert tcp any any -&gt; 41.190.14.132 5465 (msg</span>: <span style="color:#e6db74">&#34;vjw0rm C2 contacted by endpoint&#34;</span><span style="color:#ae81ff">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert tcp any any -&gt; 41.217.29.212 5465 (msg</span>: <span style="color:#e6db74">&#34;vjw0rm C2 contacted by endpoint&#34;</span><span style="color:#ae81ff">)</span>
+</span></span></code></pre></div><p>The problem with the above rules is that if the malware author moves or changes their C2 infrastructure, these rules will no longer fire. The better approach here is to write a rule specifically targeting the C2 domain address or better yet, target the User-Agent String portion of the http packet and match on information that is always sent to the C2 domain. Attempts to achieve this appear below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"></code></pre></div><div id="suricata" class="anchor">Suricata></div>
+<h4 class="relative group">Suricata 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#suricata" aria-label="Anchor">#</a></span>        
+    
+</h4><p>Suricata rules are another method of Threat Intelligence sharing specifically for network traffic. like Snort, these rules are exceptionally pluggable. The following rule, as above, will alert on instances where an endpoint calls out to the Command and Controll domain identified during analysis of this malware.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"></code></pre></div><div id="yara-signature" class="anchor">YARA Signature></div>
 <h3 class="relative group">YARA Signature 
     <span
@@ -1134,27 +1151,27 @@ WScript.Quit(1);
 <p>To create these rules, I move out of the context of my virtual environment with a code program installed on my host machine. The reasoning behind this is, like for my notes, I don&rsquo;t want to lose the information that I capture from analysis through the reverting to a clean snapshot process.</p>
 <p>I have always danced around the creation of YARA rules in my career. I&rsquo;ve read the documentation, dealt with constructed rules but never written one myself. Below is the first attempt at a YARA rule. I&rsquo;m sure that I will update this as I continue to gain familiarity with the best practice and structure of YARA. The documentation for YARA is pretty good too, and you can access it here <code>https://yara.readthedocs.io/en/stable/</code></p>
 <p>The following rule targets the deobfuscated components of the analysed vjworm sample to integrate into your YARA setup.</p>
-<pre tabindex="0"><code>rule vjworm_921_campaign
-{
-meta: 
-	created = &#34;2022/11/29&#34;
-	modified = &#34;2022/12/01&#34;
-	author = &#34;polaryse&#34;
-	description = &#34;Simple YARA rule to detect the presence of vjworm&#34;
-
-strings: 
-	$vjworm_id = &#34;Sliemerez&#34;
-	$vjworm_regkey = &#34;HKCU\\\\vjworm&#34;
-	$vjworm_regkey_2 = &#34;HKCU\\vjw0rm&#34;
-	$vjworm = &#34;vjworm&#34;
-	$vjworm_2 = &#34;vjw0rm&#34;
-	$vjworm_C2 = &#34;http://javaautorun.duia.ro&#34;
-	$vjworm_delimiter = &#34;|V|&#34;
-
-condition:
-	($vjworm_id or $vjworm_regkey or $vjworm_regkey_2 or $vjworm_2 or $vjworm or $vjworm_C2 or $vjworm_delimiter)
-}
-</code></pre><div id="lessons-learned-in-analysis" class="anchor">Lessons Learned in Analysis></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#ae81ff">rule vjworm_921_campaign</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#f92672">meta</span>: 
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">created = &#34;2022/11/29&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">modified = &#34;2022/12/01&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">author = &#34;polaryse&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">description = &#34;Simple YARA rule to detect the presence of vjworm&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">strings</span>: 
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_id = &#34;Sliemerez&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_regkey = &#34;HKCU\\\\vjworm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_regkey_2 = &#34;HKCU\\vjw0rm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm = &#34;vjworm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_2 = &#34;vjw0rm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_C2 = &#34;http://javaautorun.duia.ro&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_delimiter = &#34;|V|&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">condition</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">($vjworm_id or $vjworm_regkey or $vjworm_regkey_2 or $vjworm_2 or $vjworm or $vjworm_C2 or $vjworm_delimiter)</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div id="lessons-learned-in-analysis" class="anchor">Lessons Learned in Analysis></div>
 <h2 class="relative group">Lessons Learned in Analysis 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
