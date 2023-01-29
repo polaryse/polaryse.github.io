@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "2521"
+    "wordCount": "2974"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2521 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>2974 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">14 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -561,6 +561,14 @@
         <li><a href="#network-indicators">Network Indicators</a></li>
       </ul>
     </li>
+    <li><a href="#mitre-attck">MITRE ATT&amp;CK</a></li>
+    <li><a href="#signatures">Signatures</a>
+      <ul>
+        <li><a href="#suricata">Suricata</a></li>
+        <li><a href="#snort">Snort</a></li>
+        <li><a href="#yara-signature">YARA Signature</a></li>
+      </ul>
+    </li>
     <li><a href="#lessons-learned-in-analysis">Lessons Learned in Analysis</a></li>
     <li><a href="#resources">Resources</a></li>
   </ul>
@@ -587,6 +595,14 @@
         <li><a href="#the-analysis-deepens">The Analysis&hellip; deepens?</a></li>
         <li><a href="#host-indicators">Host Indicators</a></li>
         <li><a href="#network-indicators">Network Indicators</a></li>
+      </ul>
+    </li>
+    <li><a href="#mitre-attck">MITRE ATT&amp;CK</a></li>
+    <li><a href="#signatures">Signatures</a>
+      <ul>
+        <li><a href="#suricata">Suricata</a></li>
+        <li><a href="#snort">Snort</a></li>
+        <li><a href="#yara-signature">YARA Signature</a></li>
       </ul>
     </li>
     <li><a href="#lessons-learned-in-analysis">Lessons Learned in Analysis</a></li>
@@ -648,31 +664,7 @@
     
 </h2><p>I started this task with your basic static protocols. I had a bit of a squiz at the thing in Notepad++. Initially it was a visual nightmare, a bunch of randomly named functions, with some wild, random blobs of data.  I ended up installing a nice JS plugin called &ldquo;JSTool&rdquo; to help visualise and format this code so that my eyeballs didn&rsquo;t bleed from the chonk of the thing.</p>
 <p><em>Although I later learned that Cyberchef has the same function, if not actually better than this plugin, so I actually completed this step again using the output from that tool.</em></p>
-<p>
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_330x0_resize_box_3.png 330w,
-          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_660x0_resize_box_3.png 660w,
-          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_1024x0_resize_box_3.png 1024w,
-          /posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_1320x0_resize_box_3.png 2x"
-        src="/posts/vjw0rm/obfuscated_hu89084ad317175d082671a246c580bf5d_134581_660x0_resize_box_3.png"
-        alt="obfuscated"
-      />
-      
-    </figure>
-  
-
-
+<p>![[Pasted image 20230122145948.png]]
 <em>Figure 1: Look at that delightful formatting from Cyberchef.io</em></p>
 <p>In my initial scan, I looked for key identifiers that could help me understand <em>what exactly</em> this script was doing. Immediately, nothing really makes sense, so it is easy to say that this is obfuscated.</p>
 <p>The function that immediately warranted further investigation was <code>_$af13899809</code> with a variable that contained a chunk of intriguing code.</p>
@@ -1035,7 +1027,125 @@ WScript.Quit(1);
 </tr>
 </tbody>
 </table>
-<div id="lessons-learned-in-analysis" class="anchor">Lessons Learned in Analysis></div>
+<div id="mitre-attck" class="anchor">MITRE ATT&amp;CK></div>
+<h2 class="relative group">MITRE ATT&amp;CK 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#mitre-attck" aria-label="Anchor">#</a></span>        
+    
+</h2><p>This section details the aspects of the MITRE ATT&amp;CK framework used by vjw0rm.</p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gather Victim Host Information</td>
+<td>T1592</td>
+<td>vjw0rm gathers information about the victim&rsquo;s host including Operating System, AntiVirus product, whether the victim has been infected previously and the presense of Visual Basic Compiler</td>
+</tr>
+<tr>
+<td>Phishing</td>
+<td>T1566</td>
+<td>the most popular form of infection occurs through phishing campaigns, where the user of the victim machine is unwittingly tricked into downloading a Microsoft Office document/spreadsheet or PDF containing the malicious code.</td>
+</tr>
+<tr>
+<td>Command and Scripting Inerpreter</td>
+<td>T1059</td>
+<td>vjw0rm is installed through running the malicious code via VBS. This allows vjw0rm to interact with the victim machine, checking and establishing persistence before beaconing back to the C2 domain with host details.</td>
+</tr>
+<tr>
+<td>Boot or Logon Autostart Execution</td>
+<td>T1547</td>
+<td>vjw0rm establishes persistence by adding the registry key <code>HKCU\vjw0rm</code> to the victim machine. This is the only form of persistence used by this type of malware.</td>
+</tr>
+<tr>
+<td>Application Layer Protocol</td>
+<td>T1071</td>
+<td>vjw0rm communicates using <code>HTTP 1.0</code> via port 5465 with the C2 server. Details of the victim machine are nested in the <code>User-Agent:</code> string of the HTTP header as a level of obfuscation.</td>
+</tr>
+<tr>
+<td>Exfiltration Over C2 Channgel</td>
+<td>T1041</td>
+<td>Victim machine information is harvested and transferred to the C2 server</td>
+</tr>
+</tbody>
+</table>
+<div id="signatures" class="anchor">Signatures></div>
+<h2 class="relative group">Signatures 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#signatures" aria-label="Anchor">#</a></span>        
+    
+</h2><p>This segment of the report aims to provide actionable signatures for the community to protect against vjw0rm. This section will be updated as I work through and test each of the signatures. I&rsquo;ll be writing a separate blog post that captures my signature creation process.</p>
+<div id="suricata" class="anchor">Suricata></div>
+<h3 class="relative group">Suricata 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#suricata" aria-label="Anchor">#</a></span>        
+    
+</h3><p>Description to appear here of what Suricata signatures are.</p>
+<pre tabindex="0"><code>title: vjw0rm Registry Activity
+
+
+status: test
+
+description: Detects the registry key used by vjw0rm as a form of persistence
+
+author: polaryse
+
+date: 2023/01/22
+
+tags:
+
+- attack.persistence
+
+- attack.t1547.001
+
+logsource:
+
+category: registry_event
+
+product: windows
+
+detection:
+
+selection:
+
+TargetObject: &#39;HKCU\vjw0rm&#39;
+
+condition: selection
+
+level: high
+</code></pre><div id="snort" class="anchor">Snort></div>
+<h3 class="relative group">Snort 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#snort" aria-label="Anchor">#</a></span>        
+    
+</h3><p>Snort signature descriptions to appear here</p>
+<pre tabindex="0"><code>
+TBCompleted
+</code></pre><div id="yara-signature" class="anchor">YARA Signature></div>
+<h3 class="relative group">YARA Signature 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#yara-signature" aria-label="Anchor">#</a></span>        
+    
+</h3><p>YARA stands for &ldquo;Another Recursive Acronym&rdquo; or &ldquo;Yet Another Ridiculous Acronym&rdquo; which honestly, has always tickled me.</p>
+<p>To create these rules, I move out of the context of my virtual environment with a code program installed on my host machine. The reasoning behind this is, like for my notes, I don&rsquo;t want to lose the information that I capture from analysis through the reverting to a clean snapshot process.</p>
+<p>I have always danced around the creation of YARA rules in my career. I&rsquo;ve read the documentation, dealt with constructed rules but never written one myself. Below is the first attempt at a YARA rule. I&rsquo;m sure that I will update this as I continue to gain familiarity with the best practice and structure of YARA.</p>
+<pre tabindex="0"><code>TBC 
+</code></pre><div id="lessons-learned-in-analysis" class="anchor">Lessons Learned in Analysis></div>
 <h2 class="relative group">Lessons Learned in Analysis 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
