@@ -104,7 +104,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3436"
+    "wordCount": "3423"
   }]
   </script>
 
@@ -496,7 +496,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3436 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">17 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3423 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">17 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -1173,8 +1173,7 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">description = &#34;Simple YARA rule to detect the presence of vjworm&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">strings</span>: 
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_id = &#34;Sliemerez&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_regkey = &#34;HKCU\\\\vjworm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_regkey = &#34;HKCU\\vjworm&#34;</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_regkey_2 = &#34;HKCU\\vjw0rm&#34;</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm = &#34;vjworm&#34;</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_2 = &#34;vjw0rm&#34;</span>
@@ -1182,7 +1181,7 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_delimiter = &#34;|V|&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">condition</span>:
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">($vjworm_id or $vjworm_regkey or $vjworm_regkey_2 or $vjworm_2 or $vjworm or $vjworm_C2 or $vjworm_delimiter)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">any of them</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div id="lessons-learned-in-analysis" class="anchor">Lessons Learned in Analysis></div>
 <h2 class="relative group">Lessons Learned in Analysis 
