@@ -103,7 +103,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3704"
+    "wordCount": "3670"
   }]
   </script>
 
@@ -495,7 +495,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3704 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3670 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -1163,8 +1163,7 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">alert http any any -&gt; 41.217.29.212 5465 (msg</span>: <span style="color:#e6db74">&#34;vjw0rm C2 contacted by endpoint&#34;</span><span style="color:#ae81ff">)</span>
 </span></span></code></pre></div><p>The problem with the above rules is that if the malware author moves or changes their C2 infrastructure, these rules will no longer fire. The better approach here is to write a rule specifically targeting the C2 domain address or better yet, target the User-Agent String portion of the http packet and match on information that is always sent to the C2 domain. Attempts to achieve this appear below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># blocking through host </span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#75715e"># blocking through host </span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;vjworm C2 contacted&#34;</span><span style="color:#f92672">; http_header</span>: <span style="color:#ae81ff">field; host; content:&#34;javaautorun.duia.ro&#34;;)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through user-agent string unique identifier </span>
@@ -1180,11 +1179,7 @@ WScript.Quit(1);
             style="text-decoration-line: none !important;" href="#suricata" aria-label="Anchor">#</a></span>        
     
 </h4><p>Suricata rules are another method of Threat Intelligence sharing specifically for network traffic. like Snort, these rules are exceptionally pluggable. The following rule, as above, will alert on instances where an endpoint calls out to the Command and Controll domain identified during analysis of this malware.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#75715e"># Drop any connection from any host to an external server via port 5465. </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display message as shown in segment.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Filter on the host parameter of the c2 domain</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># case insensitive</span>
-</span></span><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># matching on PORT command with URI, and user-agent string. this is campaign specific</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;vjworm C2 contacted&#34;; content:&#34;9\21&#34;; http_user_agent; content:&#34;POST &#34;; http_method; content:&#34;/Vre&#34;; http.uri)</span>
 </span></span><span style="display:flex;"><span>
