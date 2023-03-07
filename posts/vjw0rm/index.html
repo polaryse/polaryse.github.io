@@ -103,7 +103,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3670"
+    "wordCount": "3705"
   }]
   </script>
 
@@ -495,7 +495,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3670 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2022-11-29 00:00:00 &#43;0000 UTC">November 29, 2022</time><span class="px-2 text-primary-500">&middot;</span><span>3705 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -994,7 +994,7 @@ WScript.Quit(1);
 <p>Figure 12 shows what data is transmitted to the C2 infrastructure through the POST request using dummy values.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /Vre <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
 </span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">javaautorun.duia.ro:5465</span>
-</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">9/21\USER-PC\Bob\Windows 10 20H2\undefined\YES\FALSE</span>
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">9\21_CED5691\USER-PC\Bob\Windows 10 20H2\undefined\YES\FALSE</span>
 </span></span></code></pre></div><p><em>Figure 12: HTTP Post with dummy values</em></p>
 <div id="host-indicators" class="anchor">Host Indicators></div>
 <h3 class="relative group">Host Indicators 
@@ -1164,13 +1164,17 @@ WScript.Quit(1);
 </span></span><span style="display:flex;"><span><span style="color:#f92672">alert http any any -&gt; 41.217.29.212 5465 (msg</span>: <span style="color:#e6db74">&#34;vjw0rm C2 contacted by endpoint&#34;</span><span style="color:#ae81ff">)</span>
 </span></span></code></pre></div><p>The problem with the above rules is that if the malware author moves or changes their C2 infrastructure, these rules will no longer fire. The better approach here is to write a rule specifically targeting the C2 domain address or better yet, target the User-Agent String portion of the http packet and match on information that is always sent to the C2 domain. Attempts to achieve this appear below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#75715e"># blocking through host </span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;vjworm C2 contacted&#34;</span><span style="color:#f92672">; http_header</span>: <span style="color:#ae81ff">field; host; content:&#34;javaautorun.duia.ro&#34;;)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through user-agent string unique identifier </span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;vjworm C2 contacted&#34;</span><span style="color:#ae81ff">; content:&#34;9\21&#34;; http_user_agent;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># not effective, they can just roll the domain name</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;MALWARE vjworm C2 contacted&#34;</span><span style="color:#f92672">; http_header</span>: <span style="color:#ae81ff">field; host; content:&#34;javaautorun.duia.ro&#34;;)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through POST request to /Vre URI</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;vjworm C2 contacted&#34;</span><span style="color:#ae81ff">; flow:established,to_server; content:&#34;POST&#34;; nocase; http_method; uricontent:&#34;/Vre&#34;;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># better, but not amazing, what if the folder changes?</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;MALWARE vjworm C2 contacted&#34;</span><span style="color:#ae81ff">; flow:established,to_server; content:&#34;POST&#34;; nocase; http_method; uricontent:&#34;/Vre HTTP/1.1&#34;;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through identifying a pattern in the user-agent string</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># more robust, has ability to change, but the serial number is present in a lot of vjworm samples. </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># We might be safer here. </span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;MALWARE vjw0rm C2 contacted&#34;; content:&#34;POST&#34;; http_method; http.user_agent; content:&#34;_&#34;; depth:8; fast_pattern; pcre:&#34;/_[A-F0-9]{8}/V&#34;; reference:url, [https://polaryse.github.io/posts/vjw0rm/](https://polaryse.github.io/posts/vjw0rm/); classtype:trojan-activity; sid:1000000; rev:1;)</span>
 </span></span></code></pre></div><div id="suricata" class="anchor">Suricata></div>
 <h4 class="relative group">Suricata 
     <span
@@ -1180,11 +1184,8 @@ WScript.Quit(1);
     
 </h4><p>Suricata rules are another method of Threat Intelligence sharing specifically for network traffic. like Snort, these rules are exceptionally pluggable. The following rule, as above, will alert on instances where an endpoint calls out to the Command and Controll domain identified during analysis of this malware.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># matching on PORT command with URI, and user-agent string. this is campaign specific</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;vjworm C2 contacted&#34;; content:&#34;9\21&#34;; http_user_agent; content:&#34;POST &#34;; http_method; content:&#34;/Vre&#34;; http.uri)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># matching on POST command with URI /Vre </span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;vjworm C2 contacted&#34;; content:&#34;POST &#34;; http_method; content:&#34;/Vre&#34;; http.uri)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting on user-agent string </span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;MALWARE vjw0rm C2 contacted&#34;; content:&#34;POST&#34;; http_method; http.user_agent; content:&#34;_&#34;; depth:8; fast_pattern; pcre:&#34;/_[A-F0-9]{8}/V&#34;; reference:url, [https://polaryse.github.io/posts/vjw0rm/](https://polaryse.github.io/posts/vjw0rm/); classtype:trojan-activity; sid:1000000; rev:1;)</span>
 </span></span></code></pre></div><div id="yara-signature" class="anchor">YARA Signature></div>
 <h3 class="relative group">YARA Signature 
     <span
