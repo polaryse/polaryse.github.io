@@ -181,7 +181,7 @@
                 Training Courses
             </a>
             
-            <a href=""  class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+            <a href="/ctfs/"  class="text-base font-medium text-gray-500 hover:text-gray-900" title="CTFs">
                 
 
 
@@ -359,7 +359,7 @@
                     
                     <li class="mb-1">
                         <a  class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-                            href="" title="">
+                            href="/ctfs/" title="CTFs">
                             <span class="inline-block align-text-bottom">
 
 </span>
@@ -947,7 +947,7 @@ WScript.Quit(1);
 <p>The User-Agent string is used to supply the C2 domain with information recovered from the victim machine</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTTP" data-lang="HTTP"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /Vre <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
 </span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">javaautorun.duia.ro:5465</span>
-</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">[campaign_identifier]\[computer_name]\[user_name]\[operating_system]\[anti_virus]\[vbc_exists]\[previously_infected]</span>
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">[campaign_identifier]_[device_serial]\[computer_name]\[user_name]\[operating_system]\[anti_virus]\[vbc_exists]\[previously_infected]</span>
 </span></span></code></pre></div><p>Note: the values would reflect the actual data collected from the victim host</p>
 <table>
 <thead>
@@ -1183,8 +1183,7 @@ WScript.Quit(1);
             style="text-decoration-line: none !important;" href="#suricata" aria-label="Anchor">#</a></span>        
     
 </h4><p>Suricata rules are another method of Threat Intelligence sharing specifically for network traffic. like Snort, these rules are exceptionally pluggable. The following rule, as above, will alert on instances where an endpoint calls out to the Command and Controll domain identified during analysis of this malware.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting on user-agent string </span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#75715e"># alerting on user-agent string </span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;MALWARE vjw0rm C2 contacted&#34;; content:&#34;POST&#34;; http_method; http.user_agent; content:&#34;_&#34;; depth:8; fast_pattern; pcre:&#34;/_[A-F0-9]{8}/V&#34;; reference:url, [https://polaryse.github.io/posts/vjw0rm/](https://polaryse.github.io/posts/vjw0rm/); classtype:trojan-activity; sid:1000000; rev:1;)</span>
 </span></span></code></pre></div><div id="yara-signature" class="anchor">YARA Signature></div>
 <h3 class="relative group">YARA Signature 
@@ -1611,7 +1610,7 @@ WScript.Quit(1);
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group" href="/posts/testpost/">
+            <a class="flex group" href="/posts/introduction/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span

@@ -6,7 +6,17 @@
     <description>Recent content on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTB Challenge: Simple Encryptor Part 1</title>
+      <link>https://polaryse.github.io/ctfs/simple-encryptor/</link>
+      <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/ctfs/simple-encryptor/</guid>
+      <description>Pulling apart a custom simple encryptor from a Hack the Box RE challenge using Ghidra. Part 1 of 2 explores the static analysis process of</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/ctfs/simple-encryptor/featured.jpeg" />
+    </item>
+    
     <item>
       <title>Starting Small: Analysis of recent vjw0rm variant</title>
       <link>https://polaryse.github.io/posts/vjw0rm/</link>
@@ -19,23 +29,12 @@
     
     <item>
       <title>An Introduction</title>
-      <link>https://polaryse.github.io/posts/testpost/</link>
+      <link>https://polaryse.github.io/posts/introduction/</link>
       <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/posts/testpost/</guid>
+      <guid>https://polaryse.github.io/posts/introduction/</guid>
       <description>An introductory post outlining the purpose of this blog, my background and a small dedication to those who inspired me.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/testpost/featured.jpg" />
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://polaryse.github.io/posts/signatures/vjworm-signatures/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/posts/signatures/vjworm-signatures/</guid>
-      <description>YARA Signature&gt; YARA Signature # For the first stage:
-Something that is heuristic - looking for the obfuscation download the vjworm samples that are tagged in ANY.RUN and see what the initial obfuscation is for a bunch of them For the dumped stage: Use a sample set of 5-10 samples Match all of these samples reliably goodware - yara PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port.</description>
-      
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/introduction/featured.jpg" />
     </item>
     
   </channel>

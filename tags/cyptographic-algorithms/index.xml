@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cyptographic Algorithms on Malware Analysis: Or How I Learned To Love Frustration</title>
+    <link>https://polaryse.github.io/tags/cyptographic-algorithms/</link>
+    <description>Recent content in Cyptographic Algorithms on Malware Analysis: Or How I Learned To Love Frustration</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/cyptographic-algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTB Challenge: Simple Encryptor Part 1</title>
+      <link>https://polaryse.github.io/ctfs/simple-encryptor/</link>
+      <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/ctfs/simple-encryptor/</guid>
+      <description>Pulling apart a custom simple encryptor from a Hack the Box RE challenge using Ghidra. Part 1 of 2 explores the static analysis process of</description>
+    </item>
+    
+  </channel>
+</rss>

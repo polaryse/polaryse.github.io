@@ -18,21 +18,11 @@
     
     <item>
       <title>An Introduction</title>
-      <link>https://polaryse.github.io/posts/testpost/</link>
+      <link>https://polaryse.github.io/posts/introduction/</link>
       <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/posts/testpost/</guid>
+      <guid>https://polaryse.github.io/posts/introduction/</guid>
       <description>An introductory post outlining the purpose of this blog, my background and a small dedication to those who inspired me.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://polaryse.github.io/posts/signatures/vjworm-signatures/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/posts/signatures/vjworm-signatures/</guid>
-      <description>YARA Signature&gt; YARA Signature # For the first stage:
-Something that is heuristic - looking for the obfuscation download the vjworm samples that are tagged in ANY.RUN and see what the initial obfuscation is for a bunch of them For the dumped stage: Use a sample set of 5-10 samples Match all of these samples reliably goodware - yara PASTE YARA RULE HERE Suricata Signature&gt; Suricata Signature # There were two ways to approach the creation of this rule, filter by IP or filter by port.</description>
     </item>
     
   </channel>
