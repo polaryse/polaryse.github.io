@@ -103,7 +103,7 @@
     "keywords": ["Ghidra","Reverse Engineering","Cyptographic Algorithms"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "2995"
+    "wordCount": "2991"
   }]
   </script>
 
@@ -495,7 +495,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-03-18 00:00:00 &#43;0000 UTC">March 18, 2023</time><span class="px-2 text-primary-500">&middot;</span><span>2995 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2023-03-18 00:00:00 &#43;0000 UTC">March 18, 2023</time><span class="px-2 text-primary-500">&middot;</span><span>2991 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -641,7 +641,31 @@
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
             style="text-decoration-line: none !important;" href="#what-is-ghidra" aria-label="Anchor">#</a></span>        
     
-</h3><p>![[ghidra-logo-dark.jpg]]</p>
+</h3><p>
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        srcset="
+          /ctfs/simple-encryptor/ghidra-logo-dark_hu08af4c8aa29da82cf2cac1c5813539fc_110729_330x0_resize_q75_box.jpg 330w,
+          /ctfs/simple-encryptor/ghidra-logo-dark_hu08af4c8aa29da82cf2cac1c5813539fc_110729_660x0_resize_q75_box.jpg 660w,
+          /ctfs/simple-encryptor/ghidra-logo-dark_hu08af4c8aa29da82cf2cac1c5813539fc_110729_1024x0_resize_q75_box.jpg 1024w,
+          /ctfs/simple-encryptor/ghidra-logo-dark_hu08af4c8aa29da82cf2cac1c5813539fc_110729_1320x0_resize_q75_box.jpg 2x"
+        src="/ctfs/simple-encryptor/ghidra-logo-dark_hu08af4c8aa29da82cf2cac1c5813539fc_110729_660x0_resize_q75_box.jpg"
+        alt="Image alt"
+      />
+      
+    </figure>
+  
+
+</p>
 <p>Ghidra is a wonderful open-source disassembler that was developed by NSA&rsquo;s Research Directorate to support their Cybersecurity mission. It&rsquo;s a incredible tool with a lot of cool and honestly life-changing functions that displays assembly code in an easy-to-read format.</p>
 <p>This particular tool is one of the perfect starting points for people new to the field because the cost of entry is <strong>nothing</strong> (unlike Binary Ninja and IDA Pro). That&rsquo;s right, you can use it for free! I would also recommend getting a copy of <a href="https://www.amazon.com/Ghidra-Book-Definitive-Guide-ebook/dp/B0852N9Y4Q"   target="_blank">
     Ghidra: The Definitive Guide</a> written by the impressive Chris Eagle (that&rsquo;s right, the same chap that wrote the Definitive Guide to IDA Pro!). It is a very comprehensive introduction (and really deep dive) into all the functionality offered by the platform—starting off with a wonderful introduction section that teaches you how to reverse engineer using the tool.</p>
@@ -718,7 +742,31 @@
 </h2><p>We need a logical starting point for our analysis. Depending on your learning style, there will be multiple ways to approach this as your eyeballs are overwhelmed by the delightful spluttering of assembly and decompiled text of a new, unfamiliar binary. However, I would always recommend you follow through the default, auto analysis process provided by Ghidra until you are familiar enough with the program to make changes.</p>
 <p>Open up Ghidra and start a new project. Ghidra should automatically assess that the binary is <code>x86:LE:64:default:gcc</code> which immediately gives us some additional clues as to what we are dealing with (if you didn&rsquo;t do any command line sleuthing beforehand).</p>
 <p>Once your project is set up, double-click your imported file (in this case <code>encrypt</code>) and begin auto-analysis.</p>
-<p>![[ghidra_project_overview.png]]
+<p>
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        srcset="
+          /ctfs/simple-encryptor/ghidra_project_overview_hub7fe1d56d1872d493eb3ecbeca260333_485574_330x0_resize_box_3.png 330w,
+          /ctfs/simple-encryptor/ghidra_project_overview_hub7fe1d56d1872d493eb3ecbeca260333_485574_660x0_resize_box_3.png 660w,
+          /ctfs/simple-encryptor/ghidra_project_overview_hub7fe1d56d1872d493eb3ecbeca260333_485574_1024x0_resize_box_3.png 1024w,
+          /ctfs/simple-encryptor/ghidra_project_overview_hub7fe1d56d1872d493eb3ecbeca260333_485574_1320x0_resize_box_3.png 2x"
+        src="/ctfs/simple-encryptor/ghidra_project_overview_hub7fe1d56d1872d493eb3ecbeca260333_485574_660x0_resize_box_3.png"
+        alt="Image alt"
+      />
+      
+    </figure>
+  
+
+
 <em>Figure 1: Auto-Analysis Prompt in Ghidra</em></p>
 <div id="analysis-options" class="anchor">Analysis Options></div>
 <h3 class="relative group">Analysis Options 
@@ -728,7 +776,31 @@
             style="text-decoration-line: none !important;" href="#analysis-options" aria-label="Anchor">#</a></span>        
     
 </h3><p>By default, Ghidra does switch the majority of auto-analysis options on. Through discussions with a friend, there are some additional checks that should be performed prior to just hitting <code>Analyze</code>. Let&rsquo;s double-check that <code>ASCII Strings</code> &ldquo;minimum string length&rdquo; is set to <code>LEN_4</code> and (only because this program is small), let&rsquo;s turn on <code>Decompiler Parameter ID</code> for good measure.</p>
-<p>![[ghidra_auto_analysis.png]]
+<p>
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        srcset="
+          /ctfs/simple-encryptor/ghidra_auto_analysis_hu145a582fbe2f510f45d4398550500ae6_259148_330x0_resize_box_3.png 330w,
+          /ctfs/simple-encryptor/ghidra_auto_analysis_hu145a582fbe2f510f45d4398550500ae6_259148_660x0_resize_box_3.png 660w,
+          /ctfs/simple-encryptor/ghidra_auto_analysis_hu145a582fbe2f510f45d4398550500ae6_259148_1024x0_resize_box_3.png 1024w,
+          /ctfs/simple-encryptor/ghidra_auto_analysis_hu145a582fbe2f510f45d4398550500ae6_259148_1320x0_resize_box_3.png 2x"
+        src="/ctfs/simple-encryptor/ghidra_auto_analysis_hu145a582fbe2f510f45d4398550500ae6_259148_660x0_resize_box_3.png"
+        alt="Image alt"
+      />
+      
+    </figure>
+  
+
+
 <em>Figure 2: Auto Analysis Options in Ghidra</em></p>
 <p>Now hit apply and analyze.</p>
 <div id="analysing-functions" class="anchor">Analysing Functions></div>
@@ -929,10 +1001,34 @@
 </span></span></code></pre></div><p><em>Figure 7: Confusing Code Segment</em></p>
 <p>But why is this significant? Well, judging by the presence of <code>rand()</code>, the right shift and left shift, and a bitwise, it is highly likely that this segment of code is our encryption component.</p>
 <p>Here, we will need to reference the assembly instructions to see whether it provides any additional insights as to what series of operations are being performed here. We can achieve this through highlighting this segment of code in the decompiler, which will highlight the corresponding code in the assembly pane.</p>
-<p>![[ghidra_encryption_for_loop.png]]
+<p>![[/ghidra_encryption_for_loop.png]]
 <em>Figure 8: Equivalent Assembly Instructions</em></p>
 <p>Looking at the assembly, there are two key instructions here (as highlighted) that provide clues as to what is going on. This is Ghidra&rsquo;s attempt to logically represent a <code>Rotate on Left</code>. This is definitely our encryption algorithm.</p>
-<p>![[ROL.png]]
+<p>
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        srcset="
+          /ctfs/simple-encryptor/ROL_hue0afe866b15cd44b3e83aec7f004b4bb_3139_330x0_resize_box_3.png 330w,
+          /ctfs/simple-encryptor/ROL_hue0afe866b15cd44b3e83aec7f004b4bb_3139_660x0_resize_box_3.png 660w,
+          /ctfs/simple-encryptor/ROL_hue0afe866b15cd44b3e83aec7f004b4bb_3139_1024x0_resize_box_3.png 1024w,
+          /ctfs/simple-encryptor/ROL_hue0afe866b15cd44b3e83aec7f004b4bb_3139_1320x0_resize_box_3.png 2x"
+        src="/ctfs/simple-encryptor/ROL_hue0afe866b15cd44b3e83aec7f004b4bb_3139_660x0_resize_box_3.png"
+        alt="Image alt"
+      />
+      
+    </figure>
+  
+
+
 <em>Figure 9: Depiction of Rotate on Left</em></p>
 <p>Let&rsquo;s amend our summary then:</p>
 <ul>
