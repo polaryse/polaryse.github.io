@@ -13,7 +13,7 @@
       <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/ctfs/simple-encryptor/</guid>
-      <description>Pulling apart a custom simple encryptor from a Hack the Box RE challenge using Ghidra. Part 1 of 2 explores the static analysis process of</description>
+      <description>Pulling apart a custom simple encryptor from a Hack the Box RE challenge using Ghidra. Part 1 of 2 explores the static analysis process.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/ctfs/simple-encryptor/featured.jpeg" />
     </item>
     
