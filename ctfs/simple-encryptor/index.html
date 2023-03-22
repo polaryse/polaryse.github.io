@@ -103,7 +103,7 @@
     "keywords": ["Ghidra","Reverse Engineering","Cyptographic Algorithms"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "2991"
+    "wordCount": "2990"
   }]
   </script>
 
@@ -495,7 +495,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-03-18 00:00:00 &#43;0000 UTC">March 18, 2023</time><span class="px-2 text-primary-500">&middot;</span><span>2991 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2023-03-18 00:00:00 &#43;0000 UTC">March 18, 2023</time><span class="px-2 text-primary-500">&middot;</span><span>2990 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
   
@@ -1001,7 +1001,31 @@
 </span></span></code></pre></div><p><em>Figure 7: Confusing Code Segment</em></p>
 <p>But why is this significant? Well, judging by the presence of <code>rand()</code>, the right shift and left shift, and a bitwise, it is highly likely that this segment of code is our encryption component.</p>
 <p>Here, we will need to reference the assembly instructions to see whether it provides any additional insights as to what series of operations are being performed here. We can achieve this through highlighting this segment of code in the decompiler, which will highlight the corresponding code in the assembly pane.</p>
-<p>![[/ghidra_encryption_for_loop.png]]
+<p>
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        srcset="
+          /ctfs/simple-encryptor/ghidra_encryption_for_loop_huce558d0890126b7c977e4efb23615d3d_769351_330x0_resize_box_3.png 330w,
+          /ctfs/simple-encryptor/ghidra_encryption_for_loop_huce558d0890126b7c977e4efb23615d3d_769351_660x0_resize_box_3.png 660w,
+          /ctfs/simple-encryptor/ghidra_encryption_for_loop_huce558d0890126b7c977e4efb23615d3d_769351_1024x0_resize_box_3.png 1024w,
+          /ctfs/simple-encryptor/ghidra_encryption_for_loop_huce558d0890126b7c977e4efb23615d3d_769351_1320x0_resize_box_3.png 2x"
+        src="/ctfs/simple-encryptor/ghidra_encryption_for_loop_huce558d0890126b7c977e4efb23615d3d_769351_660x0_resize_box_3.png"
+        alt="Image Alt"
+      />
+      
+    </figure>
+  
+
+
 <em>Figure 8: Equivalent Assembly Instructions</em></p>
 <p>Looking at the assembly, there are two key instructions here (as highlighted) that provide clues as to what is going on. This is Ghidra&rsquo;s attempt to logically represent a <code>Rotate on Left</code>. This is definitely our encryption algorithm.</p>
 <p>
@@ -1040,8 +1064,8 @@
 <li>perform bitwise operation on <code>ranNumGen_2</code> and <code>7</code></li>
 <li>perform <code>ROL</code> on data</li>
 <li>place the results of the encryption in variable <code>fileSizeInMem</code></li>
-<li>open the file <code>flag.enc</code> and place the contents of cast`Time into the file</li>
-<li>Write the contents of fil`eSizeInMem into the file</li>
+<li>open the file <code>flag.enc</code> and place the contents of <code>castTime</code> into the file</li>
+<li>Write the contents of <code>fileSizeInMem</code> into the file</li>
 <li>Close the file</li>
 <li>Exit program</li>
 </ul>
