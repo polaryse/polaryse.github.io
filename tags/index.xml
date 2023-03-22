@@ -8,11 +8,11 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 18 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Cyptographic Algorithms</title>
-      <link>https://polaryse.github.io/tags/cyptographic-algorithms/</link>
+      <title>Cryptographic Algorithms</title>
+      <link>https://polaryse.github.io/tags/cryptographic-algorithms/</link>
       <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/tags/cyptographic-algorithms/</guid>
+      <guid>https://polaryse.github.io/tags/cryptographic-algorithms/</guid>
       <description></description>
     </item>
     
@@ -31,6 +31,24 @@
       <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/reverse-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://polaryse.github.io/tags/javascript/</link>
+      <pubDate>Tue, 29 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vjw0rm</title>
+      <link>https://polaryse.github.io/tags/vjw0rm/</link>
+      <pubDate>Tue, 29 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/vjw0rm/</guid>
       <description></description>
     </item>
     

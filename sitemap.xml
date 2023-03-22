@@ -4,14 +4,14 @@
   
     
       <url>
-            <loc>https://polaryse.github.io/ctfs/</loc>
+            <loc>https://polaryse.github.io/tags/cryptographic-algorithms/</loc>
             <lastmod>2023-03-18T00:00:00+00:00</lastmod>
           </url>
     
   
     
       <url>
-            <loc>https://polaryse.github.io/tags/cyptographic-algorithms/</loc>
+            <loc>https://polaryse.github.io/ctfs/</loc>
             <lastmod>2023-03-18T00:00:00+00:00</lastmod>
           </url>
     
@@ -53,6 +53,13 @@
   
     
       <url>
+            <loc>https://polaryse.github.io/tags/javascript/</loc>
+            <lastmod>2022-11-29T00:00:00+00:00</lastmod>
+          </url>
+    
+  
+    
+      <url>
             <loc>https://polaryse.github.io/posts/</loc>
             <lastmod>2022-11-29T00:00:00+00:00</lastmod>
           </url>
@@ -61,6 +68,13 @@
     
       <url>
             <loc>https://polaryse.github.io/posts/vjw0rm/</loc>
+            <lastmod>2022-11-29T00:00:00+00:00</lastmod>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://polaryse.github.io/tags/vjw0rm/</loc>
             <lastmod>2022-11-29T00:00:00+00:00</lastmod>
           </url>
     

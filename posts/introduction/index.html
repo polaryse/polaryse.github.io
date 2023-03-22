@@ -142,6 +142,29 @@
   
   
   
+  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB5tqlqDky77Vb4Tc4apiHV4hRZI18KGiY",
+      authDomain: "AIzaSyB5tqlqDky77Vb4Tc4apiHV4hRZI18KGiY",
+      projectId: "polaryse-e5ded",
+      storageBucket: "polaryse-e5ded.appspot.com",
+      messagingSenderId:  null ,
+      appId: "1:196688950789:web:daa0043ca3d82b21b34e6c",
+      measurementId: "G-NP66FV21FJ"
+    };
+
+    var app = firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var auth = firebase.auth();
+
+  </script>
+  
+  
 </head><body
   class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
   <div id="the-top" class="absolute flex self-center">
