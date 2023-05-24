@@ -6,7 +6,17 @@
     <description>Recent content on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0xCC Conference</title>
+      <link>https://polaryse.github.io/topics/0xcc-2023/</link>
+      <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/topics/0xcc-2023/</guid>
+      <description>I was lucky enough to be in a position to attend 0xCC this year, run by women, for women in tech. This is a collection of my thoughts and feelings about the value this conference had in my career.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/0xcc-2023/featured.jpg" />
+    </item>
+    
     <item>
       <title>HTB Challenge: Simple Encryptor Part 1</title>
       <link>https://polaryse.github.io/ctfs/simple-encryptor/</link>
