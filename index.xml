@@ -18,6 +18,16 @@
     </item>
     
     <item>
+      <title>You make me WannaSmile</title>
+      <link>https://polaryse.github.io/posts/wannasmile/</link>
+      <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/posts/wannasmile/</guid>
+      <description>Analysis of &amp;lsquo;WannaSmile&amp;rsquo; ransomware using dnSpy to pull apart and understand the behaviour and crypto functions used by this binary to encrypt machines.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/wannasmile/featured.png" />
+    </item>
+    
+    <item>
       <title>HTB Challenge: Simple Encryptor Part 1</title>
       <link>https://polaryse.github.io/ctfs/simple-encryptor/</link>
       <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
