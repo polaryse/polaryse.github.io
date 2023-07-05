@@ -6,7 +6,52 @@
     <description>Recent content in Tags on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.NET</title>
+      <link>https://polaryse.github.io/tags/.net/</link>
+      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/.net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dnSpy</title>
+      <link>https://polaryse.github.io/tags/dnspy/</link>
+      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/dnspy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eCrime</title>
+      <link>https://polaryse.github.io/tags/ecrime/</link>
+      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/ecrime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ransomware</title>
+      <link>https://polaryse.github.io/tags/ransomware/</link>
+      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/ransomware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WannaSmile</title>
+      <link>https://polaryse.github.io/tags/wannasmile/</link>
+      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/wannasmile/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>FemalesInTech</title>
       <link>https://polaryse.github.io/tags/femalesintech/</link>
@@ -58,15 +103,6 @@
       <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/reverse-engineering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>eCrime</title>
-      <link>https://polaryse.github.io/tags/ecrime/</link>
-      <pubDate>Tue, 29 Nov 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/ecrime/</guid>
       <description></description>
     </item>
     
