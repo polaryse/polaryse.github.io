@@ -5,7 +5,8 @@
     <link>https://polaryse.github.io/tags/ghidra/</link>
     <description>Recent content in Ghidra on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>© 2024 polaryse</copyright>
     <lastBuildDate>Sat, 18 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/ghidra/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HTB Challenge: Simple Encryptor Part 1</title>
@@ -14,6 +15,7 @@
       
       <guid>https://polaryse.github.io/ctfs/simple-encryptor/</guid>
       <description>Pulling apart a custom simple encryptor from a Hack the Box RE challenge using Ghidra. Part 1 of 2 explores the static analysis process.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/ctfs/simple-encryptor/featured.jpeg" />
     </item>
     
   </channel>

@@ -5,6 +5,8 @@
     <link>https://polaryse.github.io/authors/</link>
     <description>Recent content in Authors on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://polaryse.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <copyright>© 2024 polaryse</copyright>
+    <atom:link href="https://polaryse.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

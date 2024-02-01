@@ -5,7 +5,8 @@
     <link>https://polaryse.github.io/topics/</link>
     <description>Recent content in Topics on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>© 2024 polaryse</copyright>
     <lastBuildDate>Wed, 24 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/topics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>0xCC Conference</title>
@@ -14,6 +15,7 @@
       
       <guid>https://polaryse.github.io/topics/0xcc-2023/</guid>
       <description>I was lucky enough to be in a position to attend 0xCC this year, run by women, for women in tech. This is a collection of my thoughts and feelings about the value this conference had in my career.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/0xcc-2023/featured.jpg" />
     </item>
     
   </channel>

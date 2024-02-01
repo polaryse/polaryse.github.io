@@ -5,7 +5,8 @@
     <link>https://polaryse.github.io/tags/ransomware/</link>
     <description>Recent content in Ransomware on Malware Analysis: Or How I Learned To Love Frustration</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>© 2024 polaryse</copyright>
     <lastBuildDate>Wed, 05 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/ransomware/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>You make me WannaSmile</title>
@@ -14,6 +15,7 @@
       
       <guid>https://polaryse.github.io/posts/wannasmile/</guid>
       <description>Analysis of &amp;lsquo;WannaSmile&amp;rsquo; ransomware using dnSpy to pull apart and understand the behaviour and crypto functions used by this binary to encrypt machines.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/wannasmile/featured.png" />
     </item>
     
   </channel>

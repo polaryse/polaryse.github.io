@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
   data-auto-appearance="true"><head>
   <meta charset="utf-8" />
   
-  <meta http-equiv="content-language" content="en-us" />
+  <meta http-equiv="content-language" content="en" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -13,8 +11,8 @@
   <title>Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
   <meta name="title" content="Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion &middot; Malware Analysis: Or How I Learned To Love Frustration" />
   
-  
-  
+  <meta name="description" content="This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using VMWare Fusion." />
+  <meta name="keywords" content="Virtualisation, ReverseEngineering, FlareVM, ARM, inetsim, AppleSilicon, ARM-basedLinux, ARM-basedWindows, VMWareFusion, " />
   
   
   <link rel="canonical" href="https://polaryse.github.io/posts/applesiliconenv/" />
@@ -28,15 +26,12 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.46f9ffa24eae27e9c12d7fb4acd993c38d401b80b028e4d0a8f6bac03b6c933a6bed190cfecbd9df1a1454c6ed16ac4570e5683debe8519f64f170d4728fbfc0.css"
-    integrity="sha512-Rvn/ok6uJ&#43;nBLX&#43;0rNmTw41AG4CwKOTQqPa6wDtskzpr7RkM/svZ3xoUVMbtFqxFcOVoPevoUZ9k8XDUco&#43;/wA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.145d78b5c0fe58aedb5cab338cf11b8e28b3e3468ceef2a1ab7988b10d699e53caf2fd590daa90c0a2c685727a1fbc4feb8e1af0ccdb17926d3ade03fba2af77.css"
+    integrity="sha512-FF14tcD&#43;WK7bXKszjPEbjiiz40aM7vKhq3mIsQ1pnlPK8v1ZDaqQwKLGhXJ6H7xP644a8MzbF5JtOt4D&#43;6Kvdw==" />
   
   
-  <script type="text/javascript" src="/js/main.min.cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e.js" integrity="sha512-z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP&#43;DGNKHfuwvY7kxvUdBeoGlODJ6&#43;SfaPg=="></script>
-  
-  
-  <script type="text/javascript" src="/js/appearance.min.f94f4c4636d9e3ec8f5ee53cdc8ffa3d01bf87cd92ac85e6797550b1e2b80dc9118d838f3eb24c55109352455e72ff082dfe560283154e5a8f87fd75107b59c4.js"
-    integrity="sha512-&#43;U9MRjbZ4&#43;yPXuU83I/6PQG/h82SrIXmeXVQseK4DckRjYOPPrJMVRCTUkVecv8ILf5WAoMVTlqPh/11EHtZxA=="></script>
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
   
   
   
@@ -49,10 +44,12 @@
   
   
   
-  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.3ddcf04f5b0d4c32f72e726d3c12eebccd8c3c9f9daa9a13414808895de0ae1e1cdddda6849680d5bd96dbb60d0b1e0b24c29f5c83e5631e55e7e6bc02015490.js"
-    integrity="sha512-PdzwT1sNTDL3LnJtPBLuvM2MPJ&#43;dqpoTQUgIiV3grh4c3d2mhJaA1b2W27YNCx4LJMKfXIPlYx5V5&#43;a8AgFUkA==" data-copy="" data-copied=""></script>
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.1271c22a557a15f10b5d38d2c87e49503604cfeffebadc1e7c267934e4b9f3ba1b74d81371219f9681dab2141482fc4ed2a8b462b179f0ef43a5f76d0575e85b.js"
+    integrity="sha512-EnHCKlV6FfELXTjSyH5JUDYEz&#43;/&#43;utwefCZ5NOS587obdNgTcSGfloHashQUgvxO0qi0YrF58O9DpfdtBXXoWw==" data-copy="" data-copied=""></script>
+  
   
   <script src="/js/zoom.min.js"></script>
+  
   
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -69,15 +66,15 @@
   <meta property="og:title" content="Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion" />
 <meta property="og:description" content="This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using VMWare Fusion." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polaryse.github.io/posts/applesiliconenv/" /><meta property="og:image" content="https://polaryse.github.io/posts/applesiliconenv/featured.webp"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://polaryse.github.io/posts/applesiliconenv/" /><meta property="og:image" content="https://polaryse.github.io/posts/applesiliconenv/featured.webp" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-01-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-01-21T00:00:00+00:00" /><meta property="og:site_name" content="Malware Analysis: Or How I Learned To Love Frustration" />
+<meta property="article:modified_time" content="2024-01-21T00:00:00+00:00" />
 
 
 
-  <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://polaryse.github.io/posts/applesiliconenv/featured.webp"/>
-<meta name="twitter:title" content="Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion"/>
+
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://polaryse.github.io/posts/applesiliconenv/featured.webp" /><meta name="twitter:title" content="Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion"/>
 <meta name="twitter:description" content="This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using VMWare Fusion."/>
 
   
@@ -90,7 +87,7 @@
     "headline": "Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion",
     
     "abstract": "This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using VMWare Fusion.",
-    "inLanguage": "en-us",
+    "inLanguage": "en",
     "url" : "https:\/\/polaryse.github.io\/posts\/applesiliconenv\/",
     "author" : {
       "@type": "Person",
@@ -105,7 +102,7 @@
     "keywords": ["Virtualisation","ReverseEngineering","FlareVM","ARM","inetsim","AppleSilicon","ARM-basedLinux","ARM-basedWindows","VMWareFusion"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "3348"
+    "wordCount": "3281"
   }]
   </script>
 
@@ -128,6 +125,20 @@
   
   
 
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -135,13 +146,10 @@
 
   
   
-  
-  
-
 
   
   
-  
+  <meta name="theme-color"/>
   
   
   
@@ -167,7 +175,8 @@
   </script>
   
   
-</head><body
+</head>
+<body
   class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
   <div id="the-top" class="absolute flex self-center">
     <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
@@ -176,67 +185,82 @@
   </div>
   
   
-  <div style="padding-left:0;padding-right:0"
-    class="flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
     
     <div class="flex flex-1 items-center justify-between">
         <nav class="flex space-x-3">
 
+            
             <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Malware Analysis: Or How I Learned To Love Frustration</a>
             
-            
+
         </nav>
-        <div class="hidden md:flex items-center space-x-5 md:ml-12">
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
 
             
             
-            <a href="/posts/"  class="text-base font-medium text-gray-500 hover:text-gray-900" title="Posts">
-                
-
-
-                
-                Blog
-            </a>
             
-            <a href="/topics/"  class="text-base font-medium text-gray-500 hover:text-gray-900" title="Topics">
-                
-
-
-                
-                Training Courses
-            </a>
-            
-            <a href="/ctfs/"  class="text-base font-medium text-gray-500 hover:text-gray-900" title="CTFs">
-                
-
-
-                
-                CTF Challenges
-            </a>
-            
-            <a href="https://github.com/polaryse"  target="_blank" class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
-                
-
-
-                
-                Github
-            </a>
-            
-            <a href="https://infosec.exchange/@polaryse"  target="_blank" class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
-                
-
-
-                
-                Mastodon
-            </a>
-            
-            
-
-            
+  <a href="/posts/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Posts">
+        Blog
+    </p>
+</a>
 
 
             
-            <button id="search-button" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+            
+  <a href="/topics/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="Topics">
+        Training Courses
+    </p>
+</a>
+
+
+            
+            
+  <a href="/ctfs/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="CTFs">
+        CTF Challenges
+    </p>
+</a>
+
+
+            
+            
+  <a href="https://github.com/polaryse"  target="_blank"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        Github
+    </p>
+</a>
+
+
+            
+            
+  <a href="https://infosec.exchange/@polaryse"  target="_blank"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        Mastodon
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
                 title="">
                 
 
@@ -249,12 +273,12 @@
             </button>
             
 
-            
+
             
             
             <div
                 class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
-                <button id="appearance-switcher" type="button">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
                     <div class="flex items-center justify-center h-12 dark:hidden">
                         
 
@@ -279,7 +303,7 @@
             </div>
             
 
-        </div>
+        </nav>
         <div class="flex md:hidden items-center space-x-5 md:ml-12">
 
             <span></span>
@@ -288,7 +312,7 @@
 
 
             
-            <button id="search-button-mobile" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
                 title="">
                 
 
@@ -303,7 +327,7 @@
 
             
             
-            <button id="appearance-switcher-mobile" type="button" style="margin-right:5px">
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
                 <div class="flex items-center justify-center h-12 dark:hidden">
                     
 
@@ -333,6 +357,7 @@
 
         <label id="menu-button" for="menu-controller" class="block">
             <input type="checkbox" id="menu-controller" class="hidden" />
+            
             <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
                 
 
@@ -343,12 +368,14 @@
 
 
             </div>
-            <div id="menu-wrapper" style="padding-top:25px;"
-                class="fixed inset-0 z-30 invisible w-screen h-screen m-auto overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
                 <ul
-                    class="flex movedown flex-col w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl sm:px-14 md:px-24 lg:px-32 sm:py-10 sm:pt-10">
-                    <li class="mb-1">
-                        <span class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
@@ -359,69 +386,100 @@
                     </li>
 
                     
-                    
-                    <li class="mb-1">
-                        <a  class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-                            href="/posts/" title="Posts">
-                            <span class="inline-block align-text-bottom">
 
-</span>
-                            
-                            Blog
-                        </a>
-                    </li>
                     
-                    <li class="mb-1">
-                        <a  class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-                            href="/topics/" title="Topics">
-                            <span class="inline-block align-text-bottom">
+  <li class="mt-1">
+    <a href="/posts/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Posts">
+            Blog
+        </p>
+    </a>
+</li>
 
-</span>
-                            
-                            Training Courses
-                        </a>
-                    </li>
-                    
-                    <li class="mb-1">
-                        <a  class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-                            href="/ctfs/" title="CTFs">
-                            <span class="inline-block align-text-bottom">
 
-</span>
-                            
-                            CTF Challenges
-                        </a>
-                    </li>
-                    
-                    <li class="mb-1">
-                        <a  target="_blank" class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-                            href="https://github.com/polaryse" title="">
-                            <span class="inline-block align-text-bottom">
 
-</span>
-                            
-                            Github
-                        </a>
-                    </li>
                     
-                    <li class="mb-1">
-                        <a  target="_blank" class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-                            href="https://infosec.exchange/@polaryse" title="">
-                            <span class="inline-block align-text-bottom">
 
-</span>
-                            
-                            Mastodon
-                        </a>
-                    </li>
                     
+  <li class="mt-1">
+    <a href="/topics/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Topics">
+            Training Courses
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/ctfs/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="CTFs">
+            CTF Challenges
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://github.com/polaryse"  target="_blank"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            Github
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://infosec.exchange/@polaryse"  target="_blank"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            Mastodon
+        </p>
+    </a>
+</li>
+
+
+
                     
 
                 </ul>
+                
+                
+
             </div>
         </label>
     </div>
 </div>
+
+
+
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
   
   <div class="relative flex flex-col grow">
     <main id="main-content" class="grow">
@@ -433,16 +491,23 @@
   
   
   
+  
+  
 
 
 <div id="hero" class="h-[150px] md:h-[200px]"></div>
 
-<div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
     style="background-image:url(/posts/applesiliconenv/featured_hua6b305c30850c696518fd921e14641a2_45390_1200x0_resize_q75_h2_box_2.webp);">
+    
+
+
     <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
     </div>
     <div
-        class="absolute inset-0 opacity-30 dark:opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral dark:to-neutral-800 mix-blend-normal">
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
     </div>
 </div>
 
@@ -455,45 +520,10 @@
     });
 </script>
 
+  
+  
 
   <header id="single_header" class="mt-5 max-w-prose">
-    
-    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
-  
-  
-    
-  
-    
-  
-  <li class="inline hidden">
-    <a
-      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/"
-      >Malware Analysis: Or How I Learned To Love Frustration</a
-    ><span class="px-1 text-primary-500">/</span>
-  </li>
-
-  
-  <li class="inline ">
-    <a
-      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/posts/"
-      >Posts</a
-    ><span class="px-1 text-primary-500">/</span>
-  </li>
-
-  
-  <li class="inline hidden">
-    <a
-      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
-      href="/posts/applesiliconenv/"
-      >Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion</a
-    ><span class="px-1 text-primary-500">/</span>
-  </li>
-
-</ol>
-
-
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
       Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion
@@ -505,6 +535,8 @@
 
 
 
+  
+  
 
 
 
@@ -516,25 +548,23 @@
 
 
 
+  
 
 
 
+  
 
 
 
+  
 
 
 
+  
 
 
 
-
-
-
-
-
-
-
+  
 
 
 
@@ -545,8 +575,11 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <span>3348 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
-    <span id="views_posts/applesiliconenv/index.md" title="views">0</span> 
+  <span>3281 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+    
+    <span id="views_posts/applesiliconenv/index.md" 
+    
+        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
     <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
@@ -556,7 +589,10 @@
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
-    <span id="likes_posts/applesiliconenv/index.md" title="likes">0</span> 
+    
+    <span id="likes_posts/applesiliconenv/index.md" 
+    
+        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
     <span class="inline-block align-text-bottom">
 
   <span class="relative block icon">
@@ -566,10 +602,10 @@
 
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
-    <button id="likes_button"
+    <button id="button_likes"
         class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
         onclick="process_article()">
-        <span id="likes_button_heart" style="display:none" class="inline-block align-text-bottom">
+        <span id="button_likes_heart" style="display:none" class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -577,7 +613,7 @@
   </span>
 
  </span>
-        <span id="likes_button_emtpty_heart" class="inline-block align-text-bottom">
+        <span id="button_likes_emtpty_heart" class="inline-block align-text-bottom">
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -585,32 +621,8 @@
   </span>
 
 </span>
-        <span id="likes_button_text">&nbsp;Like</span>
+        <span id="button_likes_text">&nbsp;Like</span>
     </button>
-</span><span class="px-2 text-primary-500">&middot;</span>
-
-
-  
-    
-  
-  
-
-<span class="mb-[2px]">
-  <a
-    href="#/posts/applesiliconenv/index.md"
-    class="text-lg hover:text-primary-500"
-    rel="noopener noreferrer"
-    target="_blank"
-    title="Edit content"
-    ><span class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z"/></svg>
-
-  </span>
-
-</span></a
-  >
 </span>
   
 
@@ -649,103 +661,76 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/virtualisation/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/virtualisation/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     Virtualisation
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/reverseengineering/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/reverseengineering/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     ReverseEngineering
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/flarevm/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/flarevm/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     FlareVM
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     ARM
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/inetsim/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/inetsim/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     inetsim
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/applesilicon/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/applesilicon/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     AppleSilicon
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm-basedlinux/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm-basedlinux/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     ARM-basedLinux
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm-basedwindows/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm-basedwindows/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     ARM-basedWindows
   </span>
 </span>
-
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vmwarefusion/&#34;);">
-    <span class="flex">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-  >
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vmwarefusion/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     VMWareFusion
   </span>
 </span>
-
   </span>
   
   
@@ -756,814 +741,40 @@
 
 
     </div>
-  </header>
-  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
-     
-    <div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8">
-      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky  lg:top-10 ">
-        <details open class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
-  <summary
-    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
-  >
-    Table of Contents
-  </summary>
-  <div
-    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
-  >
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#the-analysis-environment">The Analysis Environment</a></li>
-    <li><a href="#virtualisation-platforms">Virtualisation Platforms</a>
-      <ul>
-        <li><a href="#vmware-fusion---windows">VMWare Fusion - Windows</a></li>
-        <li><a href="#vmware-fusion---debian-linux">VMWare Fusion - Debian Linux</a></li>
-        <li><a href="#vmware-fusion---macos">VMWare Fusion - MacOS</a></li>
-        <li><a href="#networking-machines">Networking Machines</a></li>
-      </ul>
-    </li>
-    <li><a href="#tool-list">Tool List</a></li>
-    <li><a href="#references--resources">References &amp; Resources</a></li>
-    <li><a href="#parting-thoughts">Parting Thoughts</a></li>
-  </ul>
-</nav>
-  </div>
-</details>
-<details class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
-  <summary
-    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
-  >
-    Table of Contents
-  </summary>
-  <div
-    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
-  >
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#the-analysis-environment">The Analysis Environment</a></li>
-    <li><a href="#virtualisation-platforms">Virtualisation Platforms</a>
-      <ul>
-        <li><a href="#vmware-fusion---windows">VMWare Fusion - Windows</a></li>
-        <li><a href="#vmware-fusion---debian-linux">VMWare Fusion - Debian Linux</a></li>
-        <li><a href="#vmware-fusion---macos">VMWare Fusion - MacOS</a></li>
-        <li><a href="#networking-machines">Networking Machines</a></li>
-      </ul>
-    </li>
-    <li><a href="#tool-list">Tool List</a></li>
-    <li><a href="#references--resources">References &amp; Resources</a></li>
-    <li><a href="#parting-thoughts">Parting Thoughts</a></li>
-  </ul>
-</nav>
-  </div>
-</details>
 
-      </div>
-      </div>
+    
+    
+    
+    
+    
+
+    
       
-      <div class="min-w-0 min-h-0 max-w-prose">
-        
-<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5" >
-    <summary
-        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
-        Creating a safe (and functional) RE environment on Apple Silicon - This article is part of a series.
-    </summary>
+      
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="polaryse" src="/author_hu60a6ef9a1dfe976efadd873b0b5859d3_73965_192x192_fill_box_smart1_3.png" />
+  
+  
+  <div class="place-self-center">
     
-    
-    <div
-        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-        Part 1: This Article
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      polaryse
     </div>
     
     
-
-</details>
-
-        <div id="introduction" class="anchor">Introduction></div>
-<h2 class="relative group">Introduction 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#introduction" aria-label="Anchor">#</a></span>        
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">A Malware Analyst documenting their exploration of the wonderful world of malware.</div>
     
-</h2><p>The purpose of this article is to provide reverse engineers with a framework to build and deploy a safe malware analysis environment on Apple Silicon machines. We will talk through how to successfully deploy a Windows 10/11 endpoint via VM, an ARM Linux machine and the most useful tools to install on either machine to make your life easier when it comes to analysis.</p>
-<p>At present, it can be quite confronting for malware analysts to make the jump from x86 to ARM processors for their research. Understandably so, since there is some weight to the argument that x86 tech cannot run effectively on ARM-based processors (particularly when you&rsquo;re speaking about historical operating systems like Windows 7, Windows XP and Windows servers). But to that, I say, pah! There are definitely resources available to you <strong>right now</strong> that enable you to effectively and efficiently virtualise these legacy systems on Apple Silicon.</p>
-<p>I&rsquo;d like to remind folks reading that this blog post is subject to change as and when more companies start leveraging ARM-based technology to power virtualisation. I&rsquo;ll endeavour to update this as and when I learn and discover more about the progress made to support ARM virtualisation and malware analysis.</p>
-<div id="the-analysis-environment" class="anchor">The Analysis Environment></div>
-<h2 class="relative group">The Analysis Environment 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#the-analysis-environment" aria-label="Anchor">#</a></span>        
-    
-</h2><p>Your setup will entirely depend on what types of malware you intend on primarily analysing. In the case of this article, we will be covering the two of the three key operating systems: Windows and Linux. MacOS is unfortunately not supported by VMWare Fusion at present, so we will cover UTM and MacOS virtualisation in a separate article. My own personal environment is reflected by Figure 1 below:</p>
-<p>
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_330x0_resize_box_3.png 330w,
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png 660w,
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1024x0_resize_box_3.png 1024w,
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png"
-        alt="malware analysis environment"
-      />
-      
-    </figure>
-  
-
-
-<em>Figure 1: M2 Malware Analysis Environment</em></p>
-<p>Though certainly not necessary, it&rsquo;s nice to have one of each operating system type to enable you to easily and quickly spin up a machine when the time comes for analysis.</p>
-<blockquote>
-<p>Note that we will not be covering the installation process of the MacOS machine in this blog. That will be completed in a separate entry to this series.</p>
-</blockquote>
-<div id="virtualisation-platforms" class="anchor">Virtualisation Platforms></div>
-<h2 class="relative group">Virtualisation Platforms 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#virtualisation-platforms" aria-label="Anchor">#</a></span>        
-    
-</h2><p>As Apple continues to invest and release ARM processors, there has been a slow uptake in companies building virtualisation platforms that enable you to appropriately virtualise the key operating systems for broader malware analysis. Coupled with this, Apple has developed a virtualisation framework to enable those interested to effectively build their own virtualisation platform on Apple Silicon endpoints.</p>
-<p>If you&rsquo;re interested, you can check out the documentation and its respective tutorial <a href="https://developer.apple.com/documentation/virtualization"   target="_blank">
-    here</a>.</p>
-<p>Here, we will cover set up using  <a href="https://www.vmware.com/au/products/fusion/fusion-evaluation.html"   target="_blank">
-    VMWare Fusion</a> .</p>
-<blockquote>
-<p>Note that not all available virtualisation platforms will be covered in these articles. The major focus are on the cheap price to entry models, namely UTM and VMWare Fusion.</p>
-</blockquote>
-<div id="vmware-fusion---windows" class="anchor">VMWare Fusion - Windows></div>
-<h3 class="relative group">VMWare Fusion - Windows 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vmware-fusion---windows" aria-label="Anchor">#</a></span>        
-    
-</h3><blockquote>
-<p>The following section requires VMWare Fusion to be installed on your MacBook. Please follow the above link to download and install the program successfully on your computer.</p>
-</blockquote>
-<p>Microsoft has released an ARM version of their latest operating systems (Windows 10 and Windows 11) that you can deploy to your M series MacBook (woohoo!). In order to download, you must sign up to <a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64"   target="_blank">
-    Microsoft&rsquo;s insider program</a>. Now strap in, the installation and configuration process for this one is well honestly, a bit of nonsense.</p>
-<div id="installation-steps" class="anchor">Installation Steps:></div>
-<h4 class="relative group">Installation Steps: 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#installation-steps" aria-label="Anchor">#</a></span>        
-    
-</h4><ol>
-<li>Download the <a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64"   target="_blank">
-    ARM installer</a> from Microsoft. It can be a bit of a pain to find the iso after signing up, so just re-click the link provided her, and it should take you immediately to the download page on the site.</li>
-<li>Once downloaded, you&rsquo;ll need to convert the <code>VHDX</code> file to a <code>VMDK</code> to make it compatible for VMWare Fusion. Open your terminal and enter the following commands:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># install qemu</span>
-</span></span><span style="display:flex;"><span>brew install qemu
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># check information about the VHDX virtual disk: </span>
-</span></span><span style="display:flex;"><span>sudo qemu-img info Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># convert VHD to VMDK, include -p to show progress of conversion</span>
-</span></span><span style="display:flex;"><span>sudo qemu-img convert Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX -O vmdk Windows11_ARM.vmdk -p
-</span></span></code></pre></div><ol start="3">
-<li>Open VMWare Fusion and select <code>File</code> &gt; <code>New Virtual Machine</code>. A pop-up will launch titled &ldquo;Select the Installation Method&rdquo;
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_330x0_resize_box_3.png 330w,
-          /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_660x0_resize_box_3.png 660w,
-          /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_1024x0_resize_box_3.png 1024w,
-          /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_660x0_resize_box_3.png"
-        alt="Select Installation Method"
-      />
-      
-    </figure>
-  
-
-</li>
-<li>From here, drag and drop your new Windows 11 vmdk file over the &lsquo;Install from disc or image&rsquo; in the screenshot above. The prompt will immediately change, allowing you to configure the virtual machine. When you reach <code>&quot;Choose a virtual disk&quot;</code>, ensure that you select <code>&quot;use an existing virtual disk&quot;</code> and select the newly created vmdk file again here. This will ensure that you don&rsquo;t encounter problems once completing the install process.</li>
-</ol>
-<blockquote>
-<p>If you intend on installing FlareVM, make sure that you allocate a bit more hard drive capacity (at least 100GB I would say) to ensure that the installation process does not fail. If you forget to complete this, you can change it on creation of the VM which is handy, by navigating to <code>settings</code> and increasing the drive volume.</p>
-</blockquote>
-<p>
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_330x0_resize_box_3.png 330w,
-          /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_660x0_resize_box_3.png 660w,
-          /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_1024x0_resize_box_3.png 1024w,
-          /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_660x0_resize_box_3.png"
-        alt="Choose Disk Image"
-      />
-      
-    </figure>
-  
-
-</p>
-<ol start="5">
-<li>Once you select Finish and finalise the process, a new window will pop open. This is your virtual machine. The operating system should start booting and look something like the following:</li>
-</ol>
-<p>
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_330x0_resize_box_3.png 330w,
-          /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_660x0_resize_box_3.png 660w,
-          /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_1024x0_resize_box_3.png 1024w,
-          /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_660x0_resize_box_3.png"
-        alt="Windows 11 Booting"
-      />
-      
-    </figure>
-  
-
-</p>
-<ol start="6">
-<li>When the first installation page loads, <strong>do not continue with the installation</strong>. Instead, install VMWare tools to enable networking. Press <code>Shift</code> + <code>F10</code> to open a terminal to write the following commands:
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_330x0_resize_box_3.png 330w,
-          /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_660x0_resize_box_3.png 660w,
-          /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_1024x0_resize_box_3.png 1024w,
-          /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_660x0_resize_box_3.png"
-        alt="Windows Terminal on install"
-      />
-      
-    </figure>
-  
-
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># change into the oobe (out of the box experience) folder</span>
-</span></span><span style="display:flex;"><span>&gt; cd oobe
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># type the following command</span>
-</span></span><span style="display:flex;"><span>&gt; bypassnro.cmd
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># windows will restart and when prompted for internet access</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># you&#39;ll be able to select &#39;i dont have internet&#39; and </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#39;continue with limited setup&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># continue with set up and turn off microsoft telemetry</span>
-</span></span></code></pre></div><ol start="7">
-<li>Complete the Windows 11 installation process. You shouldn&rsquo;t be prompted by Microsoft to enter in any email information during this process due to the lack of internet connection.</li>
-</ol>
-<p>Once finished, we will need to disable Windows Defender and reinstall VMWare tools to enable proper networking.</p>
-<div id="reinstall-vmware-tools" class="anchor">Reinstall VMWare Tools:></div>
-<h4 class="relative group">Reinstall VMWare Tools: 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#reinstall-vmware-tools" aria-label="Anchor">#</a></span>        
-    
-</h4><ol>
-<li>Select <code>Virtual Machine</code> from the top bar and hit <code>Reinstall VMWare Tools</code>. This will map the tools to D: drive.</li>
-<li>Navigate to D: drive using explorer. Double-click on <code>setup.exe</code> and proceed through the installation process</li>
-<li>Restart the VM</li>
-<li>Confirm you are connected to the internet by navigating to a website via Edge and double-checking the adapter icon in the bottom right-hand side of the taskbar.</li>
-</ol>
-<div id="disable-windows-defender" class="anchor">Disable Windows Defender></div>
-<h4 class="relative group">Disable Windows Defender 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#disable-windows-defender" aria-label="Anchor">#</a></span>        
-    
-</h4><p>An optional process that will likely save you some time and frustration when completing Windows-based malware analysis on this machine in future.</p>
-<blockquote>
-<p>All credit for this section goes to OA Labs (video linked in the reference section) in walking through how to disable Windows Defender on Windows 11.</p>
-</blockquote>
-<ol>
-<li>Open msconfig by typing <code>msconfig</code> into the search bar on your VM</li>
-<li>Navigate to the boot tab and select <code>safe boot &gt; minimal</code></li>
-<li>Restart the machine</li>
-<li>Open explorer and type <code>%ProgramData%</code> and double-click on <code>Microsoft</code>. FInd <code>Windows Defender</code> folder from this list and right-click, select properties.</li>
-<li>Navigate to the security tab and click advanced</li>
-<li>Click the <code>change</code> link next to Owner: SYSTEM and click advanced</li>
-<li>Select administrator by clicking the <code>find now</code> button on the right-hand side of the pop-up, This will grant you access to change permissions of the folder. Select okay until you have returned to the <code>Advanced Security Settings for Windows Defender</code> popup.</li>
-<li>Check the <code>Replace all child object permissions with inheritable permission entries from this object</code> box and then select the <code>TrustedInstaller</code> user from the list and remove their permissions. Repeat for the other users in the list until it is empty.</li>
-<li>Apply the changes and select okay or yes for each prompt</li>
-<li>Open up <code>msconfig</code> again, navigate to the boot tab and disable safe mode.</li>
-<li>Restart your computer and defender should no longer be present, as no one can access the folder</li>
-</ol>
-<p>You can test that this works by searching for windows security from the taskbar. When you click this option, you should have a prompt that informs you that no one has access to the folder to open this.</p>
-<p>Before proceeding to the next step, <strong>snapshot your Windows 11 VM</strong>. I like to call this one <code>Clean</code> with a description of the work i have completed thus far i.e disabled defender, internet connected.</p>
-<div id="install-flare-vm" class="anchor">Install Flare VM></div>
-<h4 class="relative group">Install Flare VM 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#install-flare-vm" aria-label="Anchor">#</a></span>        
-    
-</h4><p>Download the FlareVM repo from <a href="https://github.com/mandiant/flare-vm"   target="_blank">
-    github</a> whichever way you prefer (via web browser or terminal or otherwise).</p>
-<blockquote>
-<p>Note that Flare requires at least 60GB of disk space to install all the tools, so hopefully you followed the installation advice of upping the total storage amount when prompted.</p>
-</blockquote>
-<p>These days, Flare is relatively easy to install, with the mandiant team doing some amazing work to make it simpler to use. Follow the guidance provided by the team in their readme for optimal results. The basic gist being:</p>
-<ol>
-<li>Disable Windows Updates (follow <a href="https://www.windowscentral.com/how-stop-updates-installing-automatically-windows-10]%28https://www.windowscentral.com/how-stop-updates-installing-automatically-windows-10%29"   target="_blank">
-    this</a> advice)</li>
-<li>Disable Windows Defender (which we have already done)</li>
-<li>Take a VM snapshot so you can revert to a state before the Flare install</li>
-<li>Complete the installation steps provided on the readme</li>
-<li>Probably make a cup of tea or coffee too&hellip; Flare can take a while to install successfully</li>
-</ol>
-<p>Once this has finished, do a bit of a victory dance, because you have finally and successfully set up all the configuration elements to your Windows malware analysis machine at this point. Phew, what a process.</p>
-<div id="vmware-fusion---debian-linux" class="anchor">VMWare Fusion - Debian Linux></div>
-<h3 class="relative group">VMWare Fusion - Debian Linux 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vmware-fusion---debian-linux" aria-label="Anchor">#</a></span>        
-    
-</h3><blockquote>
-<p>The following section requires VMWare Fusion to be installed on your MacBook.</p>
-</blockquote>
-<p>You can download the ARM version of Debian <a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/"   target="_blank">
-    here</a> then complete the following steps:</p>
-<ol>
-<li>Just like with your Windows install, drag and drop the downloaded ARM Debian ISO onto the <code>Create a New Virtual Machine</code> popup</li>
-<li>Select your Debian iso. If it isn&rsquo;t present in the list, then click the <code>Use another disc or disc image</code> option.</li>
-<li>Customise settings if you are unhappy with the defaults and select finish when done</li>
-<li>Select an appropriate name for your VM such as <code>Linux Malware Analysis</code></li>
-</ol>
-<p>Compared to Windows, that was a bit simpler. But we aren&rsquo;t quite done yet.</p>
-<div id="installing-and-configuring-the-vm" class="anchor">Installing and configuring the VM></div>
-<h4 class="relative group">Installing and configuring the VM 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#installing-and-configuring-the-vm" aria-label="Anchor">#</a></span>        
-    
-</h4><ol>
-<li>Select “Graphical Install” and proceed through the steps as is tradition.</li>
-<li>Select &ldquo;Debian Desktop Environment&rdquo; and &ldquo;GNOME&rdquo; (or your preferred option) on the software selection page to ensure the GUI is installed.</li>
-</ol>
-<blockquote>
-<p>Note that during the installation process, if you set a root password, your user will not be in the sudoers file.</p>
-</blockquote>
-<p>Now we are ready for the final configuration step, setting up <code>inetsim</code> and <code>creating a VLAN in VMWare Fusion</code></p>
-<div id="vmware-fusion---macos" class="anchor">VMWare Fusion - MacOS></div>
-<h3 class="relative group">VMWare Fusion - MacOS 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vmware-fusion---macos" aria-label="Anchor">#</a></span>        
-    
-</h3><blockquote>
-<p>The following section requires VMWare Fusion to be installed on your MacBook.</p>
-</blockquote>
-<p>Unfortunately, MacOS is not supported by VMWare Fusion for virtualisation as of writing this post. Makes for some frustrating times, but, it is not the end of the world. I&rsquo;ll be covering another program called UTM in the next instalment of this blog that natively supports MacOS virtualisation for the purposes of malware reverse engineering.</p>
-<div id="networking-machines" class="anchor">Networking Machines></div>
-<h3 class="relative group">Networking Machines 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#networking-machines" aria-label="Anchor">#</a></span>        
-    
-</h3><p>Now that we have all the images sorted, it&rsquo;s time to actually configure our internal malware network to enable each machine to talk to each other.</p>
-<div id="why-is-this-important" class="anchor">Why is this important?></div>
-<h4 class="relative group">Why is this important? 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#why-is-this-important" aria-label="Anchor">#</a></span>        
-    
-</h4><p>A great question! Often, when we perform dynamic analysis on samples, malware will attempt to perform various functions over the internet. Because we are operating in an internet-free zone, it might cause the malware to crash or close itself, so you can no longer perform analysis on the sample. Thus, we set up <code>inetsim</code> on our Linux machine so that it can serve the function of our DNS server and trick the malware that additional payloads are being downloaded, for example, meaning it won’t close down.</p>
-<div id="the-setup" class="anchor">The Setup></div>
-<h4 class="relative group">The Setup 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#the-setup" aria-label="Anchor">#</a></span>        
-    
-</h4><p>The analysis diagram of my malware environment shows you roughly what we are intending to complete. We will begin with configuring an internal malware network on all three VMs and then setting our Debian box as the DNS server for both the Mac and Windows machines.</p>
-<p>
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_330x0_resize_box_3.png 330w,
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png 660w,
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1024x0_resize_box_3.png 1024w,
-          /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png"
-        alt="malware analysis environment"
-      />
-      
-    </figure>
-  
-
-</p>
-<p>Our objective here is to make both the Windows and Debian systems talk effectively to each other, running <code>inetsim</code>. Installation and setup of this program allows a deeper knowledge and understanding of network indicators present in some (most) strands of malware.</p>
-<div id="creating-the-vlan-in-vmware-fusion" class="anchor">Creating the VLAN in VMWare Fusion></div>
-<h4 class="relative group">Creating the VLAN in VMWare Fusion 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#creating-the-vlan-in-vmware-fusion" aria-label="Anchor">#</a></span>        
-    
-</h4><ol>
-<li>From the top bar, select <code>VMWare Fusion</code> &gt; <code>Settings</code> &gt; <code>Network</code></li>
-<li>Click the lock at the bottom of the network panel and enable changes</li>
-<li>Click the <code>plus</code> button at the bottom of the network panel and type into the subnet IP <code>10.10.10.0</code> or whatever your number preference is. Additionally, make sure that the <code>allow virtual machines on this network to connect to external networks (using NAT)</code> is unticked. You can optionally configure this to work via IPv6 if you&rsquo;d like, I just normally opt for IPv4.</li>
-<li>Click apply</li>
-<li>Double-click the newly created network and rename it to something that stands out to you - like <code>Malware Analysis</code></li>
-<li>When you&rsquo;re happy with the changes, click the lock again to prevent further changes to your configs</li>
-</ol>
-<p>And you&rsquo;re done! This new network should now be available to select for all of your virtual machines. You can add the hosts to it and confirm that the internet cannot be accessed by any of the machines.</p>
-<div id="installing-and-configuring-inetsim-on-debian" class="anchor">Installing and configuring inetsim on Debian></div>
-<h4 class="relative group">Installing and configuring inetsim on Debian 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#installing-and-configuring-inetsim-on-debian" aria-label="Anchor">#</a></span>        
-    
-</h4><p>This is a very handy program that serves the default <code>inetsim</code> file with the name of any requested file. It serves as a nice way to trick malware into thinking that it has successfully downloaded second stage payloads. There are a few little steps to configure it correctly, that we will complete below:</p>
-<ol>
-<li>Open a terminal and download <code>inetsim</code> <code>sudo apt-get update &amp;&amp; apt-get install inetsim</code></li>
-<li>Create a snapshot at this point of your box</li>
-<li>Switch your linux box  to your malware dev network and query the ip address it has allocated.</li>
-<li>Use your editor again to inspect the <code>inetsim.conf</code> file located at <code>/etc/inetsim/inetsim.conf</code>. Inspect the available services - by default all of these will be on. Feel free to disable any you don&rsquo;t want or need.</li>
-<li>Next, locate the <code>#service_bind_address 10.10.10.1</code> line in the config file. Uncomment the line and replace the IP address with <code>0.0.0.0</code></li>
-<li>Locate <code># dns_default_ip 10.10.10.1</code> and once again uncomment and change this to the assigned IP address on your malware analysis network</li>
-<li>Once this has all been completed, save your changes and exit out of your editor. Then proceed to reboot <code>inetsim</code> using the following command: <code>/etc/init.d/inetsim restart</code></li>
-<li>Issue a <code>netstat -plant</code> or <code>ss -plant</code> (depending on whether you have netstat installed) to check that <code>inetsim</code> is now bound on the malware analysis network address.</li>
-</ol>
-<blockquote>
-<p>Note that you can also, optionally, statically assign the IP address of your Debian host on the malware network. I don&rsquo;t tend to do this often, as sometimes I like to revert the image to a snapshot that I can dynamically allow access back to the internet (to facilitate the download of additional, useful tools if the need arises).</p>
-</blockquote>
-<div id="client---windows-network-config" class="anchor">Client - Windows Network Config></div>
-<h4 class="relative group">Client - Windows Network Config 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#client---windows-network-config" aria-label="Anchor">#</a></span>        
-    
-</h4><p>Now that <code>inetsim</code> has been sorted, we need to set up our Windows machine to test and confirm that the changes we have made are effective. Switch over to your Windows machine, slap on that Malware Analysis network to your adapter and complete the following steps:</p>
-<ol>
-<li>Click on your network adapter in your Windows 11 VM and select <code>Network &amp; Internet Settings</code> &gt; <code>Change adapter options</code> &gt; right click <code>Ethernet</code> and select <code>Properties</code></li>
-<li>Double-click IPv4 and set your IP address to match your newly configured malware network i.e. <code>10.10.10.2</code> with a subnet mask of <code>255.255.255.0</code></li>
-<li>Set the DNS server address to the address of your Linux machine and then select okay.</li>
-<li>Select okay until you return to your adapters and then open a web browser. Try to navigate to a random address such as <code>www.hotmail.com</code>. If your configuration to inetsim worked, you should see the following page displayed to you:
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      <img
-        class="my-0 rounded-md"
-        srcset="
-          /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_330x0_resize_box_3.png 330w,
-          /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_660x0_resize_box_3.png 660w,
-          /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_1024x0_resize_box_3.png 1024w,
-          /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_660x0_resize_box_3.png"
-        alt="inetsim in action"
-      />
-      
-    </figure>
-  
-
-</li>
-<li>Once you have confirmed that this works, return to your linux VM and take a snapshot of it.</li>
-</ol>
-<div id="tool-list" class="anchor">Tool List></div>
-<h2 class="relative group">Tool List 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#tool-list" aria-label="Anchor">#</a></span>        
-    
-</h2><p>Every Apple Silicon analyst will have a different option on the correct or best tools you should leverage to make a functional and safe environment for your analysis of malicious programs. The following table is subjective and reflects my own experience running or interacting with these systems. I don&rsquo;t think here is a perfect solution to this, but hopefully through trial and error yourself, you&rsquo;ll find one of the following most suited to the setup you require to perform your own types of analysis successfully.</p>
-<table>
-<thead>
-<tr>
-<th>Program/Tool</th>
-<th>Description</th>
-<th>Best used for&hellip;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://apps.apple.com/ms/app/utm-virtual-machines/id1538878817?mt=12"   target="_blank">
-    UTM</a></td>
-<td>A virtualisation platform (like VMWare, Parallels etc.) that enables you to virtualise x86 operating systems on an ARM processor. The software leverages QEMU wrapping to effectively allow this to happen. There are currently some bugs associated with this (such as networking being quite finicky and at time of writing this article, largely inoperable). It is available on the App store quite cheaply (currently requiring no reoccurring subscription to the product)</td>
-<td>Virtualisation of x86 operating systems on ARM</td>
-</tr>
-<tr>
-<td><a href="https://www.vmware.com/au/products/fusion/fusion-evaluation.html"   target="_blank">
-    VMWare Fusion</a></td>
-<td>VMWare&rsquo;s answer to virtualisation on MacOS base systems. Good networking capability and runs ARM virtual machines smoothly. Individual user licence for Fusion is currently free, but this might change in the coming months as Broadcomm continues to integrate the company and potentially changes the structure/price of their offerings.</td>
-<td>Virtualisation of ARM operating systems and creation of an internal malware network for safe analysis of malicious programs.</td>
-</tr>
-<tr>
-<td><a href="https://apps.apple.com/us/app/parallels-desktop/id1085114709?mt=12"   target="_blank">
-    Parallels</a></td>
-<td>Subscription-based virtualisation platform for ARM based processors. This option can be quite expensive, and personally I haven&rsquo;t been in a position to actually leverage this first-hand due to budget constraints (I feel like there are honestly cheaper options available than this, that serve the same purpose). By all reports, a good solution to virtualisation if you can afford it.</td>
-<td>Corporate solutions to virtualisation on Mac/if you have the budget to afford it.</td>
-</tr>
-</tbody>
-</table>
-<div id="references--resources" class="anchor">References &amp; Resources></div>
-<h2 class="relative group">References &amp; Resources 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#references--resources" aria-label="Anchor">#</a></span>        
-    
-</h2><table>
-<thead>
-<tr>
-<th>Resource</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://docs.getutm.app/"   target="_blank">
-    UTM Documentation</a></td>
-<td>Extensive documentation written by the developers of UTM  to assist you in getting the most out of the program.</td>
-</tr>
-<tr>
-<td><a href="https://developer.apple.com/documentation/virtualization"   target="_blank">
-    Apple Virtualisation Framework</a></td>
-<td>Documentation from Apple Inc. to assist in the creation of virtualisation platforms from scratch. Also gives extensive information about how virtualisation works (APIs, etc.)</td>
-</tr>
-<tr>
-<td><a href="https://www.youtube.com/watch?v=0eR8yrDLV5M"   target="_blank">
-    OA Labs</a></td>
-<td>A great reverse engineering resource available on YouTube. The folks at OA labs talk through specific topics of interest to those new or more experienced in the field. This particular talk runs you through how to virtualise Windows on Apple Silicon.</td>
-</tr>
-<tr>
-<td><a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64"   target="_blank">
-    Windows 11 ARM Download</a></td>
-<td>Link to download the Windows 11 ARM insider preview. Note that you will be prompted to create an account if you haven&rsquo;t already, when navigating to the website.</td>
-</tr>
-<tr>
-<td><a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/"   target="_blank">
-    Debian ARM Download</a></td>
-<td>Link to download the ARM installer for Debian Linux. You don&rsquo;t have to use this variant of Linux, feel free to pick a different distribution that appeals to you more.</td>
-</tr>
-<tr>
-<td><a href="https://www.nakivo.com/blog/how-to-convert-vhd-to-vmdk-a-step-by-step-guide/"   target="_blank">
-    VHDX to VMDK conversion</a></td>
-<td>A guide for conversion of VHDX images to VMDX to install via VMWare Fusion.</td>
-</tr>
-<tr>
-<td><a href="https://docs.getutm.app/guides/guides/"   target="_blank">
-    UTM ARM Guides</a></td>
-<td>The UTM guides for installing ARM images via UTM. Can be applicable to general ARM installs.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/mandiant/flare-vm"   target="_blank">
-    Flare VM Repo</a></td>
-<td>The link to install Flare onto your Windows VM</td>
-</tr>
-</tbody>
-</table>
-<div id="parting-thoughts" class="anchor">Parting Thoughts></div>
-<h2 class="relative group">Parting Thoughts 
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#parting-thoughts" aria-label="Anchor">#</a></span>        
-    
-</h2><p>This blog focuses on setting up a safe environment leveraging VMWare Fusion 13 for MacOS. Unfortunately, it comes with a few caveats where we cannot entirely create an environment suited to analysing malware across MacOS, Windows and Linux environments. I intend on publishing a second blog in the coming days that captures how to achieve this using another program called UTM. This virtualisation platform has the added benefit of allowing us to also virtualise x86 platforms (which is very exciting). Just like VMWare Fusion, this program comes with some limitations and frustrations that we will discuss next time.</p>
-<p>For now, I hope that this article has helped shed some light on how to effectively and safely configure a malware analysis environment on Apple Silicon computers.</p>
-
-        </br></br>
-        
-<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5">
-    <summary
-        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
-        Creating a safe (and functional) RE environment on Apple Silicon - This article is part of a series.
-    </summary>
-    
-    
-    <div
-        class="py-1 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
-        Part 1: This Article
-    </div>
-    
-    
-
-</details>
-
-      </div>
-      <script>
-
-        var liked_article = false
-
-        if (typeof auth !== 'undefined') {
-          var oid = "views_posts\/applesiliconenv\/index.md"
-          var id = oid ? oid.replaceAll("/", "-") : oid
-
-          var viewed = localStorage.getItem(id);
-
-          if (!viewed) {
-            auth.signInAnonymously()
-              .then(() => {
-                var docRef = db.collection('views').doc(id)
-                localStorage.setItem(id, true);
-                docRef.get().then((doc) => {
-                  if (doc.exists) {
-                    db.collection('views').doc(id).update({
-                      views: firebase.firestore.FieldValue.increment(1)
-                    });
-                  } else {
-                    db.collection('views').doc(id).set({ views: 1 })
-                  }
-                }).catch((error) => {
-                  console.log("Error getting document:", error);
-                });
-              })
-              .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.error(errorCode, errorMessage)
-              });
-          }
-
-          var oid_likes = "likes_posts\/applesiliconenv\/index.md"
-          var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
-
-          var liked = localStorage.getItem(id_likes);
-
-          if (liked) {
-            liked_article = true
-            document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
-            document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
-            document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
-          }
-
-        }
-
-        function like_article(id_likes) {
-          auth.signInAnonymously()
-            .then(() => {
-              var docRef = db.collection('likes').doc(id_likes)
-              docRef.get().then((doc) => {
-                liked_article = true
-                localStorage.setItem(id_likes, true);
-                document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
-                document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
-                document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
-                if (doc.exists) {
-                  db.collection('likes').doc(id_likes).update({
-                    likes: firebase.firestore.FieldValue.increment(1)
-                  });
-                } else {
-                  db.collection('likes').doc(id_likes).set({ likes: 1 })
-                }
-              }).catch((error) => {
-                console.log("Error getting document:", error);
-              });
-            })
-            .catch((error) => {
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              console.error(errorCode, errorMessage)
-            });
-        }
-
-        function remove_like_article(id_likes) {
-          auth.signInAnonymously()
-            .then(() => {
-              var docRef = db.collection('likes').doc(id_likes)
-              docRef.get().then((doc) => {
-                liked_article = false
-                localStorage.removeItem(id_likes);
-                document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = "none"
-                document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = ""
-                document.querySelectorAll("span[id='likes_button_text']")[0].innerText = "\xa0Like"
-                if (doc.exists) {
-                  db.collection('likes').doc(id_likes).update({
-                    likes: firebase.firestore.FieldValue.increment(-1)
-                  });
-                } else {
-                  db.collection('likes').doc(id_likes).set({ likes: 0 })
-                }
-              }).catch((error) => {
-                console.log("Error getting document:", error);
-              });
-            })
-            .catch((error) => {
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              console.error(errorCode, errorMessage)
-            });
-        }
-
-        function process_article() {
-          var oid_likes = "likes_posts\/applesiliconenv\/index.md"
-          var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
-          if (!liked_article) {
-            like_article(id_likes)
-          } else {
-            remove_like_article(id_likes)
-          }
-        }
-
-      </script>
-  </section>
-  <footer class="pt-8 max-w-prose print:hidden">
-
-    
-  <div class="flex">
-    
-      
-      
-        
-        <img
-          class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4"
-          width="96"
-          height="96"
-          alt="polaryse"
-          src="/author_hu60a6ef9a1dfe976efadd873b0b5859d3_73965_192x192_fill_box_smart1_3.png"
-        />
-      
-    
-    <div class="place-self-center">
-      
-        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
-          Author
-        </div>
-        <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
-          polaryse
-        </div>
-      
-      
-        <div class="text-sm text-neutral-700 dark:text-neutral-400">Just a beginner Malware Analyst documenting their exploration of the wonderful world of malware.</div>
-      
-      <div class="text-2xl sm:text-lg">
+    <div class="text-2xl sm:text-lg">
   <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
     
       
@@ -1623,13 +834,8 @@
   </div>
 
 </div>
-    </div>
   </div>
-
-
-
-    
-    
+</div>
     
 
     
@@ -1637,55 +843,760 @@
     
 
     
+    <div class="mb-5"></div>
+    
+  
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#the-analysis-environment">The Analysis Environment</a></li>
+    <li><a href="#virtualisation-platforms">Virtualisation Platforms</a>
+      <ul>
+        <li><a href="#vmware-fusion---windows">VMWare Fusion - Windows</a></li>
+        <li><a href="#vmware-fusion---debian-linux">VMWare Fusion - Debian Linux</a></li>
+        <li><a href="#vmware-fusion---macos">VMWare Fusion - MacOS</a></li>
+        <li><a href="#networking-machines">Networking Machines</a></li>
+      </ul>
+    </li>
+    <li><a href="#tool-list">Tool List</a></li>
+    <li><a href="#references--resources">References &amp; Resources</a></li>
+    <li><a href="#parting-thoughts">Parting Thoughts</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#the-analysis-environment">The Analysis Environment</a></li>
+    <li><a href="#virtualisation-platforms">Virtualisation Platforms</a>
+      <ul>
+        <li><a href="#vmware-fusion---windows">VMWare Fusion - Windows</a></li>
+        <li><a href="#vmware-fusion---debian-linux">VMWare Fusion - Debian Linux</a></li>
+        <li><a href="#vmware-fusion---macos">VMWare Fusion - MacOS</a></li>
+        <li><a href="#networking-machines">Networking Machines</a></li>
+      </ul>
+    </li>
+    <li><a href="#tool-list">Tool List</a></li>
+    <li><a href="#references--resources">References &amp; Resources</a></li>
+    <li><a href="#parting-thoughts">Parting Thoughts</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5" >
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        Creating a safe (and functional) RE environment on Apple Silicon - This article is part of a series.
+    </summary>
+    
+    
+    
+
+</details>
+
+
+
+        <div class="article-content max-w-prose mb-20">
+          <h2 class="relative group">Introduction 
+    <div id="introduction" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#introduction" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>The purpose of this article is to provide reverse engineers with a framework to build and deploy a safe malware analysis environment on Apple Silicon machines. We will talk through how to successfully deploy a Windows 10/11 endpoint via VM, an ARM Linux machine and the most useful tools to install on either machine to make your life easier when it comes to analysis.</p>
+<p>At present, it can be quite confronting for malware analysts to make the jump from x86 to ARM processors for their research. Understandably so, since there is some weight to the argument that x86 tech cannot run effectively on ARM-based processors (particularly when you&rsquo;re speaking about historical operating systems like Windows 7, Windows XP and Windows servers). But to that, I say, pah! There are definitely resources available to you <strong>right now</strong> that enable you to effectively and efficiently virtualise these legacy systems on Apple Silicon.</p>
+<p>I&rsquo;d like to remind folks reading that this blog post is subject to change as and when more companies start leveraging ARM-based technology to power virtualisation. I&rsquo;ll endeavour to update this as and when I learn and discover more about the progress made to support ARM virtualisation and malware analysis.</p>
+<h2 class="relative group">The Analysis Environment 
+    <div id="the-analysis-environment" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#the-analysis-environment" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Your setup will entirely depend on what types of malware you intend on primarily analysing. In the case of this article, we will be covering the two of the three key operating systems: Windows and Linux. MacOS is unfortunately not supported by VMWare Fusion at present, so we will cover UTM and MacOS virtualisation in a separate article. My own personal environment is reflected by Figure 1 below:</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_330x0_resize_box_3.png 330w,
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png 660w,
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1024x0_resize_box_3.png 1024w,
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1320x0_resize_box_3.png 2x"
+        src="/posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png"
+        alt="malware analysis environment"
+      />
+      
+      
+    </figure>
+  
+
+
+<em>Figure 1: M2 Malware Analysis Environment</em></p>
+<p>Though certainly not necessary, it&rsquo;s nice to have one of each operating system type to enable you to easily and quickly spin up a machine when the time comes for analysis.</p>
+<blockquote>
+<p>Note that we will not be covering the installation process of the MacOS machine in this blog. That will be completed in a separate entry to this series.</p>
+</blockquote>
+<h2 class="relative group">Virtualisation Platforms 
+    <div id="virtualisation-platforms" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#virtualisation-platforms" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>As Apple continues to invest and release ARM processors, there has been a slow uptake in companies building virtualisation platforms that enable you to appropriately virtualise the key operating systems for broader malware analysis. Coupled with this, Apple has developed a virtualisation framework to enable those interested to effectively build their own virtualisation platform on Apple Silicon endpoints.</p>
+<p>If you&rsquo;re interested, you can check out the documentation and its respective tutorial <a href="https://developer.apple.com/documentation/virtualization"   target="_blank">
+    here</a>.</p>
+<p>Here, we will cover set up using  <a href="https://www.vmware.com/au/products/fusion/fusion-evaluation.html"   target="_blank">
+    VMWare Fusion</a> .</p>
+<blockquote>
+<p>Note that not all available virtualisation platforms will be covered in these articles. The major focus are on the cheap price to entry models, namely UTM and VMWare Fusion.</p>
+</blockquote>
+<h3 class="relative group">VMWare Fusion - Windows 
+    <div id="vmware-fusion---windows" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#vmware-fusion---windows" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>The following section requires VMWare Fusion to be installed on your MacBook. Please follow the above link to download and install the program successfully on your computer.</p>
+</blockquote>
+<p>Microsoft has released an ARM version of their latest operating systems (Windows 10 and Windows 11) that you can deploy to your M series MacBook (woohoo!). In order to download, you must sign up to <a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64"   target="_blank">
+    Microsoft&rsquo;s insider program</a>. Now strap in, the installation and configuration process for this one is well honestly, a bit of nonsense.</p>
+<h4 class="relative group">Installation Steps: 
+    <div id="installation-steps" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#installation-steps" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>Download the <a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64"   target="_blank">
+    ARM installer</a> from Microsoft. It can be a bit of a pain to find the iso after signing up, so just re-click the link provided her, and it should take you immediately to the download page on the site.</li>
+<li>Once downloaded, you&rsquo;ll need to convert the <code>VHDX</code> file to a <code>VMDK</code> to make it compatible for VMWare Fusion. Open your terminal and enter the following commands:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># install qemu</span>
+</span></span><span style="display:flex;"><span>brew install qemu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># check information about the VHDX virtual disk: </span>
+</span></span><span style="display:flex;"><span>sudo qemu-img info Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># convert VHD to VMDK, include -p to show progress of conversion</span>
+</span></span><span style="display:flex;"><span>sudo qemu-img convert Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX -O vmdk Windows11_ARM.vmdk -p
+</span></span></code></pre></div><ol start="3">
+<li>Open VMWare Fusion and select <code>File</code> &gt; <code>New Virtual Machine</code>. A pop-up will launch titled &ldquo;Select the Installation Method&rdquo;
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_330x0_resize_box_3.png 330w,
+        /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_660x0_resize_box_3.png 660w,
+        /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_1024x0_resize_box_3.png 1024w,
+        /posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_1320x0_resize_box_3.png 2x"
+        src="/posts/applesiliconenv/vmwarefusion_install_select_hudd9f18ccc07f84f91cf832e8cbf481f3_58409_660x0_resize_box_3.png"
+        alt="Select Installation Method"
+      />
+      
+      
+    </figure>
+  
+
+</li>
+<li>From here, drag and drop your new Windows 11 vmdk file over the &lsquo;Install from disc or image&rsquo; in the screenshot above. The prompt will immediately change, allowing you to configure the virtual machine. When you reach <code>&quot;Choose a virtual disk&quot;</code>, ensure that you select <code>&quot;use an existing virtual disk&quot;</code> and select the newly created vmdk file again here. This will ensure that you don&rsquo;t encounter problems once completing the install process.</li>
+</ol>
+<blockquote>
+<p>If you intend on installing FlareVM, make sure that you allocate a bit more hard drive capacity (at least 100GB I would say) to ensure that the installation process does not fail. If you forget to complete this, you can change it on creation of the VM which is handy, by navigating to <code>settings</code> and increasing the drive volume.</p>
+</blockquote>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_330x0_resize_box_3.png 330w,
+        /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_660x0_resize_box_3.png 660w,
+        /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_1024x0_resize_box_3.png 1024w,
+        /posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_1320x0_resize_box_3.png 2x"
+        src="/posts/applesiliconenv/vmware_choosedisk_hu18af6847ef6bf8661295195f1d511a0b_56650_660x0_resize_box_3.png"
+        alt="Choose Disk Image"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<ol start="5">
+<li>Once you select Finish and finalise the process, a new window will pop open. This is your virtual machine. The operating system should start booting and look something like the following:</li>
+</ol>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_330x0_resize_box_3.png 330w,
+        /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_660x0_resize_box_3.png 660w,
+        /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_1024x0_resize_box_3.png 1024w,
+        /posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_1320x0_resize_box_3.png 2x"
+        src="/posts/applesiliconenv/windows11_booting_hu427105f6ed3607b4f717a082edd3787b_26977_660x0_resize_box_3.png"
+        alt="Windows 11 Booting"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<ol start="6">
+<li>When the first installation page loads, <strong>do not continue with the installation</strong>. Instead, install VMWare tools to enable networking. Press <code>Shift</code> + <code>F10</code> to open a terminal to write the following commands:
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_330x0_resize_box_3.png 330w,
+        /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_660x0_resize_box_3.png 660w,
+        /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_1024x0_resize_box_3.png 1024w,
+        /posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_1320x0_resize_box_3.png 2x"
+        src="/posts/applesiliconenv/windows_terminal_huf54f2e0d33a4acff8897f9b4fd865fe3_85137_660x0_resize_box_3.png"
+        alt="Windows Terminal on install"
+      />
+      
+      
+    </figure>
+  
+
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># change into the oobe (out of the box experience) folder</span>
+</span></span><span style="display:flex;"><span>&gt; cd oobe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># type the following command</span>
+</span></span><span style="display:flex;"><span>&gt; bypassnro.cmd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># windows will restart and when prompted for internet access</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># you&#39;ll be able to select &#39;i dont have internet&#39; and </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#39;continue with limited setup&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># continue with set up and turn off microsoft telemetry</span>
+</span></span></code></pre></div><ol start="7">
+<li>Complete the Windows 11 installation process. You shouldn&rsquo;t be prompted by Microsoft to enter in any email information during this process due to the lack of internet connection.</li>
+</ol>
+<p>Once finished, we will need to disable Windows Defender and reinstall VMWare tools to enable proper networking.</p>
+<h4 class="relative group">Reinstall VMWare Tools: 
+    <div id="reinstall-vmware-tools" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#reinstall-vmware-tools" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>Select <code>Virtual Machine</code> from the top bar and hit <code>Reinstall VMWare Tools</code>. This will map the tools to D: drive.</li>
+<li>Navigate to D: drive using explorer. Double-click on <code>setup.exe</code> and proceed through the installation process</li>
+<li>Restart the VM</li>
+<li>Confirm you are connected to the internet by navigating to a website via Edge and double-checking the adapter icon in the bottom right-hand side of the taskbar.</li>
+</ol>
+<h4 class="relative group">Disable Windows Defender 
+    <div id="disable-windows-defender" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#disable-windows-defender" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>An optional process that will likely save you some time and frustration when completing Windows-based malware analysis on this machine in future.</p>
+<blockquote>
+<p>All credit for this section goes to OA Labs (video linked in the reference section) in walking through how to disable Windows Defender on Windows 11.</p>
+</blockquote>
+<ol>
+<li>Open msconfig by typing <code>msconfig</code> into the search bar on your VM</li>
+<li>Navigate to the boot tab and select <code>safe boot &gt; minimal</code></li>
+<li>Restart the machine</li>
+<li>Open explorer and type <code>%ProgramData%</code> and double-click on <code>Microsoft</code>. FInd <code>Windows Defender</code> folder from this list and right-click, select properties.</li>
+<li>Navigate to the security tab and click advanced</li>
+<li>Click the <code>change</code> link next to Owner: SYSTEM and click advanced</li>
+<li>Select administrator by clicking the <code>find now</code> button on the right-hand side of the pop-up, This will grant you access to change permissions of the folder. Select okay until you have returned to the <code>Advanced Security Settings for Windows Defender</code> popup.</li>
+<li>Check the <code>Replace all child object permissions with inheritable permission entries from this object</code> box and then select the <code>TrustedInstaller</code> user from the list and remove their permissions. Repeat for the other users in the list until it is empty.</li>
+<li>Apply the changes and select okay or yes for each prompt</li>
+<li>Open up <code>msconfig</code> again, navigate to the boot tab and disable safe mode.</li>
+<li>Restart your computer and defender should no longer be present, as no one can access the folder</li>
+</ol>
+<p>You can test that this works by searching for windows security from the taskbar. When you click this option, you should have a prompt that informs you that no one has access to the folder to open this.</p>
+<p>Before proceeding to the next step, <strong>snapshot your Windows 11 VM</strong>. I like to call this one <code>Clean</code> with a description of the work i have completed thus far i.e disabled defender, internet connected.</p>
+<h4 class="relative group">Install Flare VM 
+    <div id="install-flare-vm" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#install-flare-vm" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>Download the FlareVM repo from <a href="https://github.com/mandiant/flare-vm"   target="_blank">
+    github</a> whichever way you prefer (via web browser or terminal or otherwise).</p>
+<blockquote>
+<p>Note that Flare requires at least 60GB of disk space to install all the tools, so hopefully you followed the installation advice of upping the total storage amount when prompted.</p>
+</blockquote>
+<p>These days, Flare is relatively easy to install, with the mandiant team doing some amazing work to make it simpler to use. Follow the guidance provided by the team in their readme for optimal results. The basic gist being:</p>
+<ol>
+<li>Disable Windows Updates (follow <a href="https://www.windowscentral.com/how-stop-updates-installing-automatically-windows-10]%28https://www.windowscentral.com/how-stop-updates-installing-automatically-windows-10%29"   target="_blank">
+    this</a> advice)</li>
+<li>Disable Windows Defender (which we have already done)</li>
+<li>Take a VM snapshot so you can revert to a state before the Flare install</li>
+<li>Complete the installation steps provided on the readme</li>
+<li>Probably make a cup of tea or coffee too&hellip; Flare can take a while to install successfully</li>
+</ol>
+<p>Once this has finished, do a bit of a victory dance, because you have finally and successfully set up all the configuration elements to your Windows malware analysis machine at this point. Phew, what a process.</p>
+<h3 class="relative group">VMWare Fusion - Debian Linux 
+    <div id="vmware-fusion---debian-linux" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#vmware-fusion---debian-linux" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>The following section requires VMWare Fusion to be installed on your MacBook.</p>
+</blockquote>
+<p>You can download the ARM version of Debian <a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/"   target="_blank">
+    here</a> then complete the following steps:</p>
+<ol>
+<li>Just like with your Windows install, drag and drop the downloaded ARM Debian ISO onto the <code>Create a New Virtual Machine</code> popup</li>
+<li>Select your Debian iso. If it isn&rsquo;t present in the list, then click the <code>Use another disc or disc image</code> option.</li>
+<li>Customise settings if you are unhappy with the defaults and select finish when done</li>
+<li>Select an appropriate name for your VM such as <code>Linux Malware Analysis</code></li>
+</ol>
+<p>Compared to Windows, that was a bit simpler. But we aren&rsquo;t quite done yet.</p>
+<h4 class="relative group">Installing and configuring the VM 
+    <div id="installing-and-configuring-the-vm" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#installing-and-configuring-the-vm" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>Select “Graphical Install” and proceed through the steps as is tradition.</li>
+<li>Select &ldquo;Debian Desktop Environment&rdquo; and &ldquo;GNOME&rdquo; (or your preferred option) on the software selection page to ensure the GUI is installed.</li>
+</ol>
+<blockquote>
+<p>Note that during the installation process, if you set a root password, your user will not be in the sudoers file.</p>
+</blockquote>
+<p>Now we are ready for the final configuration step, setting up <code>inetsim</code> and <code>creating a VLAN in VMWare Fusion</code></p>
+<h3 class="relative group">VMWare Fusion - MacOS 
+    <div id="vmware-fusion---macos" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#vmware-fusion---macos" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<blockquote>
+<p>The following section requires VMWare Fusion to be installed on your MacBook.</p>
+</blockquote>
+<p>Unfortunately, MacOS is not supported by VMWare Fusion for virtualisation as of writing this post. Makes for some frustrating times, but, it is not the end of the world. I&rsquo;ll be covering another program called UTM in the next instalment of this blog that natively supports MacOS virtualisation for the purposes of malware reverse engineering.</p>
+<h3 class="relative group">Networking Machines 
+    <div id="networking-machines" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#networking-machines" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Now that we have all the images sorted, it&rsquo;s time to actually configure our internal malware network to enable each machine to talk to each other.</p>
+<h4 class="relative group">Why is this important? 
+    <div id="why-is-this-important" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#why-is-this-important" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>A great question! Often, when we perform dynamic analysis on samples, malware will attempt to perform various functions over the internet. Because we are operating in an internet-free zone, it might cause the malware to crash or close itself, so you can no longer perform analysis on the sample. Thus, we set up <code>inetsim</code> on our Linux machine so that it can serve the function of our DNS server and trick the malware that additional payloads are being downloaded, for example, meaning it won’t close down.</p>
+<h4 class="relative group">The Setup 
+    <div id="the-setup" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#the-setup" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>The analysis diagram of my malware environment shows you roughly what we are intending to complete. We will begin with configuring an internal malware network on all three VMs and then setting our Debian box as the DNS server for both the Mac and Windows machines.</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_330x0_resize_box_3.png 330w,
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png 660w,
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1024x0_resize_box_3.png 1024w,
+        /posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_1320x0_resize_box_3.png 2x"
+        src="/posts/applesiliconenv/malwareenv_huf42d0c1d2709afb3d5ac6158657612d9_84195_660x0_resize_box_3.png"
+        alt="malware analysis environment"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>Our objective here is to make both the Windows and Debian systems talk effectively to each other, running <code>inetsim</code>. Installation and setup of this program allows a deeper knowledge and understanding of network indicators present in some (most) strands of malware.</p>
+<h4 class="relative group">Creating the VLAN in VMWare Fusion 
+    <div id="creating-the-vlan-in-vmware-fusion" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#creating-the-vlan-in-vmware-fusion" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<ol>
+<li>From the top bar, select <code>VMWare Fusion</code> &gt; <code>Settings</code> &gt; <code>Network</code></li>
+<li>Click the lock at the bottom of the network panel and enable changes</li>
+<li>Click the <code>plus</code> button at the bottom of the network panel and type into the subnet IP <code>10.10.10.0</code> or whatever your number preference is. Additionally, make sure that the <code>allow virtual machines on this network to connect to external networks (using NAT)</code> is unticked. You can optionally configure this to work via IPv6 if you&rsquo;d like, I just normally opt for IPv4.</li>
+<li>Click apply</li>
+<li>Double-click the newly created network and rename it to something that stands out to you - like <code>Malware Analysis</code></li>
+<li>When you&rsquo;re happy with the changes, click the lock again to prevent further changes to your configs</li>
+</ol>
+<p>And you&rsquo;re done! This new network should now be available to select for all of your virtual machines. You can add the hosts to it and confirm that the internet cannot be accessed by any of the machines.</p>
+<h4 class="relative group">Installing and configuring inetsim on Debian 
+    <div id="installing-and-configuring-inetsim-on-debian" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#installing-and-configuring-inetsim-on-debian" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>This is a very handy program that serves the default <code>inetsim</code> file with the name of any requested file. It serves as a nice way to trick malware into thinking that it has successfully downloaded second stage payloads. There are a few little steps to configure it correctly, that we will complete below:</p>
+<ol>
+<li>Open a terminal and download <code>inetsim</code> <code>sudo apt-get update &amp;&amp; apt-get install inetsim</code></li>
+<li>Create a snapshot at this point of your box</li>
+<li>Switch your linux box  to your malware dev network and query the ip address it has allocated.</li>
+<li>Use your editor again to inspect the <code>inetsim.conf</code> file located at <code>/etc/inetsim/inetsim.conf</code>. Inspect the available services - by default all of these will be on. Feel free to disable any you don&rsquo;t want or need.</li>
+<li>Next, locate the <code>#service_bind_address 10.10.10.1</code> line in the config file. Uncomment the line and replace the IP address with <code>0.0.0.0</code></li>
+<li>Locate <code># dns_default_ip 10.10.10.1</code> and once again uncomment and change this to the assigned IP address on your malware analysis network</li>
+<li>Once this has all been completed, save your changes and exit out of your editor. Then proceed to reboot <code>inetsim</code> using the following command: <code>/etc/init.d/inetsim restart</code></li>
+<li>Issue a <code>netstat -plant</code> or <code>ss -plant</code> (depending on whether you have netstat installed) to check that <code>inetsim</code> is now bound on the malware analysis network address.</li>
+</ol>
+<blockquote>
+<p>Note that you can also, optionally, statically assign the IP address of your Debian host on the malware network. I don&rsquo;t tend to do this often, as sometimes I like to revert the image to a snapshot that I can dynamically allow access back to the internet (to facilitate the download of additional, useful tools if the need arises).</p>
+</blockquote>
+<h4 class="relative group">Client - Windows Network Config 
+    <div id="client---windows-network-config" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#client---windows-network-config" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>Now that <code>inetsim</code> has been sorted, we need to set up our Windows machine to test and confirm that the changes we have made are effective. Switch over to your Windows machine, slap on that Malware Analysis network to your adapter and complete the following steps:</p>
+<ol>
+<li>Click on your network adapter in your Windows 11 VM and select <code>Network &amp; Internet Settings</code> &gt; <code>Change adapter options</code> &gt; right click <code>Ethernet</code> and select <code>Properties</code></li>
+<li>Double-click IPv4 and set your IP address to match your newly configured malware network i.e. <code>10.10.10.2</code> with a subnet mask of <code>255.255.255.0</code></li>
+<li>Set the DNS server address to the address of your Linux machine and then select okay.</li>
+<li>Select okay until you return to your adapters and then open a web browser. Try to navigate to a random address such as <code>www.hotmail.com</code>. If your configuration to inetsim worked, you should see the following page displayed to you:
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        srcset="
+        /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_330x0_resize_box_3.png 330w,
+        /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_660x0_resize_box_3.png 660w,
+        /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_1024x0_resize_box_3.png 1024w,
+        /posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_1320x0_resize_box_3.png 2x"
+        src="/posts/applesiliconenv/inetsim_homepage_huf8b2e507071860e8bca2e0fcbdb8c604_15811_660x0_resize_box_3.png"
+        alt="inetsim in action"
+      />
+      
+      
+    </figure>
+  
+
+</li>
+<li>Once you have confirmed that this works, return to your linux VM and take a snapshot of it.</li>
+</ol>
+<h2 class="relative group">Tool List 
+    <div id="tool-list" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#tool-list" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Every Apple Silicon analyst will have a different option on the correct or best tools you should leverage to make a functional and safe environment for your analysis of malicious programs. The following table is subjective and reflects my own experience running or interacting with these systems. I don&rsquo;t think here is a perfect solution to this, but hopefully through trial and error yourself, you&rsquo;ll find one of the following most suited to the setup you require to perform your own types of analysis successfully.</p>
+<table>
+<thead>
+<tr>
+<th>Program/Tool</th>
+<th>Description</th>
+<th>Best used for&hellip;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://apps.apple.com/ms/app/utm-virtual-machines/id1538878817?mt=12"   target="_blank">
+    UTM</a></td>
+<td>A virtualisation platform (like VMWare, Parallels etc.) that enables you to virtualise x86 operating systems on an ARM processor. The software leverages QEMU wrapping to effectively allow this to happen. There are currently some bugs associated with this (such as networking being quite finicky and at time of writing this article, largely inoperable). It is available on the App store quite cheaply (currently requiring no reoccurring subscription to the product)</td>
+<td>Virtualisation of x86 operating systems on ARM</td>
+</tr>
+<tr>
+<td><a href="https://www.vmware.com/au/products/fusion/fusion-evaluation.html"   target="_blank">
+    VMWare Fusion</a></td>
+<td>VMWare&rsquo;s answer to virtualisation on MacOS base systems. Good networking capability and runs ARM virtual machines smoothly. Individual user licence for Fusion is currently free, but this might change in the coming months as Broadcomm continues to integrate the company and potentially changes the structure/price of their offerings.</td>
+<td>Virtualisation of ARM operating systems and creation of an internal malware network for safe analysis of malicious programs.</td>
+</tr>
+<tr>
+<td><a href="https://apps.apple.com/us/app/parallels-desktop/id1085114709?mt=12"   target="_blank">
+    Parallels</a></td>
+<td>Subscription-based virtualisation platform for ARM based processors. This option can be quite expensive, and personally I haven&rsquo;t been in a position to actually leverage this first-hand due to budget constraints (I feel like there are honestly cheaper options available than this, that serve the same purpose). By all reports, a good solution to virtualisation if you can afford it.</td>
+<td>Corporate solutions to virtualisation on Mac/if you have the budget to afford it.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">References &amp; Resources 
+    <div id="references--resources" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#references--resources" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.getutm.app/"   target="_blank">
+    UTM Documentation</a></td>
+<td>Extensive documentation written by the developers of UTM  to assist you in getting the most out of the program.</td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/documentation/virtualization"   target="_blank">
+    Apple Virtualisation Framework</a></td>
+<td>Documentation from Apple Inc. to assist in the creation of virtualisation platforms from scratch. Also gives extensive information about how virtualisation works (APIs, etc.)</td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=0eR8yrDLV5M"   target="_blank">
+    OA Labs</a></td>
+<td>A great reverse engineering resource available on YouTube. The folks at OA labs talk through specific topics of interest to those new or more experienced in the field. This particular talk runs you through how to virtualise Windows on Apple Silicon.</td>
+</tr>
+<tr>
+<td><a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64"   target="_blank">
+    Windows 11 ARM Download</a></td>
+<td>Link to download the Windows 11 ARM insider preview. Note that you will be prompted to create an account if you haven&rsquo;t already, when navigating to the website.</td>
+</tr>
+<tr>
+<td><a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/"   target="_blank">
+    Debian ARM Download</a></td>
+<td>Link to download the ARM installer for Debian Linux. You don&rsquo;t have to use this variant of Linux, feel free to pick a different distribution that appeals to you more.</td>
+</tr>
+<tr>
+<td><a href="https://www.nakivo.com/blog/how-to-convert-vhd-to-vmdk-a-step-by-step-guide/"   target="_blank">
+    VHDX to VMDK conversion</a></td>
+<td>A guide for conversion of VHDX images to VMDX to install via VMWare Fusion.</td>
+</tr>
+<tr>
+<td><a href="https://docs.getutm.app/guides/guides/"   target="_blank">
+    UTM ARM Guides</a></td>
+<td>The UTM guides for installing ARM images via UTM. Can be applicable to general ARM installs.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mandiant/flare-vm"   target="_blank">
+    Flare VM Repo</a></td>
+<td>The link to install Flare onto your Windows VM</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">Parting Thoughts 
+    <div id="parting-thoughts" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#parting-thoughts" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>This blog focuses on setting up a safe environment leveraging VMWare Fusion 13 for MacOS. Unfortunately, it comes with a few caveats where we cannot entirely create an environment suited to analysing malware across MacOS, Windows and Linux environments. I intend on publishing a second blog in the coming days that captures how to achieve this using another program called UTM. This virtualisation platform has the added benefit of allowing us to also virtualise x86 platforms (which is very exciting). Just like VMWare Fusion, this program comes with some limitations and frustrations that we will discuss next time.</p>
+<p>For now, I hope that this article has helped shed some light on how to effectively and safely configure a malware analysis environment on Apple Silicon computers.</p>
+
+        </div>
+                
+        
+<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5">
+    <summary
+        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+        Creating a safe (and functional) RE environment on Apple Silicon - This article is part of a series.
+    </summary>
+    
+    
+    
+
+</details>
+
+
+        
+  
   <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
     
       
-        <a
-          target="_blank"
-          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=https://polaryse.github.io/posts/applesiliconenv/&amp;subject=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
-          title="Send via email"
-          aria-label="Send via email"
-          >
-          
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
-
-  </span>
-
-
-        </a>
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/applesiliconenv/&amp;title=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
+      title="Share on LinkedIn"
+      aria-label="Share on LinkedIn"
+      >
       
-    
-      
-        <a
-          target="_blank"
-          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/applesiliconenv/&amp;quote=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
-          title="Share on Facebook"
-          aria-label="Share on Facebook"
-          >
-          
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
-
-  </span>
-
-
-        </a>
-      
-    
-      
-        <a
-          target="_blank"
-          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/applesiliconenv/&amp;title=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
-          title="Share on LinkedIn"
-          aria-label="Share on LinkedIn"
-          >
-          
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
@@ -1693,18 +1604,55 @@
   </span>
 
 
-        </a>
+    </a>
       
     
       
-        <a
-          target="_blank"
-          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/applesiliconenv/&amp;description=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
-          title="Pin on Pinterest"
-          aria-label="Pin on Pinterest"
-          >
-          
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/applesiliconenv/&amp;text=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
+      title="Tweet on Twitter"
+      aria-label="Tweet on Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://api.whatsapp.com/send?text=https://polaryse.github.io/posts/applesiliconenv/&amp;resubmit=true&amp;title=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/applesiliconenv/&amp;description=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
+      title="Pin on Pinterest"
+      aria-label="Pin on Pinterest"
+      >
+      
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>
@@ -1712,18 +1660,18 @@
   </span>
 
 
-        </a>
+    </a>
       
     
       
-        <a
-          target="_blank"
-          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/applesiliconenv/&amp;resubmit=true&amp;title=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
-          title="Submit to Reddit"
-          aria-label="Submit to Reddit"
-          >
-          
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/applesiliconenv/&amp;resubmit=true&amp;title=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
+      title="Submit to Reddit"
+      aria-label="Submit to Reddit"
+      >
+      
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
@@ -1731,30 +1679,65 @@
   </span>
 
 
-        </a>
+    </a>
       
     
       
-        <a
-          target="_blank"
-          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/applesiliconenv/&amp;text=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
-          title="Tweet on Twitter"
-          aria-label="Tweet on Twitter"
-          >
-          
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/applesiliconenv/&amp;quote=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
+      title="Share on Facebook"
+      aria-label="Share on Facebook"
+      >
+      
 
   <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
 
   </span>
 
 
-        </a>
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=https://polaryse.github.io/posts/applesiliconenv/&amp;subject=Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20VMWare%20Fusion"
+      title="Send via email"
+      aria-label="Send via email"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
       
     
   </section>
 
+
+          
+      </div>
+     
+    
+     <script>
+        var oid = "views_posts\/applesiliconenv\/index.md"
+        var oid_likes = "likes_posts\/applesiliconenv\/index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
 
     
   
@@ -1766,7 +1749,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group" href="/posts/wannasmile/">
+            <a class="flex group mr-3" href="/posts/wannasmile/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1799,25 +1782,26 @@
   </footer>
 </article>
 
-      
-      <div class="pointer-events-none absolute top-[100vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
-        <a href="#the-top"
-          class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
-          aria-label="" title="">
-          &uarr;
-        </a>
-      </div>
-      
-    </main><footer class="py-10 print:hidden">
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
   
   
     
-    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
       <ul class="flex flex-col list-none sm:flex-row">
         
-        <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=""
-            title="">This website has been created for educational porpoises</a>
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=""
+            title="">
+            
+            This website has been created for educational porpoises
+          </a>
         </li>
         
       </ul>
@@ -1842,7 +1826,7 @@
       
       Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
         href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
-        href="https://nunocoracao.github.io/blowfish/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
     </p>
     
 
@@ -1858,7 +1842,7 @@
   </script>
   
   
-  <script type="text/javascript" src="/js/process.min.2166d3adac1679c00a75161830ab5725d3efc0e3d3f8c2453fb01d0907948436c25f0f8a7ad824322fa22f3f9c85fd4d0a1d5c856f53b862157da25a57dc3d52.js" integrity="sha512-IWbTrawWecAKdRYYMKtXJdPvwOPT&#43;MJFP7AdCQeUhDbCXw&#43;KetgkMi&#43;iLz&#43;chf1NCh1chW9TuGIVfaJaV9w9Ug=="></script>
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
   
   
 </footer><div
