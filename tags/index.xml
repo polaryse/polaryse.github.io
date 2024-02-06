@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 polaryse</copyright>
-    <lastBuildDate>Sun, 21 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AppleSilicon</title>
       <link>https://polaryse.github.io/tags/applesilicon/</link>
-      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/applesilicon/</guid>
       <description></description>
@@ -21,7 +21,7 @@
     <item>
       <title>ARM</title>
       <link>https://polaryse.github.io/tags/arm/</link>
-      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/arm/</guid>
       <description></description>
@@ -31,7 +31,7 @@
     <item>
       <title>ARM-basedLinux</title>
       <link>https://polaryse.github.io/tags/arm-basedlinux/</link>
-      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/arm-basedlinux/</guid>
       <description></description>
@@ -41,7 +41,7 @@
     <item>
       <title>ARM-basedWindows</title>
       <link>https://polaryse.github.io/tags/arm-basedwindows/</link>
-      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/arm-basedwindows/</guid>
       <description></description>
@@ -51,9 +51,39 @@
     <item>
       <title>FlareVM</title>
       <link>https://polaryse.github.io/tags/flarevm/</link>
-      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/flarevm/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>MacMalware</title>
+      <link>https://polaryse.github.io/tags/macmalware/</link>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/macmalware/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>UTM</title>
+      <link>https://polaryse.github.io/tags/utm/</link>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/utm/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Virtualisation</title>
+      <link>https://polaryse.github.io/tags/virtualisation/</link>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/virtualisation/</guid>
       <description></description>
       
     </item>
@@ -79,21 +109,51 @@
     </item>
     
     <item>
-      <title>Virtualisation</title>
-      <link>https://polaryse.github.io/tags/virtualisation/</link>
-      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/virtualisation/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>VMWareFusion</title>
       <link>https://polaryse.github.io/tags/vmwarefusion/</link>
       <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/vmwarefusion/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>eCrime</title>
+      <link>https://polaryse.github.io/tags/ecrime/</link>
+      <pubDate>Wed, 17 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/ecrime/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Ghidra</title>
+      <link>https://polaryse.github.io/tags/ghidra/</link>
+      <pubDate>Wed, 17 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/ghidra/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Ransomware</title>
+      <link>https://polaryse.github.io/tags/ransomware/</link>
+      <pubDate>Wed, 17 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/ransomware/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>WannaCry</title>
+      <link>https://polaryse.github.io/tags/wannacry/</link>
+      <pubDate>Wed, 17 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/wannacry/</guid>
       <description></description>
       
     </item>
@@ -114,26 +174,6 @@
       <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/dotnet/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>eCrime</title>
-      <link>https://polaryse.github.io/tags/ecrime/</link>
-      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/ecrime/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Ransomware</title>
-      <link>https://polaryse.github.io/tags/ransomware/</link>
-      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/ransomware/</guid>
       <description></description>
       
     </item>
@@ -174,16 +214,6 @@
       <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/cryptographic-algorithms/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Ghidra</title>
-      <link>https://polaryse.github.io/tags/ghidra/</link>
-      <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/ghidra/</guid>
       <description></description>
       
     </item>

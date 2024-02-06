@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WannaCry on Malware Analysis: Or How I Learned To Love Frustration</title>
+    <link>https://polaryse.github.io/tags/wannacry/</link>
+    <description>Recent content in WannaCry on Malware Analysis: Or How I Learned To Love Frustration</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 polaryse</copyright>
+    <lastBuildDate>Wed, 17 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/wannacry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Continuing ransomware analysis with WannaCry</title>
+      <link>https://polaryse.github.io/posts/wannacry/</link>
+      <pubDate>Wed, 17 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/posts/wannacry/</guid>
+      <description>This blog article analyses WannaCry Ransomware of 2017. This post uses various static and dynamic analysis methods to unpick and analyse key indicators of this variant of malware.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/wannacry/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>
