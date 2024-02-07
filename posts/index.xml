@@ -29,16 +29,6 @@
     </item>
     
     <item>
-      <title>Continuing ransomware analysis with WannaCry</title>
-      <link>https://polaryse.github.io/posts/wannacry/</link>
-      <pubDate>Wed, 17 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/posts/wannacry/</guid>
-      <description>This blog article analyses WannaCry Ransomware of 2017. This post uses various static and dynamic analysis methods to unpick and analyse key indicators of this variant of malware.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/wannacry/featured.jpg" />
-    </item>
-    
-    <item>
       <title>You make me WannaSmile</title>
       <link>https://polaryse.github.io/posts/wannasmile/</link>
       <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
