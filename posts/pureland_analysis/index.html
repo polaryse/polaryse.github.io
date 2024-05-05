@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
-  <meta name="title" content="[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM &middot; Malware Analysis: Or How I Learned To Love Frustration" />
+  <title>Analysis of PureLand Info Stealer &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
+  <meta name="title" content="Analysis of PureLand Info Stealer &middot; Malware Analysis: Or How I Learned To Love Frustration" />
   
-  <meta name="description" content="This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using UTM." />
-  <meta name="keywords" content="UTM, ARM, Virtualisation, AppleSilicon, MacMalware, ARM-basedWindows, ARM-basedLinux, FlareVM, " />
+  <meta name="description" content="Analysis of an information stealer application designed for MacOS systems alongside a detailed breakdown of the structure of iOS applications to aid in future analysis of mac malware." />
+  <meta name="keywords" content="MacOS, ARM, MacMalware, ReverseEngineering, eCrime, infostealer, " />
   
   
-  <link rel="canonical" href="https://polaryse.github.io/posts/applesiliconenv_utm/" />
+  <link rel="canonical" href="https://polaryse.github.io/posts/pureland_analysis/" />
   
   
   
@@ -63,19 +63,18 @@
   
   
   
-  <meta property="og:title" content="[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM" />
-<meta property="og:description" content="This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using UTM." />
+  <meta property="og:title" content="Analysis of PureLand Info Stealer" />
+<meta property="og:description" content="Analysis of an information stealer application designed for MacOS systems alongside a detailed breakdown of the structure of iOS applications to aid in future analysis of mac malware." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polaryse.github.io/posts/applesiliconenv_utm/" /><meta property="og:image" content="https://polaryse.github.io/posts/applesiliconenv_utm/featured.webp" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-02-06T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-02-06T00:00:00+00:00" />
-<meta property="og:see_also" content="https://polaryse.github.io/posts/applesiliconenv/" />
+<meta property="og:url" content="https://polaryse.github.io/posts/pureland_analysis/" /><meta property="og:image" content="https://polaryse.github.io/posts/pureland_analysis/featured.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-05-04T00:00:00+00:00" />
 
 
 
   <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://polaryse.github.io/posts/applesiliconenv_utm/featured.webp" /><meta name="twitter:title" content="[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM"/>
-<meta name="twitter:description" content="This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using UTM."/>
+<meta name="twitter:image" content="https://polaryse.github.io/posts/pureland_analysis/featured.png" /><meta name="twitter:title" content="Analysis of PureLand Info Stealer"/>
+<meta name="twitter:description" content="Analysis of an information stealer application designed for MacOS systems alongside a detailed breakdown of the structure of iOS applications to aid in future analysis of mac malware."/>
 
   
   <script type="application/ld+json">
@@ -83,26 +82,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM",
-    "headline": "[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM",
+    "name": "Analysis of PureLand Info Stealer",
+    "headline": "Analysis of PureLand Info Stealer",
     
-    "abstract": "This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using UTM.",
+    "abstract": "Analysis of an information stealer application designed for MacOS systems alongside a detailed breakdown of the structure of iOS applications to aid in future analysis of mac malware.",
     "inLanguage": "en",
-    "url" : "https:\/\/polaryse.github.io\/posts\/applesiliconenv_utm\/",
+    "url" : "https:\/\/polaryse.github.io\/posts\/pureland_analysis\/",
     "author" : {
       "@type": "Person",
       "name": "polaryse"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-02-06T00:00:00\u002b00:00",
-    "datePublished": "2024-02-06T00:00:00\u002b00:00",
+    "dateCreated": "2024-05-04T00:00:00\u002b00:00",
+    "datePublished": "2024-05-04T00:00:00\u002b00:00",
     
-    "dateModified": "2024-02-06T00:00:00\u002b00:00",
+    "dateModified": "2024-05-04T00:00:00\u002b00:00",
     
-    "keywords": ["UTM","ARM","Virtualisation","AppleSilicon","MacMalware","ARM-basedWindows","ARM-basedLinux","FlareVM"],
+    "keywords": ["MacOS","ARM","MacMalware","ReverseEngineering","eCrime","infostealer"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1998"
+    "wordCount": "2607"
   }]
   </script>
 
@@ -500,7 +499,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/posts/applesiliconenv_utm/featured_hua6b305c30850c696518fd921e14641a2_45390_1200x0_resize_q75_h2_box_2.webp);">
+    style="background-image:url(/posts/pureland_analysis/featured_hu87cd5e8c88a3058951f96eb8bae097f6_554413_1200x0_resize_box_3.png);">
     
 
 
@@ -526,7 +525,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      [Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM
+      Analysis of PureLand Info Stealer
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -575,9 +574,9 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <span>1998 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">10 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <span>2607 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">13 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
     
-    <span id="views_posts/applesiliconenv_utm/index.md" 
+    <span id="views_posts/pureland_analysis/index.md" 
     
         class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
     <span class="inline-block align-text-bottom">
@@ -590,7 +589,7 @@
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
     
-    <span id="likes_posts/applesiliconenv_utm/index.md" 
+    <span id="likes_posts/pureland_analysis/index.md" 
     
         class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
     <span class="inline-block align-text-bottom">
@@ -661,10 +660,10 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/utm/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/macos/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    UTM
+    MacOS
   </span>
 </span>
   </span>
@@ -677,22 +676,6 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/virtualisation/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Virtualisation
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/applesilicon/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    AppleSilicon
-  </span>
-</span>
-  </span>
-  
   <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/macmalware/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -701,26 +684,26 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm-basedwindows/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/reverseengineering/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    ARM-basedWindows
+    ReverseEngineering
   </span>
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/arm-basedlinux/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/ecrime/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    ARM-basedLinux
+    eCrime
   </span>
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/flarevm/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/infostealer/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    FlareVM
+    infostealer
   </span>
 </span>
   </span>
@@ -856,17 +839,25 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#summary">Summary</a></li>
-    <li><a href="#creating-a-macos-vm---utm">Creating a macOS VM - UTM</a>
+    <li><a href="#hash-values">Hash Values</a></li>
+    <li><a href="#key-considerations">Key Considerations</a></li>
+    <li><a href="#understanding-file-structures-and-layout">Understanding file structures and layout</a>
       <ul>
-        <li><a href="#installing-tools">Installing tools</a></li>
+        <li><a href="#infoplist">info.plist</a></li>
+        <li><a href="#frameworks">Frameworks</a></li>
       </ul>
     </li>
-    <li><a href="#using-utm-for-legacy-operating-systems">Using UTM for legacy operating systems</a>
+    <li><a href="#macos-malware-tools">MacOS Malware Tools</a></li>
+    <li><a href="#delving-into-analysis">Delving into Analysis</a></li>
+    <li><a href="#host-based-indicators">Host based indicators</a></li>
+    <li><a href="#network-based-indicators">Network based indicators</a></li>
+    <li><a href="#signatures">Signatures</a>
       <ul>
-        <li><a href="#utm---windows">UTM - Windows</a></li>
-        <li><a href="#utm---remnux--linux">UTM - REMnux  Linux</a></li>
+        <li><a href="#yara-rule">YARA Rule</a></li>
       </ul>
     </li>
+    <li><a href="#mitre-attck-framework">MITRE ATT&amp;CK Framework</a></li>
+    <li><a href="#how-to-find-your-own-mac-malware-samples-for-analysis">How to find your own Mac Malware samples for analysis</a></li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
@@ -882,17 +873,25 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#summary">Summary</a></li>
-    <li><a href="#creating-a-macos-vm---utm">Creating a macOS VM - UTM</a>
+    <li><a href="#hash-values">Hash Values</a></li>
+    <li><a href="#key-considerations">Key Considerations</a></li>
+    <li><a href="#understanding-file-structures-and-layout">Understanding file structures and layout</a>
       <ul>
-        <li><a href="#installing-tools">Installing tools</a></li>
+        <li><a href="#infoplist">info.plist</a></li>
+        <li><a href="#frameworks">Frameworks</a></li>
       </ul>
     </li>
-    <li><a href="#using-utm-for-legacy-operating-systems">Using UTM for legacy operating systems</a>
+    <li><a href="#macos-malware-tools">MacOS Malware Tools</a></li>
+    <li><a href="#delving-into-analysis">Delving into Analysis</a></li>
+    <li><a href="#host-based-indicators">Host based indicators</a></li>
+    <li><a href="#network-based-indicators">Network based indicators</a></li>
+    <li><a href="#signatures">Signatures</a>
       <ul>
-        <li><a href="#utm---windows">UTM - Windows</a></li>
-        <li><a href="#utm---remnux--linux">UTM - REMnux  Linux</a></li>
+        <li><a href="#yara-rule">YARA Rule</a></li>
       </ul>
     </li>
+    <li><a href="#mitre-attck-framework">MITRE ATT&amp;CK Framework</a></li>
+    <li><a href="#how-to-find-your-own-mac-malware-samples-for-analysis">How to find your own Mac Malware samples for analysis</a></li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
@@ -906,17 +905,6 @@
       <div class="min-w-0 min-h-0 max-w-fit">
         
         
-<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5" >
-    <summary
-        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
-        Creating a safe (and functional) RE environment on Apple Silicon - This article is part of a series.
-    </summary>
-    
-    
-    
-
-</details>
-
 
 
         <div class="article-content max-w-prose mb-20">
@@ -930,218 +918,288 @@
     </span>        
     
 </h2>
-<p>Continuing on where we left off, this next blog post will cover how to successfully emulate macOS using the UTM virtualisation platform.</p>
-<p>I really wanted to include this software that was introduced to me by a fellow reverse engineer and good friend of mine. It&rsquo;s a bit of a special platform because it uses QEMU to enable you to virtualise legacy x86 operating systems such as Windows XP, Windows 2003 and so on. There are a few bugs at present that exist within this program that make it harder to network your machines (and at times you&rsquo;re unable to at all, despite the functionality being there to do so). But, the work the devs are doing to build out this virtualisation platform is amazing - and they don&rsquo;t charge much to get a full copy of the product either ($9.99 USD when I last checked). I&rsquo;ve included the link to the App store in the tool list below, but for now, let&rsquo;s walk through how to set up a legacy operating system successfully on an ARM based computer!</p>
-<p>But first, let&rsquo;s start with the basics - creating a macOS VM.</p>
-<h2 class="relative group">Creating a macOS VM - UTM 
-    <div id="creating-a-macos-vm---utm" class="anchor"></div>
+<p>In this blog, we will be investigating an information stealer designed for macOS systems called &lsquo;PureLand&rsquo;. This information stealer targets cryptocurrency wallets and sensitive password/username information stored within the Chrome browser. It masquerades as a pay-to-win video game, under the subsection of blockchain specific gaming. This particular campaign by the threat actors was distributed initially via Twitter (now X), asking users whether they would be amenable to testing their new pay-to-win video game. Test participants were informed that if they took part in testing, they would be compensated for their time and feedback. You can find the rebranded PureLand campaign <a href="https://pearlmetaverse.gitbook.io/pearlmetaverse"   target="_blank">
+    here</a> if you&rsquo;re interested.</p>
+<p>When the application is opened, the user is prompted to enter their password for &ldquo;Chrome Safe Storage&rdquo;. Once this has been granted, the stealer will then cycle through the contents of Chrome, searching for internet cookies and saved log on credentials. The malware then goes on to search for its primary points of interest, cryptocurrency wallets.</p>
+<p>This sample was the first iOS application that I have reversed and served as wonderful learning regarding the structure of these applications. As such, this analysis will also describe components of iOS applications to serve as a reference point for future analysis and is likely to be iterated on in future as I develop more familiarity with the operating system.</p>
+<p>For a comprehensive guide on how to successfully set up a macOS VM on your ARM system, please see my blog post <a href=""  >
+    here</a>.</p>
+<h2 class="relative group">Hash Values 
+    <div id="hash-values" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#creating-a-macos-vm---utm" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#hash-values" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>Quite an easy process compared to our Windows journey via VMWare.</p>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /posts/applesiliconenv_utm/images/macos_vm_hu69daffb72723d1703ffc6cfea0ad821b_272949_330x0_resize_box_3.png 330w,
-        /posts/applesiliconenv_utm/images/macos_vm_hu69daffb72723d1703ffc6cfea0ad821b_272949_660x0_resize_box_3.png 660w,
-        /posts/applesiliconenv_utm/images/macos_vm_hu69daffb72723d1703ffc6cfea0ad821b_272949_1024x0_resize_box_3.png 1024w,
-        /posts/applesiliconenv_utm/images/macos_vm_hu69daffb72723d1703ffc6cfea0ad821b_272949_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv_utm/images/macos_vm_hu69daffb72723d1703ffc6cfea0ad821b_272949_660x0_resize_box_3.png"
-        alt="macOS VM"
-      />
-      
-      
-    </figure>
-  
-
-</p>
-<ol>
-<li>Download a macOS <code>.ispw</code> file from the <a href="https://developer.apple.com/download"   target="_blank">
-    Apple developer trove</a> (it will require an account). Choose whatever operating system you desire (macOS 12 and above). I personally went for Sonoma, the latest release at the time of writing this.</li>
-<li>Once downloaded, open UTM and select <code>File &gt; New</code>, selecting virtualise as your option (you can also download from the UTM gallery, but this catalog doesn&rsquo;t currently include macOS)</li>
-<li>Select macOS 12+. It will prompt you to download a recovery IPSW, which we already have from step one.</li>
-<li>Drop the file into the window, and it will automatically move to the next step of the installation process</li>
-<li>Select your memory (I just went with the default)</li>
-<li>Select the size of your HDD (I again went with the default)</li>
-<li>Name your virtual machine (something like mac malware analysis) and tick <code>open vm settings</code> before proceeding.</li>
-<li>(Optional but helpful), with the VM settings open you can add a shared path to interface with your host machine</li>
-<li>Now proceed through the standard macOS set up process by turning on your newly created machine (this might take a while). I&rsquo;d also skip the input of your AppleID as we did with Windows.</li>
-<li>Congratulations, you now have a working macOS VM!</li>
-</ol>
-<h3 class="relative group">Installing tools 
-    <div id="installing-tools" class="anchor"></div>
+<p>This sample was obtained from <a href="https://www.virustotal.com/gui/file/845ef90acc34abfce89e3e630265f23c03581918d30256c9e3c3d65250464933"   target="_blank">
+    VirusTotal</a>. Hash values of the sample are as listed below:</p>
+<table>
+<thead>
+<tr>
+<th>Hash</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MD5</td>
+<td>c977b2cf2ac615586b9f53342f70b0ec</td>
+</tr>
+<tr>
+<td>SHA1</td>
+<td>59219512ddf4fb388a23b20e679af8567fb81cdc</td>
+</tr>
+<tr>
+<td>SHA256</td>
+<td>845ef90acc34abfce89e3e630265f23c03581918d30256c9e3c3d65250464933</td>
+</tr>
+</tbody>
+</table>
+<p>I&rsquo;m also including the link from <a href="https://malshare.com/sample.php?action=detail&amp;hash=845ef90acc34abfce89e3e630265f23c03581918d30256c9e3c3d65250464933"   target="_blank">
+    malshare</a> just to highlight this resource and its usefulness in finding macOS malware to analyse.</p>
+<h2 class="relative group">Key Considerations 
+    <div id="key-considerations" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#installing-tools" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#key-considerations" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>This section of the blog highlights our key goals in completing analysis of this binary. For this sample, we will:</p>
+<ul>
+<li>Use static analysis to inform the initial capabilities of this strand of malware</li>
+<li>Identify the family of malware this sample belongs to</li>
+<li>Understand the capabilities and items of interest for this malware sample</li>
+<li>Create signatures in both YARA and SIGMA to stop execution of this malware on user endpoints</li>
+</ul>
+<h2 class="relative group">Understanding file structures and layout 
+    <div id="understanding-file-structures-and-layout" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#understanding-file-structures-and-layout" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>I wanted to spend some time during this blog analysing and understanding the significance of each component of this malware to increase my own knowledge and understanding of the structure of macOS applications. By taking the time to understand this, analysis of more complicated and obfuscated samples should be made slightly easier.</p>
+<p>The following information was obtained through manual exploration of the file structure of Pureland, navigating through the terminal.</p>
+<pre tabindex="0"><code># file list
+
+\malware-samples\Pureland\PureLand%20Launcher.pkg
+\malware-samples\Pureland\Installer.app\
+\malware-samples\Pureland\Installer.app\Contents\
+\malware-samples\Pureland\Installer.app\Contents\Info.plist
+\malware-samples\Pureland\Installer.app\Contents\MacOS\
+\malware-samples\Pureland\Installer.app\Contents\MacOS\Installer
+\malware-samples\Pureland\Installer.app\Contents\Resources
+\malware-samples\Pureland\Installer.app\Contents\Resources\icon.icns
+\malware-samples\Pureland\Installer.app\Contents\_CodeSignature
+\malware-samples\Pureland\Installer.app\Contents\_CodeSignature\CodeResources
+</code></pre><blockquote>
+<p>The breakdowns provided in the following sections are largely in part due to working through <a href="https://github.com/ivRodriguezCA/RE-iOS-Apps/blob/master/Module-3/README.md"   target="_blank">
+    Reverse Engineering iOS Applications</a> available on GitHub.</p>
+</blockquote>
+<h3 class="relative group">info.plist 
+    <div id="infoplist" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#infoplist" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
-<p>There are a few more configuration steps that we should go through prior to calling this one complete. I generally like to set up brew and ghidra for my macOS.</p>
-<ol>
-<li>Brew can be downloaded from <a href="https://brew.sh/"   target="_blank">
-    here</a>. Simply copy the handy dandy string <code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</code> into your terminal and relax as it installs.</li>
-</ol>
-<blockquote>
-<p>Pay attention to the output of brew once it has successfully installed. You&rsquo;ll need to add some things into your path. The commands should look similar to the ones below. Note that there will be an identical requirement when you install ghidra, gradle, and openjdk</p>
-</blockquote>
-<pre tabindex="0"><code>(echo; echo &#39;eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;&#39;) &gt;&gt; /Users/User/.zprofile
-eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
-</code></pre><ol start="2">
-<li>Next is ghidra. This can be installed using your newly installed brew! Simply type the following commands, paying close attention to the version specified else ghidra might not work</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install ghidra gradle@7 openjdk@17
-</span></span><span style="display:flex;"><span>brew install python3
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># into your ~/.zshrc</span>
-</span></span><span style="display:flex;"><span>eval <span style="color:#66d9ef">$(</span>brew shellenv<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/opt/homebrew/opt/openjdk@17/bin/&#34;</span>:$PATH
-</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/opt/homebrew/opt/gradle@7/bin/&#34;</span>:$PATH
-</span></span><span style="display:flex;"><span>export GHIDRA_INSTALL_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/opt/homebrew/Caskroom/ghidra/11.0-20231222/ghidra_11.0_PUBLIC&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># then in the terminal</span>
-</span></span><span style="display:flex;"><span>source ~/.zshrc 
-</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>GHIDRA_INSTALL_DIR<span style="color:#e6db74">}</span>/support
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># this will stop gatekeeper from denying you access to the decompiler and other important bits of ghidra</span>
-</span></span><span style="display:flex;"><span>./buildNatives
-</span></span></code></pre></div><ol start="3">
-<li>Once complete, we need to download Ghidrathon and make a minor adjustment to the gradle file that is created when unzipped. Many thanks to <a href="https://www.twitch.tv/cyberkaida"   target="_blank">
-    @cyberkaida</a> for the awesome tip in one of their fantastic streams on twitch and for the commit on Ghidra.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /ghidra_scripts/
-</span></span><span style="display:flex;"><span>git clone https://github.com/mandiant/Ghidrathon.git
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># cd into the ghidrathon dir </span>
-</span></span><span style="display:flex;"><span>pip3 install --upgrade pip
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># change the python variable in ghidrathon&#39;s build.gradle to python3 otherwise build will fail </span>
-</span></span><span style="display:flex;"><span>vim Ghidrathon/build.gradle
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># search for the string python and change to value as below</span>
-</span></span><span style="display:flex;"><span>
+<p>This file contains the configuration data, typically located in the root or contents directory of the application (as evidenced by the file list above). There is a lot of information contained within this file, which can assist in developing a preliminary understanding on what some capabilities of the malware are.</p>
+<p>Below, is an excerpt from the <code>Info.plist</code> of PureLand.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-XML" data-lang="XML"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>		pythonBin <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;python3&#34;</span> <span style="color:#75715e"># this will be python by default</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># write and quit the file </span>
-</span></span><span style="display:flex;"><span>gradle
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># your build should have been successful</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># file output to Ghidrathon-3.0.2/dist</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># move file into your ghidra_scripts folder</span>
-</span></span></code></pre></div><blockquote>
-<p>MacOS has removed python2 from the OS, so you only have python3 available.</p>
-<p>Completing the above steps allows you to install extensions such as <code>Ghidrathon</code> into Ghidra. Because you have changed the python dependency to python3, when you enable this and deselect the old python2 interface, you&rsquo;ll be good to go immediately (instead of internally raging as to why it isn&rsquo;t working).</p>
-</blockquote>
-<ol start="4">
-<li>Open Ghidra using <code>ghidraRun</code> to verify that the installation was successful. (I would also open a random binary in Ghidra as well to test that gatekeeper is no longer blocking aspects of Ghidra)</li>
-<li>On the new project page, select <code>File &gt; Install Extensions</code> and select Ghidrathon. Note that if you have created a non-standard ghidra scripts folder, you will have to search for the extension using the green plus button.
-
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /posts/applesiliconenv_utm/images/ghidra_scripts_folder_hu7604895e2192f6fc504cd6a20b14a9b1_48115_330x0_resize_box_3.png 330w,
-        /posts/applesiliconenv_utm/images/ghidra_scripts_folder_hu7604895e2192f6fc504cd6a20b14a9b1_48115_660x0_resize_box_3.png 660w,
-        /posts/applesiliconenv_utm/images/ghidra_scripts_folder_hu7604895e2192f6fc504cd6a20b14a9b1_48115_1024x0_resize_box_3.png 1024w,
-        /posts/applesiliconenv_utm/images/ghidra_scripts_folder_hu7604895e2192f6fc504cd6a20b14a9b1_48115_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv_utm/images/ghidra_scripts_folder_hu7604895e2192f6fc504cd6a20b14a9b1_48115_660x0_resize_box_3.png"
-        alt="ghidra_scripts_folder"
-      />
-      
-      
-    </figure>
-  
-
-
-
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /posts/applesiliconenv_utm/images/ghidrathon_install_ext_huc1e8b09d0d4a37f1f55220bc19ecddfe_170765_330x0_resize_box_3.png 330w,
-        /posts/applesiliconenv_utm/images/ghidrathon_install_ext_huc1e8b09d0d4a37f1f55220bc19ecddfe_170765_660x0_resize_box_3.png 660w,
-        /posts/applesiliconenv_utm/images/ghidrathon_install_ext_huc1e8b09d0d4a37f1f55220bc19ecddfe_170765_1024x0_resize_box_3.png 1024w,
-        /posts/applesiliconenv_utm/images/ghidrathon_install_ext_huc1e8b09d0d4a37f1f55220bc19ecddfe_170765_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv_utm/images/ghidrathon_install_ext_huc1e8b09d0d4a37f1f55220bc19ecddfe_170765_660x0_resize_box_3.png"
-        alt="Ghidrathon_install"
-      />
-      
-      
-    </figure>
-  
-
-</li>
-<li>Restart Ghidra when prompted.</li>
-<li>Next, open your new project and load a binary.</li>
-<li>Select <code>File &gt; Configure &gt; Configure Core</code> and select <code>Ghidrathon Plugin</code>. Then scroll down in the list and find <code>Python Plugin</code>. Turn this off, as we are now using python3.</li>
-<li>Finally, navigate to <code>Windows &gt; Ghidrathon</code> and pop the new console down the bottom in place of the old python2 module. Remember to save your layout (<code>File &gt; Save Layout</code>) so that every time you open Ghidra, you don&rsquo;t need to redo your preferred layout.</li>
-</ol>
-<p>For now, this is the bare-bones basics we require to perform analysis on macOS malware. Small celebrations here until we move onto installing legacy systems via UTM.</p>
-<p>It&rsquo;s normally at this point that I will clone this VM and title it <code>MacOS Malware - Clean</code> and additionally disconnect the live machine from the internet. You can always leverage your shared drive to transfer malware (or turn the internet back on to facilitate this, just remember to turn it back off!).</p>
-<blockquote>
-<p>Note that instead of cloning the VM you can also make it into a template that you can continually deploy. Just follow the steps available in the UTM documentation!</p>
-</blockquote>
-<h2 class="relative group">Using UTM for legacy operating systems 
-    <div id="using-utm-for-legacy-operating-systems" class="anchor"></div>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;dict&gt;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;key&gt;</span>CFBundleGetInfoStrings<span style="color:#f92672">&lt;/key&gt;</span> # Now an obsolete key, replaced by NSHumanReadableCopyright
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;string&gt;</span>Installer<span style="color:#f92672">&lt;/string&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;key&gt;</span>CFBundleExecutable<span style="color:#f92672">&lt;/key&gt;</span> # Defines the binary that&#39;s dynamically loaded by the bundle
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;string&gt;</span>Installer<span style="color:#f92672">&lt;/string&gt;</span> # takes type string, binary name
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;key&gt;</span>CFBundleIconFile<span style="color:#f92672">&lt;/key&gt;</span> # file containing the bundle&#39;s icon
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;string&gt;</span>icon.icns<span style="color:#f92672">&lt;/key&gt;</span> # takes type string, file name containing icon
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dict&gt;</span>
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>To make sense of the components in this file, the Apple Developer documentation <a href="https://github.com/ivRodriguezCA/RE-iOS-Apps"   target="_blank">
+    here</a> and <a href="https://github.com/ivRodriguezCA/RE-iOS-Apps"   target="_blank">
+    here</a> can (and really should) be referenced.</p>
+<p>In the case of this malware, there is not too much information that can be gleaned from analysis of this file except:</p>
+<ul>
+<li>The loaded binary name is called <code>Installer</code> - which we saw in our file list</li>
+<li>The icon file name is <code>icon.icns</code> - which we also discovered in our file list</li>
+</ul>
+<p>The positive here is that we now have definitive evidence that confirms the initial recon analysis performed of the file structure.</p>
+<h3 class="relative group">Frameworks 
+    <div id="frameworks" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#using-utm-for-legacy-operating-systems" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>As mentioned above, UTM does support virtualisation for x86 systems.</p>
-<h3 class="relative group">UTM - Windows 
-    <div id="utm---windows" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#utm---windows" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#frameworks" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
-<blockquote>
-<p>The following section requires UTM to be installed on your MacBook. Note that UTM is a paid program available on the App store. If you don&rsquo;t have the budget or feel comfortable spending the money, use this section to evaluate whether this program would be beneficial to your malware analysis environment.</p>
+<p>Some iOS applications can and do leverage third party frameworks to assist in the creation and operation of an application. Its worth noting here because it could provide additional insight or potentially a way to fingerprint a strand of malware if a certain framework is always present alongside a malicious sample.</p>
+<p>In the case of PureLand and our file list, no third party framework is used.</p>
+<h2 class="relative group">MacOS Malware Tools 
+    <div id="macos-malware-tools" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#macos-malware-tools" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>A quick reference guide on what tools to install or leverage on your MacOS VM to aid in the analysis of this and other, more complex malware samples.</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+<th>Use</th>
+<th>Requires Install?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strings</td>
+<td>In built command available via terminal. Finds ascii strings in a binary it is run over.</td>
+<td>Easily run strings over a binary to ascertain the contexts of the executable. Might reveal some pertinent information about the capabilities of the malware that you can investigate further using other programs.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Hopper</td>
+<td>Disassembler</td>
+<td>Another disassembler that works with iOS. Comes with a limited demo (that doesn&rsquo;t allow you to save states of your analysis). Full version is paid.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Ghidra</td>
+<td>Disassembler</td>
+<td>Probably needs no introduction at this point, but Ghidra is a powerful open-source disassembler that can be leveraged to gain more information, statically, about the operations and capabilities of malware.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>otool</td>
+<td>Command-line tool to inspect iOS executables</td>
+<td>Installed on all macOS devices. can be used to view the contents of iOS executable file.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">Delving into Analysis 
+    <div id="delving-into-analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#delving-into-analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Initial analysis of this malware saw us getting to know the file and folder structure of this application. In this process, we established:</p>
+<ul>
+<li>The executable&rsquo;s name</li>
+<li>The application&rsquo;s icon
+With this basic information, the focus turns to understanding the capabilities of the malware.</li>
+</ul>
+<p>Initial analysis should always start with the &rsquo;lowest hanging fruit&rsquo; aka running strings across files of interest within the folder structure and inspecting files that do not execute, such as our <code>Info.plist</code> file from earlier. Noting that we are aware of the executable name for this malware already <code>Installer</code>, contained within the <code>Contents\MacOS\</code> directory, we will run strings over this binary.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># run strings over executable and pipe output into file</span>
+</span></span><span style="display:flex;"><span>strings Installer &gt; output.txt
+</span></span></code></pre></div><blockquote>
+<p>It is always wise to pipe the output of strings into a nice little file so that you can peruse it at leisure.</p>
 </blockquote>
+<p>In this instance, the amount of information is initially overwhelming - there is a lot to unpack here but an initial scroll through the output reveals some very interesting information:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>USER
+</span></span><span style="display:flex;"><span>http://193.168.141.107:8888/ <span style="color:#75715e"># private IP Address range?? Attacker could connect to the stealer on this port? </span>
+</span></span><span style="display:flex;"><span>lastroute
+</span></span><span style="display:flex;"><span>zerocode
+</span></span><span style="display:flex;"><span>ixcozlabraham
+</span></span><span style="display:flex;"><span>BigSurApplication <span style="color:#75715e"># developed for big sur?</span>
+</span></span><span style="display:flex;"><span>CnbtldmsrSWS
+</span></span><span style="display:flex;"><span>CdrjsnoSWS
+</span></span><span style="display:flex;"><span>/Library/Application Support/Exodus/exodus.wallet/ <span style="color:#75715e"># crypto wallet </span>
+</span></span><span style="display:flex;"><span>/.dkdbsqtl/vakkdsr <span style="color:#75715e"># interesting folder and unique string</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>....
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>username
+</span></span><span style="display:flex;"><span>userbot
+</span></span><span style="display:flex;"><span>buildname
+</span></span><span style="display:flex;"><span>file
+</span></span><span style="display:flex;"><span>system_profiler SPHardwareDataType &gt; /Users/
+</span></span><span style="display:flex;"><span>/Documents/
+</span></span><span style="display:flex;"><span>.txt
+</span></span><span style="display:flex;"><span>/Users/
+</span></span><span style="display:flex;"><span>SERIALNUMBERFILE
+</span></span><span style="display:flex;"><span>serialinfo
+</span></span><span style="display:flex;"><span>rm -Rf <span style="color:#75715e"># what are you removing good sir/maam? </span>
+</span></span><span style="display:flex;"><span>alreadyserver
+</span></span><span style="display:flex;"><span>already
+</span></span><span style="display:flex;"><span>/Library/Application Support/Google/Chrome/Default/Local Extension Settings/nkbihfbeogaeaoehlefnkodbefgpgknn/ <span style="color:#75715e"># interesting unique string contained here</span>
+</span></span><span style="display:flex;"><span>metamask
+</span></span><span style="display:flex;"><span>test
+</span></span><span style="display:flex;"><span>/Library/Application Support/Google/Chrome/Default/Local Extension Settings/bfnaelmomeimhlpmgjnjophhpkkoljpa/ <span style="color:#75715e"># another one</span>
+</span></span><span style="display:flex;"><span>phantom
+</span></span><span style="display:flex;"><span>/Library/Application Support/Google/Chrome/Default/Local Extension Settings/ibnejdfjmmkpcnlpebklmnkoeoihofec/ <span style="color:#75715e"># and another</span>
+</span></span><span style="display:flex;"><span>tronlink
+</span></span><span style="display:flex;"><span>/Library/Application Support/Google/Chrome/Default/Local Extension Settings/efbglgofoippbgcjepnhiblaibcnclgk/ <span style="color:#75715e"># and another</span>
+</span></span><span style="display:flex;"><span>MartianAptos
+</span></span><span style="display:flex;"><span>/Library/Application Support/atomic/Session Storage/
+</span></span><span style="display:flex;"><span>atomic <span style="color:#75715e"># crypo wallet</span>
+</span></span><span style="display:flex;"><span>exodus <span style="color:#75715e"># crypto wallet</span>
+</span></span><span style="display:flex;"><span>pass <span style="color:#75715e"># also might be a crypto wallet</span>
+</span></span><span style="display:flex;"><span>electrum <span style="color:#75715e"># crypto wallet</span>
+</span></span><span style="display:flex;"><span>/Library/Application Support/zoom.us/data/zoomus.enc.db <span style="color:#75715e"># looking for zoom? </span>
+</span></span><span style="display:flex;"><span>zoom
+</span></span><span style="display:flex;"><span>Zoom <span style="color:#ae81ff">404</span>
+</span></span><span style="display:flex;"><span>cd /Users/
+</span></span><span style="display:flex;"><span>/ <span style="color:#f92672">&amp;&amp;</span> find ~/Desktop -maxdepth <span style="color:#ae81ff">1</span> -name <span style="color:#e6db74">&#34;*.txt&#34;</span> &gt; uyganxmxcbcatkxnashygncbezj.txt
+</span></span><span style="display:flex;"><span>/uyganxmxcbcatkxnashygncbezj.txt <span style="color:#75715e"># copy contents of all text files into this file</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#f92672">&amp;&amp;</span> find ~/Documents -maxdepth <span style="color:#ae81ff">1</span> -name <span style="color:#e6db74">&#34;*.txt&#34;</span> &gt; xcyckzmzxnxbasizlxxnbzys.txt
+</span></span><span style="display:flex;"><span>/xcyckzmzxnxbasizlxxnbzys.txt <span style="color:#75715e"># cdopy contents of all text files into this file</span>
+</span></span><span style="display:flex;"><span>/Library/Application Support/Google/Chrome/Default/Login Data
+</span></span><span style="display:flex;"><span>/Library/Application Support/Google/Chrome/Default/Cookies
+</span></span><span style="display:flex;"><span>Chrome
+</span></span><span style="display:flex;"><span>security 2&gt;&amp;<span style="color:#ae81ff">1</span> &gt; /dev/null find-generic-password -ga <span style="color:#e6db74">&#39;Chrome&#39;</span> | awk <span style="color:#e6db74">&#39;{print $2}&#39;</span> &gt; /Users/
+</span></span><span style="display:flex;"><span>/Documents/uxcmzxgcyxc.txt <span style="color:#75715e"># outout content of generic chrome password into this text file</span>
+</span></span><span style="display:flex;"><span>/Documents/kkxmxhmzxc.txt <span style="color:#75715e"># and this one?</span>
+</span></span><span style="display:flex;"><span>/Documents/ <span style="color:#f92672">&amp;&amp;</span> rm -Rf uxcmzxgcyxc.txt <span style="color:#f92672">&amp;&amp;</span> rm -Rf kkxmxhmzxc.txt <span style="color:#75715e"># but then remove them both</span>
+</span></span><span style="display:flex;"><span>https://api.ipify.org/ <span style="color:#75715e"># could be making a request to identify the victims IP address to deliver to attacker infrastructure?</span>
+</span></span><span style="display:flex;"><span>allocator&lt;T&gt;::allocate<span style="color:#f92672">(</span>size_t n<span style="color:#f92672">)</span> <span style="color:#e6db74">&#39;n&#39;</span> exceeds maximum supported size
+</span></span><span style="display:flex;"><span>NSt3__114basic_ifstreamIcNS_11char_traitsIcEEEE <span style="color:#75715e"># interesting string, research this and those below</span>
+</span></span><span style="display:flex;"><span>NSt3__113basic_filebufIcNS_11char_traitsIcEEEE
+</span></span><span style="display:flex;"><span>NSt3__114basic_ofstreamIcNS_11char_traitsIcEEEE
+</span></span></code></pre></div><blockquote>
+<p>It&rsquo;s always worthwhile making notes against strings and other interesting pieces of information you have uncovered. Yet another benefit to piping the output of strings into an individual text file</p>
+</blockquote>
+<p>With this information alone, we know that the malware is interested in the presence of the following files/information:</p>
+<ul>
+<li>Exodus Wallet</li>
+<li>Zoom US</li>
+<li>Information contained on the Desktop and within the Documents folder</li>
+<li>Apps in the Applications folder</li>
+<li>Chrome Login Data</li>
+<li>Chrome Cookies</li>
+<li>Chrome Generic Password</li>
+<li>Atomic Wallet</li>
+<li>Electrum Wallet</li>
+<li>Metamask</li>
+<li>Phantom</li>
+<li>Martian</li>
+<li>TronLink</li>
+</ul>
 <p>
 
 
@@ -1157,12 +1215,12 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <img
         class="my-0 rounded-md"
         srcset="
-        /posts/applesiliconenv_utm/images/windows_install_hu374910ef38b70283d1581b526f48a3eb_945911_330x0_resize_box_3.png 330w,
-        /posts/applesiliconenv_utm/images/windows_install_hu374910ef38b70283d1581b526f48a3eb_945911_660x0_resize_box_3.png 660w,
-        /posts/applesiliconenv_utm/images/windows_install_hu374910ef38b70283d1581b526f48a3eb_945911_1024x0_resize_box_3.png 1024w,
-        /posts/applesiliconenv_utm/images/windows_install_hu374910ef38b70283d1581b526f48a3eb_945911_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv_utm/images/windows_install_hu374910ef38b70283d1581b526f48a3eb_945911_660x0_resize_box_3.png"
-        alt="Windows Image"
+        /posts/pureland_analysis/Pureland_functions_1_hu320df39a63a44b7037874603b28b9f14_158280_330x0_resize_box_3.png 330w,
+        /posts/pureland_analysis/Pureland_functions_1_hu320df39a63a44b7037874603b28b9f14_158280_660x0_resize_box_3.png 660w,
+        /posts/pureland_analysis/Pureland_functions_1_hu320df39a63a44b7037874603b28b9f14_158280_1024x0_resize_box_3.png 1024w,
+        /posts/pureland_analysis/Pureland_functions_1_hu320df39a63a44b7037874603b28b9f14_158280_1320x0_resize_box_3.png 2x"
+        src="/posts/pureland_analysis/Pureland_functions_1_hu320df39a63a44b7037874603b28b9f14_158280_660x0_resize_box_3.png"
+        alt="Cryptocurrency Functions"
       />
       
       
@@ -1170,30 +1228,171 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
   
 
 </p>
-<ol>
-<li>Select <code>File &gt; New &gt; Emulate</code></li>
-<li>Select your <a href="https://mac.getutm.app/gallery/windows-7"   target="_blank">
-    UTM Template</a> <a href="https://archive.org/details/en_windows_7_ultimate_with_sp1_x64_dvd_u_677332_202006"   target="_blank">
-    downloaded Windows ISO file</a></li>
-<li>Once completed, double click on the UTM template and it will set up a Windows VM for you</li>
-<li>From the turned off VM screen, scroll down to the CD/DVD option and select your downloaded iso <code>en_windows_7_ultimate_with_sp1_x64_dvd_u_677332.iso</code> (or something similar)</li>
-<li>Launch your VM and navigate through the Windows 7 installation process. Note that you will be prompted to enter a product key, if you don&rsquo;t have one, press the skip button</li>
-<li>(Optional) Install FlareVM on this machine as per the instructions on the previous series <a href="https://polaryse.github.io/posts/applesiliconenv/"   target="_blank">
-    post</a>. Note that you will have to turn off your VM and adjust the HDD size for your Windows box to ensure you have enough room to install Flare successfully.</li>
-</ol>
-<p>Congratulations! You are now emulating a legacy x86_64 Windows machine on your ARM processor. How cool is that!?</p>
-<h3 class="relative group">UTM - REMnux  Linux 
-    <div id="utm---remnux--linux" class="anchor"></div>
+<p>Additionally, we have gathered information about:</p>
+<ul>
+<li>Potential communications with C2 infrastructure</li>
+<li>Artefact locations when malware runs</li>
+<li>Unique identifiers to create a signature</li>
+</ul>
+<p>From running strings alone in this instance and cross-referencing information within Ghidra, we have accrued some very valuable information to make an informed assessment of this malware&rsquo;s capabilities and classification. This in turn allows us to create a robust behavioural signature for this info stealer. However, if we want to understand more about the flow of the program, as well as what that IP address could be in the context of this malware, additional analysis will have to be performed.</p>
+<h2 class="relative group">Host based indicators 
+    <div id="host-based-indicators" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#utm---remnux--linux" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#host-based-indicators" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uyganxmxbcatkxnashygcbezj.txt</code></td>
+<td>Output folder containing information about what is available on the user&rsquo;s Desktop</td>
+</tr>
+<tr>
+<td><code>xcyckzmzxnxbasizlxxnbzys.txt</code></td>
+<td>Output folder containing information about what is available on the user&rsquo;s  Documents folders</td>
+</tr>
+<tr>
+<td><code>/.dkdbsqr/vakkdsr</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>~/Documents/uxcmzxgcyxc.txt</code></td>
+<td>Places the generic password for Chrome into this file, housed in the Documents folder of the user the malware was run from</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">Network based indicators 
+    <div id="network-based-indicators" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#network-based-indicators" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://192[.]168.141.107:8888</code></td>
+<td>Internal IP address listening on port 8888. Likely for the attacker to connect to, to collect stolen data.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">Signatures 
+    <div id="signatures" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#signatures" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Unique strings contained in malware is a very good start to developing signatures to stop this malware from functioning. From here, you should always run your rules against goodware to ensure that no other binary is impacted by your creation. This is a great way to grip up your understanding of the rule language you are leveraging and leads to much more robust and tight rule creation. Targeting unique identifiers can also have the added benefit of picking up other strands of the same malware family (if you pick them right). Unique errors embedded in malware samples tend to be a good pick for this (that is not to say that there aren&rsquo;t any additional unique strings to target, such as spelling mistakes).</p>
+<p>As with many things in reverse engineering (and most careers), it takes a while to understand and create good rules. I count myself amongst those still learning how to appropriately optimise my own rules.</p>
+<h3 class="relative group">YARA Rule 
+    <div id="yara-rule" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#yara-rule" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
-<p>This nix distro is perhaps my favourite in existence. However, it currently isn&rsquo;t available for ARM :(. UTM provides us with the capability to use all functions within this distro on an ARM based processor, which is pretty neat.</p>
-<p>This one is a bit of an interesting case. I generally use the base operating system from UTM gallery to enable this install and then follow the instructions on the REMnux website for the more manual process of setting this VM up (so in short, it can take a little while longer to prep).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">rule pureland_macos_campaign</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#f92672">meta</span>: 
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">created = &#34;2024/02/14&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">modified = &#34;2024/02/14&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">author = &#34;polaryse&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">description = &#34;Simple YARA rule to detect the presence of pureland on macos&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">strings</span>: 
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$unique_string_1 = &#34;uyganxmxbcatkxnashygcbezj&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$unique_string_2 = &#34;bfnaelmomeimhlpmgjnjophhpkkoljpa&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$unique_string_3 = &#34;ibnejdfjmmkpcnlpebklmnkoeoihofec&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$unique_string_4 = &#34;efbglgofoippbgcjepnhiblaibcnclgk&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$unique_string_file_structure = &#34;/.dkdbsqtl/vakkdsr&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$unique_txt_file_name_1 = &#34;uxcmzxgcyxc.txt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$unique_txt_file_name_2 = &#34;kkxmxhmzxc.txt&#34;</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">condition</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">any of them</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>As I am building these rules, I perform tests on my macOS VM to ensure that it is firing correctly, and only picking up the sample of interest. If I find that there are additional items being picked up, I look back at the rule itself and tweak the parameters to further tighten it. Generally, rules start out very broad, based off of initial analysis findings and are narrowed through this testing on the system, and then against goodware.</p>
+<p>The potential problem with the signature created for this sample is malware modification. At present, this signature only checks for the presence of the unique strings contained within this particular build. If the names were modified by the attacker, then the stealer could start working again. As more of this family of malware is analysed, it becomes possible to discover more unique identifiers for said family, which allows a reverse engineer to develop more robust signatures targeting new strands of malware as well as those that have been historically analysed. Ideally, this is the aim and aspiration of all signature creation.</p>
+<h2 class="relative group">MITRE ATT&amp;CK Framework 
+    <div id="mitre-attck-framework" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#mitre-attck-framework" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<table>
+<thead>
+<tr>
+<th>Tactic or Technique</th>
+<th>ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gather victim identify Information</td>
+<td>T1589</td>
+<td>Pureland captures and gathers information about the users system to on-send to C2 infrastructure. It is particularly interested in the presence of crypto wallets on a given endpoint and transmits this back to the threat actor via collation in a text file on disk.</td>
+</tr>
+<tr>
+<td>Compromise Accounts</td>
+<td>T1586</td>
+<td>Pureland is specifically after the wallet (account) information related to select crypto applications present on the endpoint.</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>TA0003</td>
+<td>This malware persists in the form of an application, installed on the user&rsquo;s endpoint. When running, the application will collect the desired information and on-send it back to C2 infrastructure. The launcher of this application (the malicious payload) is also dropped within the TEMP directory once installed, to persist on the device.</td>
+</tr>
+<tr>
+<td>Credential Access, Credentials from Stores</td>
+<td>T1555</td>
+<td>This application accesses common password storage locations to obtain user credentials from disk. Specifically targeting the Chrome browser, its stored internet cookies and passwords/usernames.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">How to find your own Mac Malware samples for analysis 
+    <div id="how-to-find-your-own-mac-malware-samples-for-analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#how-to-find-your-own-mac-malware-samples-for-analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>There are multiple repositories that house macOS malware samples available both free and via a paid account. The following table attempts to document the easiest sources of malware for you to look at starting analysis.</p>
 <table>
 <thead>
 <tr>
@@ -1203,123 +1402,32 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
 </thead>
 <tbody>
 <tr>
-<td><a href="https://ubuntu.com/download/desktop"   target="_blank">
-    Ubuntu Image</a></td>
-<td>Ubuntu 20.04.3 desktop image download for REMnux installation</td>
+<td><a href="https://malpedia.caad.fkie.fraunhofer.de/"   target="_blank">
+    Malpedia</a></td>
+<td>A free service offered by Fraunhofer FKIE. As stated on their website, the aim of malpedia is to provide a resource for &ldquo;rapid identification and actionable context when investigating malware&rdquo;. There is a note that not all content is publicly available and requires the creation of an account to access all data via the website. Currently, this resource operates as an &ldquo;invite only trust group&rdquo; for registration.</td>
 </tr>
 <tr>
-<td><a href="https://docs.remnux.org/install-distro/install-from-scratch"   target="_blank">
-    REMnux Installation Instructions</a></td>
-<td>Instructions for install of REMnux onto Ubuntu 20.04</td>
+<td><a href="https://www.virustotal.com/gui/home/upload"   target="_blank">
+    VirusTotal</a></td>
+<td>Requires a paid account in order to download most samples available via this service. It is good to confirm some details about the malware you are investigating and can help identify further samples to investigate and download elsewhere, from a free repository.</td>
+</tr>
+<tr>
+<td><a href="https://malshare.com/index.php"   target="_blank">
+    Malshare</a></td>
+<td>A great resource which is entirely free and publicly available. Their homepage displays the most recently added samples collected by malshare. Additionally, there is an upload function on the website and a handy search which allows you to find specific malware samples. Wonderfully, malshare also includes the virtustotal context of the sample you are investigating.</td>
+</tr>
+<tr>
+<td><a href="https://vx-underground.org/APTs/Yearly%20Archives"   target="_blank">
+    VX Underground</a></td>
+<td>A free, publicly available resource that has a wonderful &lsquo;yearly archive&rsquo; of malware that you can download. This will not be MacOS exclusive but rather contain malware observed and analysed from the year across multiple operating systems.</td>
+</tr>
+<tr>
+<td><a href="https://objective-see.org/malware.html"   target="_blank">
+    Mac Malware Repository</a></td>
+<td>Brought to you by <code>objective-see.org</code>, this is a handy resource of mac specific malware publicly available and free. The cataloging is quite useful and provides some insight as to the type of malware you would be analysing (such as a keylogger, backdoor, cryptominer etc). The list isnt exhaustive, but its a fantastic base for delving into mac malware.</td>
 </tr>
 </tbody>
 </table>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /posts/applesiliconenv_utm/images/ubuntu_install_hu8cd3e08d513d470231e131829a300b93_17917_330x0_resize_box_3.png 330w,
-        /posts/applesiliconenv_utm/images/ubuntu_install_hu8cd3e08d513d470231e131829a300b93_17917_660x0_resize_box_3.png 660w,
-        /posts/applesiliconenv_utm/images/ubuntu_install_hu8cd3e08d513d470231e131829a300b93_17917_1024x0_resize_box_3.png 1024w,
-        /posts/applesiliconenv_utm/images/ubuntu_install_hu8cd3e08d513d470231e131829a300b93_17917_1320x0_resize_box_3.png 2x"
-        src="/posts/applesiliconenv_utm/images/ubuntu_install_hu8cd3e08d513d470231e131829a300b93_17917_660x0_resize_box_3.png"
-        alt="Ubuntu Image"
-      />
-      
-      
-    </figure>
-  
-
-</p>
-<blockquote>
-<p>Note that the emulated devices will not perform as quickly as your virtualised ones, due to the QEMU wrapping its doing to enable x86_64 emulation</p>
-</blockquote>
-<ol>
-<li>Just like Windows, select <code>File &gt; New &gt; Emulate</code></li>
-<li>Select your downloaded Ubuntu 20.04 ISO and select next</li>
-<li>Continue through the VM setup process as is tradition. I left most of mine on defaults, bar the name of the machine</li>
-<li>Now to install Ubuntu. Progress through the installation process and don&rsquo;t stress if the VM is taking a bit more time to boot, I promise you it is. You can use whatever username and password combination you&rsquo;d like, REMnux recommends the following:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Full Name: REMnux User
-</span></span><span style="display:flex;"><span>username: remnux
-</span></span><span style="display:flex;"><span>password: malware
-</span></span></code></pre></div><blockquote>
-<p>Note: when the installation has completed, eject the ISO media by selecting the disk drive on the top right-hand corner of the UTM VM screen and clicking eject ubuntu iso, otherwise you&rsquo;ll eternally be in a boot loop for the installer</p>
-</blockquote>
-<ol start="5">
-<li>Once completed, continue with the REMnux installation guide</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># open a terminal</span>
-</span></span><span style="display:flex;"><span>wget https://REMnux.org/remnux-cli
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># validate the SHA hash </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 88cd35b7807fc66ee8b51ee08d0d2518b2329c471b034ee3201e004c655be8d6</span>
-</span></span><span style="display:flex;"><span>sha256sum remnux-cli
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># set up REMnux</span>
-</span></span><span style="display:flex;"><span>mv remnux-cli remnux
-</span></span><span style="display:flex;"><span>chmod +x remnux
-</span></span><span style="display:flex;"><span>sudo mv remnux /usr/local/bin
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># install dependencies</span>
-</span></span><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt install -y gnupg curl 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># run installer</span>
-</span></span><span style="display:flex;"><span>sudo /usr/local/bin/remnux install
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># reboot the system</span>
-</span></span><span style="display:flex;"><span>sudo reboot
-</span></span></code></pre></div><blockquote>
-<p>It might take a while to install REMnux, so now is the optimal time to have a coffee, tea, or go for a walk</p>
-</blockquote>
-<p>Congratulations! You now have a fully fledged REMnux install! You can proceed through the inetsim guide up from the <a href="https://polaryse.github.io/posts/applesiliconenv/"   target="_blank">
-    previous post</a> in this series, but bear in mind that at the time of writing this article, networking is still slightly borked&hellip; so it might not work as planned.</p>
-<p>Just like your macOS and Windows VM, now is a really good time to template or clone this VM, switch off the internet and sigh with relief at all your hardwork.</p>
-<h4 class="relative group">VMWare Fusion vs UTM 
-    <div id="vmware-fusion-vs-utm" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#vmware-fusion-vs-utm" aria-label="Anchor">#</a>
-    </span>        
-    
-</h4>
-<p>The use cases to install these programs are fundamentally different from each other. The following table attempts to highlight the positives and negatives associated with each program.</p>
-<table>
-<thead>
-<tr>
-<th>Program</th>
-<th>Postiives</th>
-<th>Negatives</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VMWare Fusion</td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted -->Available for free. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->Allows you to take snapshots of your VMs. <!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted -->Networking between machines is fluid and easy. <!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted -->Easy to install ARM based operating systems<!-- raw HTML omitted --><!-- raw HTML omitted --></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted -->No support for legacy x86 operating systems<!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted -->No support for virtualising MacOS <!-- raw HTML omitted --><!-- raw HTML omitted --></td>
-</tr>
-<tr>
-<td>UTM</td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted -->Allows virtualisation of x86 platforms<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->Allows virtualisation of MacOS<!-- raw HTML omitted --><!-- raw HTML omitted --></td>
-<td><!-- raw HTML omitted --><!-- raw HTML omitted -->Paid program available via the App Store. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->No snapshot functions for VMs (but is coming very soon) <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->Networking is currently tedious to set up and sometimes does not work between systems<!-- raw HTML omitted --><!-- raw HTML omitted --></td>
-</tr>
-</tbody>
-</table>
-<p>To get around the lack of screenshots currently, I clone a clean image of my UTM VMs that have been configured with the basic malware analysis tools I require. It&rsquo;s a bit annoying, yes, but I honestly have so much time and faith in this product and the developers. I really think as the Apple Virtualisation Framework continues to improve and more people move over to ARM based processors, this program will become a real gem in the RE community.</p>
 <h2 class="relative group">References 
     <div id="references" class="anchor"></div>
     
@@ -1339,34 +1447,19 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
 </thead>
 <tbody>
 <tr>
-<td><a href="https://docs.getutm.app/"   target="_blank">
-    UTM Documentation</a></td>
-<td>Official documentation for UTM as released by the developers. Quite comprehensive, although some aspects are a little light on details (such as enabling sharing and copy/paste).</td>
+<td><a href="https://github.com/ivRodriguezCA/RE-iOS-Apps"   target="_blank">
+    Reverse Engineering iOS Applications</a></td>
+<td>A great course available for free via github that talks you through how to tackle iOS reverse engineering. The focus of this course is largely centred around application security and exploitation as opposed to malware itself, but the techniques leveraged to analyse the applications are absolutely applicable to malware analysis.</td>
 </tr>
 <tr>
-<td><a href="https://apps.apple.com/ms/app/utm-virtual-machines/id1538878817?mt=12"   target="_blank">
-    UTM</a></td>
-<td>Link to the official UTM application download on the app store.</td>
+<td><a href="https://github.com/ivRodriguezCA/RE-iOS-Apps"   target="_blank">
+    Apple Developer documentation</a></td>
+<td>This link specifically goes to the Information Property List Key Reference and can be used to understand each of the keys contained within the <code>Info.plist</code> file of an iOS application.</td>
 </tr>
 <tr>
-<td><a href="https://ubuntu.com/download/server"   target="_blank">
-    Ubuntu Image</a></td>
-<td>Ubuntu 20.04.6 server image download for REMnux installation</td>
-</tr>
-<tr>
-<td><a href="https://docs.remnux.org/install-distro/install-from-scratch"   target="_blank">
-    REMnux Installation Instructions</a></td>
-<td>Instructions for install of REMnux onto Ubuntu 20.04</td>
-</tr>
-<tr>
-<td><a href="https://archive.org/details/en_windows_7_ultimate_with_sp1_x64_dvd_u_677332_202006"   target="_blank">
-    Windows 7 ISO</a></td>
-<td>Link to a Windows ultimate iso for installation onto VM</td>
-</tr>
-<tr>
-<td><a href="https://github.com/mandiant/Ghidrathon"   target="_blank">
-    Ghidrathon</a></td>
-<td>Link to the Ghidrathon repo</td>
+<td><a href="https://github.com/ivRodriguezCA/RE-iOS-Apps"   target="_blank">
+    Apple Developer Documentation 2</a></td>
+<td>Another developer resource to reference. Gives a bit more detail on the key/value pairs.</td>
 </tr>
 </tbody>
 </table>
@@ -1374,17 +1467,6 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
         </div>
                 
         
-<details style="margin-left:0px" class="mt-2 mb-5 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5">
-    <summary
-        class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
-        Creating a safe (and functional) RE environment on Apple Silicon - This article is part of a series.
-    </summary>
-    
-    
-    
-
-</details>
-
 
         
   
@@ -1394,7 +1476,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/applesiliconenv_utm/&amp;title=[Part%202]%20Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20UTM"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/pureland_analysis/&amp;title=Analysis%20of%20PureLand%20Info%20Stealer"
       title="Share on LinkedIn"
       aria-label="Share on LinkedIn"
       >
@@ -1413,7 +1495,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/applesiliconenv_utm/&amp;text=[Part%202]%20Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20UTM"
+      href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/pureland_analysis/&amp;text=Analysis%20of%20PureLand%20Info%20Stealer"
       title="Tweet on Twitter"
       aria-label="Tweet on Twitter"
       >
@@ -1431,7 +1513,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://api.whatsapp.com/send?text=https://polaryse.github.io/posts/applesiliconenv_utm/&amp;resubmit=true&amp;title=[Part%202]%20Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20UTM"
+      href="https://api.whatsapp.com/send?text=https://polaryse.github.io/posts/pureland_analysis/&amp;resubmit=true&amp;title=Analysis%20of%20PureLand%20Info%20Stealer"
       title=""
       aria-label=""
       >
@@ -1450,7 +1532,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/applesiliconenv_utm/&amp;description=[Part%202]%20Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20UTM"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/pureland_analysis/&amp;description=Analysis%20of%20PureLand%20Info%20Stealer"
       title="Pin on Pinterest"
       aria-label="Pin on Pinterest"
       >
@@ -1469,7 +1551,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/applesiliconenv_utm/&amp;resubmit=true&amp;title=[Part%202]%20Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20UTM"
+      href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/pureland_analysis/&amp;resubmit=true&amp;title=Analysis%20of%20PureLand%20Info%20Stealer"
       title="Submit to Reddit"
       aria-label="Submit to Reddit"
       >
@@ -1488,7 +1570,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/applesiliconenv_utm/&amp;quote=[Part%202]%20Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20UTM"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/pureland_analysis/&amp;quote=Analysis%20of%20PureLand%20Info%20Stealer"
       title="Share on Facebook"
       aria-label="Share on Facebook"
       >
@@ -1507,7 +1589,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://polaryse.github.io/posts/applesiliconenv_utm/&amp;subject=[Part%202]%20Creating%20a%20safe%20%28and%20functional%29%20RE%20environment%20on%20Apple%20Silicon%20-%20UTM"
+      href="mailto:?body=https://polaryse.github.io/posts/pureland_analysis/&amp;subject=Analysis%20of%20PureLand%20Info%20Stealer"
       title="Send via email"
       aria-label="Send via email"
       >
@@ -1530,8 +1612,8 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
      
     
      <script>
-        var oid = "views_posts\/applesiliconenv_utm\/index.md"
-        var oid_likes = "likes_posts\/applesiliconenv_utm\/index.md"
+        var oid = "views_posts\/pureland_analysis\/index.md"
+        var oid_likes = "likes_posts\/pureland_analysis\/index.md"
       </script>
       
       
@@ -1551,7 +1633,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/posts/applesiliconenv/">
+            <a class="flex group mr-3" href="/posts/applesiliconenv_utm/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1563,7 +1645,7 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >[Part 1] Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion</span
+                  >[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
@@ -1573,26 +1655,6 @@ eval &#34;$(/opt/homebrew/bin/brew shellenv)&#34;
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/posts/pureland_analysis/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Analysis of PureLand Info Stealer</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>
