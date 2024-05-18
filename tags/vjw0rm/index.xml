@@ -10,12 +10,12 @@
     <lastBuildDate>Tue, 29 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/vjw0rm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Starting Small: Analysis of recent vjw0rm variant</title>
-      <link>https://polaryse.github.io/posts/vjw0rm/</link>
+      <link>https://polaryse.github.io/blog-posts/vjw0rm/</link>
       <pubDate>Tue, 29 Nov 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/posts/vjw0rm/</guid>
+      <guid>https://polaryse.github.io/blog-posts/vjw0rm/</guid>
       <description>Analysis of a recent variant of vjw0rm. I walk through my approach to analysing the sample, the challenges I faced in completing the task, resources I leveraged to overcome these and finally the lessons I learned along the way.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/vjw0rm/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/vjw0rm/featured.png" />
     </item>
     
   </channel>
