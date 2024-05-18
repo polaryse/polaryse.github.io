@@ -7,7 +7,87 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 polaryse</copyright>
-    <lastBuildDate>Fri, 17 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AppleSilicon</title>
+      <link>https://polaryse.github.io/tags/applesilicon/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/applesilicon/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://polaryse.github.io/tags/linux/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/linux/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>MacOS</title>
+      <link>https://polaryse.github.io/tags/macos/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/macos/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>MalwareAnalysis</title>
+      <link>https://polaryse.github.io/tags/malwareanalysis/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/malwareanalysis/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Microsoft</title>
+      <link>https://polaryse.github.io/tags/microsoft/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/microsoft/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>ReverseEngineering</title>
+      <link>https://polaryse.github.io/tags/reverseengineering/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/reverseengineering/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Training</title>
+      <link>https://polaryse.github.io/tags/training/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/training/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://polaryse.github.io/tags/windows/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/tags/windows/</guid>
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>APT</title>
       <link>https://polaryse.github.io/tags/apt/</link>
@@ -69,26 +149,6 @@
     </item>
     
     <item>
-      <title>MacOS</title>
-      <link>https://polaryse.github.io/tags/macos/</link>
-      <pubDate>Fri, 17 May 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/macos/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>ReverseEngineering</title>
-      <link>https://polaryse.github.io/tags/reverseengineering/</link>
-      <pubDate>Fri, 17 May 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/reverseengineering/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>ARM</title>
       <link>https://polaryse.github.io/tags/arm/</link>
       <pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate>
@@ -114,16 +174,6 @@
       <pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/infostealer/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>AppleSilicon</title>
-      <link>https://polaryse.github.io/tags/applesilicon/</link>
-      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/applesilicon/</guid>
       <description></description>
       
     </item>
@@ -244,16 +294,6 @@
       <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/tags/femalesintech/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Training</title>
-      <link>https://polaryse.github.io/tags/training/</link>
-      <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://polaryse.github.io/tags/training/</guid>
       <description></description>
       
     </item>

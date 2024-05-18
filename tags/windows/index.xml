@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on Malware Analysis: Or How I Learned To Love Frustration</title>
+    <link>https://polaryse.github.io/tags/windows/</link>
+    <description>Recent content in Windows on Malware Analysis: Or How I Learned To Love Frustration</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 polaryse</copyright>
+    <lastBuildDate>Sat, 18 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The difference between Dynamic and Static analysis</title>
+      <link>https://polaryse.github.io/topics/understanding_analysis/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/topics/understanding_analysis/</guid>
+      <description>Explaining the fundamental differences in dynamic and static analysis in reverse engineering malware samples across Windows, Mac and Nix endpoints.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/understanding_analysis/featured.png" />
+    </item>
+    
+  </channel>
+</rss>
