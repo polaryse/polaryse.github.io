@@ -9,63 +9,73 @@
     <copyright>© 2024 polaryse</copyright>
     <lastBuildDate>Sat, 18 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/reverseengineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The difference between Dynamic and Static analysis</title>
-      <link>https://polaryse.github.io/training/understanding_analysis/</link>
+      <title>Great resources for starting out in malware reverse engineering</title>
+      <link>https://polaryse.github.io/topics/starting_resources/</link>
       <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/training/understanding_analysis/</guid>
+      <guid>https://polaryse.github.io/topics/starting_resources/</guid>
+      <description>A list of resources for people looking to start their adventure into the wonderful world of malware reverse engineering. This list will be dynamically updated as and when I can evaluate new training material (both paid and free) available on the market.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/starting_resources/featured.png" />
+    </item>
+    
+    <item>
+      <title>The difference between Dynamic and Static analysis</title>
+      <link>https://polaryse.github.io/topics/understanding_analysis/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/topics/understanding_analysis/</guid>
       <description>Explaining the fundamental differences in dynamic and static analysis in reverse engineering malware samples across Windows, Mac and Nix endpoints.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/training/understanding_analysis/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/understanding_analysis/featured.png" />
     </item>
     
     <item>
       <title>Delving into BlueNorOff malware</title>
-      <link>https://polaryse.github.io/blog-posts/bluenoroff-malware/</link>
+      <link>https://polaryse.github.io/posts/bluenoroff-malware/</link>
       <pubDate>Fri, 17 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/blog-posts/bluenoroff-malware/</guid>
+      <guid>https://polaryse.github.io/posts/bluenoroff-malware/</guid>
       <description>In this article, we examine a newer strand of Bluenoroff malware from late 2023 on MacOS systems. It&amp;rsquo;s our first look at a strand of malware from an APT.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/bluenoroff-malware/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/bluenoroff-malware/featured.png" />
     </item>
     
     <item>
       <title>Analysis of PureLand Info Stealer</title>
-      <link>https://polaryse.github.io/blog-posts/pureland_analysis/</link>
+      <link>https://polaryse.github.io/posts/pureland_analysis/</link>
       <pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/blog-posts/pureland_analysis/</guid>
+      <guid>https://polaryse.github.io/posts/pureland_analysis/</guid>
       <description>Analysis of an information stealer application designed for MacOS systems alongside a detailed breakdown of the structure of iOS applications to aid in future analysis of mac malware.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/pureland_analysis/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/pureland_analysis/featured.png" />
     </item>
     
     <item>
       <title>[Part 1] Creating a safe (and functional) RE environment on Apple Silicon - VMWare Fusion</title>
-      <link>https://polaryse.github.io/blog-posts/applesiliconenv/</link>
+      <link>https://polaryse.github.io/posts/applesiliconenv/</link>
       <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/blog-posts/applesiliconenv/</guid>
+      <guid>https://polaryse.github.io/posts/applesiliconenv/</guid>
       <description>This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using VMWare Fusion.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/applesiliconenv/featured.webp" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/applesiliconenv/featured.webp" />
     </item>
     
     <item>
       <title>You make me WannaSmile</title>
-      <link>https://polaryse.github.io/blog-posts/wannasmile/</link>
+      <link>https://polaryse.github.io/posts/wannasmile/</link>
       <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/blog-posts/wannasmile/</guid>
+      <guid>https://polaryse.github.io/posts/wannasmile/</guid>
       <description>Analysis of &amp;lsquo;WannaSmile&amp;rsquo; ransomware using dnSpy to pull apart and understand the behaviour and crypto functions used by this binary to encrypt machines.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/wannasmile/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/wannasmile/featured.png" />
     </item>
     
     <item>
       <title>0xCC Conference</title>
-      <link>https://polaryse.github.io/training/0xcc-2023/</link>
+      <link>https://polaryse.github.io/topics/0xcc-2023/</link>
       <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/training/0xcc-2023/</guid>
+      <guid>https://polaryse.github.io/topics/0xcc-2023/</guid>
       <description>I was lucky enough to be in a position to attend 0xCC this year, run by women, for women in tech. This is a collection of my thoughts and feelings about the value this conference had in my career.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/training/0xcc-2023/featured.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/0xcc-2023/featured.jpg" />
     </item>
     
   </channel>

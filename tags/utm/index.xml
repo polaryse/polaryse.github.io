@@ -10,12 +10,12 @@
     <lastBuildDate>Tue, 06 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/utm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Part 2] Creating a safe (and functional) RE environment on Apple Silicon - UTM</title>
-      <link>https://polaryse.github.io/blog-posts/applesiliconenv_utm/</link>
+      <link>https://polaryse.github.io/posts/applesiliconenv_utm/</link>
       <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/blog-posts/applesiliconenv_utm/</guid>
+      <guid>https://polaryse.github.io/posts/applesiliconenv_utm/</guid>
       <description>This blog post will guide you through the key programs and downloads required to successfully set up a functional and safe malware environment on M series MacBooks using UTM.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/applesiliconenv_utm/featured.webp" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/applesiliconenv_utm/featured.webp" />
     </item>
     
   </channel>

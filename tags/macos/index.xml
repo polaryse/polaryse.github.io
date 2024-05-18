@@ -9,33 +9,43 @@
     <copyright>© 2024 polaryse</copyright>
     <lastBuildDate>Sat, 18 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The difference between Dynamic and Static analysis</title>
-      <link>https://polaryse.github.io/training/understanding_analysis/</link>
+      <title>Great resources for starting out in malware reverse engineering</title>
+      <link>https://polaryse.github.io/topics/starting_resources/</link>
       <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/training/understanding_analysis/</guid>
+      <guid>https://polaryse.github.io/topics/starting_resources/</guid>
+      <description>A list of resources for people looking to start their adventure into the wonderful world of malware reverse engineering. This list will be dynamically updated as and when I can evaluate new training material (both paid and free) available on the market.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/starting_resources/featured.png" />
+    </item>
+    
+    <item>
+      <title>The difference between Dynamic and Static analysis</title>
+      <link>https://polaryse.github.io/topics/understanding_analysis/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/topics/understanding_analysis/</guid>
       <description>Explaining the fundamental differences in dynamic and static analysis in reverse engineering malware samples across Windows, Mac and Nix endpoints.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/training/understanding_analysis/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/topics/understanding_analysis/featured.png" />
     </item>
     
     <item>
       <title>Delving into BlueNorOff malware</title>
-      <link>https://polaryse.github.io/blog-posts/bluenoroff-malware/</link>
+      <link>https://polaryse.github.io/posts/bluenoroff-malware/</link>
       <pubDate>Fri, 17 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/blog-posts/bluenoroff-malware/</guid>
+      <guid>https://polaryse.github.io/posts/bluenoroff-malware/</guid>
       <description>In this article, we examine a newer strand of Bluenoroff malware from late 2023 on MacOS systems. It&amp;rsquo;s our first look at a strand of malware from an APT.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/bluenoroff-malware/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/bluenoroff-malware/featured.png" />
     </item>
     
     <item>
       <title>Analysis of PureLand Info Stealer</title>
-      <link>https://polaryse.github.io/blog-posts/pureland_analysis/</link>
+      <link>https://polaryse.github.io/posts/pureland_analysis/</link>
       <pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://polaryse.github.io/blog-posts/pureland_analysis/</guid>
+      <guid>https://polaryse.github.io/posts/pureland_analysis/</guid>
       <description>Analysis of an information stealer application designed for MacOS systems alongside a detailed breakdown of the structure of iOS applications to aid in future analysis of mac malware.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/blog-posts/pureland_analysis/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/pureland_analysis/featured.png" />
     </item>
     
   </channel>
