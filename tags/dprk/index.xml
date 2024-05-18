@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DPRK on Malware Analysis: Or How I Learned To Love Frustration</title>
+    <link>https://polaryse.github.io/tags/dprk/</link>
+    <description>Recent content in DPRK on Malware Analysis: Or How I Learned To Love Frustration</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 polaryse</copyright>
+    <lastBuildDate>Sun, 12 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/dprk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Delving into BlueNorOff malware</title>
+      <link>https://polaryse.github.io/posts/bluenoroff-malware/</link>
+      <pubDate>Sun, 12 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://polaryse.github.io/posts/bluenoroff-malware/</guid>
+      <description>In this article, we examine a newer strand of Bluenoroff malware from late 2023 on MacOS systems. It&amp;rsquo;s our first look at a strand of malware from an APT.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://polaryse.github.io/posts/bluenoroff-malware/featured.png" />
+    </item>
+    
+  </channel>
+</rss>
