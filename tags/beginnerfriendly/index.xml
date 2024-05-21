@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 polaryse</copyright>
-    <lastBuildDate>Sat, 18 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/beginnerfriendly/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://polaryse.github.io/tags/beginnerfriendly/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Great resources for starting out in malware reverse engineering</title>
       <link>https://polaryse.github.io/topics/starting_resources/</link>
-      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 21 May 2024 00:00:00 +0000</pubDate>
       
       <guid>https://polaryse.github.io/topics/starting_resources/</guid>
       <description>A list of resources for people looking to start their adventure into the wonderful world of malware reverse engineering. This list will be dynamically updated as and when I can evaluate new training material (both paid and free) available on the market.</description>
